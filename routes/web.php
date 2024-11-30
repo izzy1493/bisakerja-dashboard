@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 
-// Daftar pekerjaan
-Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/', [JobController::class, 'index']);
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/job/{id}', [JobController::class, 'show'])->name('jobs.show');
 
-// Halaman detail pekerjaan berdasarkan ID
-Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 

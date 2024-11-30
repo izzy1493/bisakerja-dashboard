@@ -1,64 +1,60 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobBoard</title>
-    <!-- Tailwind CSS CDN -->
+    <title>JobFinder</title>
+    <!-- Link ke Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Flowbite CSS (Optional) -->
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet">
+    <!-- FontAwesome untuk Ikon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-100">
 
     <!-- Navbar -->
-    <nav class="bg-blue-600 text-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-semibold">JobBoard</a>
-            <div class="flex space-x-4">
-                <a href="/" class="px-4 py-2 hover:bg-blue-700 rounded-md">Home</a>
-                <a href="#" class="px-4 py-2 hover:bg-blue-700 rounded-md">Post Job</a>
-                <a href="#" class="px-4 py-2 hover:bg-blue-700 rounded-md">My Jobs</a>
+    <nav class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 fixed w-full top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="{{ url('/') }}" class="text-3xl font-extrabold text-white hover:text-gray-100 transition duration-300">
+                JobFinder
+            </a>
+
+            <!-- Tautan Navbar -->
+            <div class="flex items-center space-x-8">
+                <!-- Tautan Kategori -->
+                <a href="{{ url('/jobs?category=Design') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Design</a>
+                <a href="{{ url('/jobs?category=Writing') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Writing</a>
+                <a href="{{ url('/jobs?category=Development') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Development</a>
+                <a href="{{ url('/jobs?category=Marketing') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Marketing</a>
+                <a href="{{ url('/jobs?category=Translation') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Translation</a>
+
+                <!-- Menu Dropdown untuk Opsi Lain -->
+                <div class="relative">
+                    <button class="text-white hover:text-gray-200 transition duration-300 focus:outline-none">
+                        <i class="fas fa-ellipsis-h"></i> <!-- Ikon tiga titik -->
+                    </button>
+                    <div class="absolute hidden mt-2 bg-white text-gray-700 shadow-xl rounded-lg w-48 group-hover:block transition-opacity duration-300">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Tentang Kami</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Kontak</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Ikon Pencarian -->
+                <div class="relative">
+                    <input type="text" class="hidden md:block px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Cari pekerjaan..." />
+                    <button class="md:hidden text-white">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="flex">
-        <!-- Sidebar -->
-<aside class="bg-gray-800 text-white w-72 min-h-screen p-6">
-    <h2 class="text-xl font-semibold mb-6">Filter Pekerjaan</h2>
-    <ul>
-        <li>
-            <a href="{{ url('/jobs?category=Design') }}" class="block py-2 hover:bg-gray-700 rounded-lg">Design</a>
-        </li>
-        <li>
-            <a href="{{ url('/jobs?category=Writing') }}" class="block py-2 hover:bg-gray-700 rounded-lg">Writing</a>
-        </li>
-        <li>
-            <a href="{{ url('/jobs?category=Development') }}" class="block py-2 hover:bg-gray-700 rounded-lg">Development</a>
-        </li>
-        <li>
-            <a href="{{ url('/jobs?category=Marketing') }}" class="block py-2 hover:bg-gray-700 rounded-lg">Marketing</a>
-        </li>
-        <li>
-            <a href="{{ url('/jobs?category=Translation') }}" class="block py-2 hover:bg-gray-700 rounded-lg">Translation</a>
-        </li>
-    </ul>
-</aside>
+    <!-- Konten Utama -->
+    <main class="pt-24">
+        @yield('content') <!-- Konten halaman lain akan dimuat di sini -->
+    </main>
 
-
-        <!-- Main Content Area -->
-        <div class="flex-1 p-8">
-            @yield('content') <!-- Content area where child views will be inserted -->
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 JobBoard. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>

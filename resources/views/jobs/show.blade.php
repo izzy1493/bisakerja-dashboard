@@ -1,15 +1,37 @@
-<!-- resources/views/jobs/show.blade.php -->
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white shadow-xl rounded-lg p-8 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-semibold text-gray-800">{{ $job['title'] }}</h2>
-    <p class="text-gray-700 mt-4">{{ $job['description'] }}</p>
-    <div class="flex justify-between items-center mt-6">
-        <span class="text-blue-600 font-semibold text-2xl">${{ $job['reward'] }}</span>
-        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
-            Ajukan Permohonan
-        </button>
+    <div class="container mx-auto p-6">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <!-- Job Title -->
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $job['title'] }}</h1>
+
+            <!-- Job Description -->
+            <p class="text-gray-600 mb-6">{{ $job['description'] }}</p>
+
+            <!-- Job Information -->
+            <div class="text-lg text-gray-800 mb-4">
+                <strong>Perusahaan:</strong> {{ $job['company'] }}
+            </div>
+            <div class="text-lg text-gray-800 mb-4">
+                <strong>Lokasi:</strong> {{ $job['location'] }}
+            </div>
+            <div class="text-lg text-gray-800 mb-6">
+                <strong>Gaji:</strong> ${{ $job['reward'] }} per jam
+            </div>
+
+            <!-- Job Requirements -->
+            <div class="text-lg text-gray-800 mb-6">
+                <h3 class="font-semibold text-xl mb-2">Persyaratan Pekerjaan:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    @foreach ($job['requirements'] as $requirement)
+                        <li class="text-gray-600">{{ $requirement }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Back to Job List -->
+            <a href="{{ url('/jobs') }}" class="text-blue-600 hover:underline">Kembali ke Daftar Pekerjaan</a>
+        </div>
     </div>
-</div>
 @endsection
