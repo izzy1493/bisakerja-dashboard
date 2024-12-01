@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <button type="submit" class="bg-blue-600 text-white mr-7 px-4 py-2 rounded hover:bg-blue-700">Tambah Admin</button>
+                    <button type="submit" class="bg-blue-600 text-white  mr-7 px-4 py-2 rounded hover:bg-blue-700">Tambah Admin</button>
                     <a href="/management-admin" class="bg-gray-300 text-grey-700 px-4 py-2 rounded hover:bg-green-700">kembali</button>
                 </div>
             </form>

@@ -7,11 +7,7 @@
     </div>
 
     <!-- Tombol Tambah Admin -->
-    <div class="flex justify-end mb-4">
-        <a href="{{ route('admin.create') }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
-            Tambah Admin
-        </a>
-    </div>
+    
 
     <!-- Main Content -->
     <main class="flex-1 p-6">
@@ -34,7 +30,14 @@
 
         <!-- Table Example -->
         <div class="mt-8 bg-white p-4 rounded-lg shadow">
+            <div class="flex flex-wrap items-center justify-between mb-4">
             <h2 class="font-bold">User List</h2>
+
+        <a href="{{ route('admin.create') }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+            Tambah Admin
+        </a>
+    </div>
+
             <table class="min-w-full mt-4">
                 <thead>
                     <tr class="bg-gray-200">
