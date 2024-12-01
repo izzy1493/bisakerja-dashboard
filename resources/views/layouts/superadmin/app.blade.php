@@ -15,7 +15,7 @@
             <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">
                 L
             </div>
-            <a href="{{ route('dashboard') }}" class="text-xl font-semibold text-gray-800">Beranda</a>
+            <a href="{{ route('superadmin.dashboard') }}" class="text-xl font-semibold text-gray-800">Beranda</a>
         </div>
 
         <!-- Menu Tengah -->

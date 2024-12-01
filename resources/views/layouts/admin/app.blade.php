@@ -16,7 +16,7 @@
     <nav class="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 p-4 shadow-lg">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Logo atau Link Dashboard -->
-            <a href="{{ route('dashboard') }}" class="text-white text-2xl font-bold hover:text-gray-100 transition duration-300 transform hover:scale-105">
+            <a href="{{ route('admin.dashboard') }}" class="text-white text-2xl font-bold hover:text-gray-100 transition duration-300 transform hover:scale-105">
                 Dashboard
             </a>
             

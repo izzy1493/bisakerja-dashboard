@@ -12,7 +12,7 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 
-Route::get('/beranda', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');
 
 Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
 Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
@@ -23,7 +23,7 @@ Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])
 Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
 
 // Rute untuk Dashboard
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 
 // Rute untuk Moderasi Pekerjaan
 Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
