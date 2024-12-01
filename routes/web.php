@@ -1,26 +1,35 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminModerationController;
+use App\Http\Controllers\Admin\VerificationController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::name('index-practice')->get('/', function () {
-    return view('pages.practice.index');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/verifications', [VerificationController::class, 'index'])->name('verifications.index');
+    Route::get('/verifications/{id}', [VerificationController::class, 'show'])->name('verifications.show');
+    Route::post('/verifications/{id}/approve', [VerificationController::class, 'approve'])->name('verifications.approve');
+    Route::post('/verifications/{id}/reject', [VerificationController::class, 'reject'])->name('verifications.reject');
 });
 
-Route::name('practice.')->group(function () {
-    Route::name('first')->get('practice/1', function () {
-        return view('pages.practice.1');
-    });
-    Route::name('second')->get('practice/2', function () {
-        return view('pages.practice.2');
-    });
+
+// Route untuk Landing Page
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+
+// Route untuk Penyedia Kerja Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route untuk Penyedia
+Route::prefix('penyedia')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('penyedia.dashboard');
 });
+
+// Route untuk Admin Moderasi
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/jobs', [AdminModerationController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs/{id}', [AdminModerationController::class, 'show'])->name('jobs.show');
+    Route::post('/jobs/{id}/approve', [AdminModerationController::class, 'approve'])->name('jobs.approve');
+    Route::post('/jobs/{id}/reject', [AdminModerationController::class, 'reject'])->name('jobs.reject');
+});
+
