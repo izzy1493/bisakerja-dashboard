@@ -71,7 +71,7 @@
                         </td>
                     </tr>
                     <tr class="border-b hover:bg-gray-100 transition-all">
-                        <td class="py-3 px-6">Ilham Cuki</td>
+                        <td class="py-3 px-6">bang ambalabu</td>
                         <td class="py-3 px-6">ilham@example.com</td>
                         <td class="py-3 px-6">User</td>
                         <td class="py-3 px-6">
@@ -94,18 +94,18 @@
 
         <!-- Recent Activities -->
         <div class="bg-white p-6 rounded-xl shadow-xl transition-transform">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Aktivitas Pengguna Terbaru</h3>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Aktivitas Pengguna update </h3>
             <ul class="space-y-4">
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">Pengguna A telah mengubah profil</span>
+                    <span class="text-gray-700">bang ambalabu telah mengubah profil</span>
                     <span class="text-sm text-gray-400">2 menit yang lalu</span>
                 </li>
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">Pengguna B mengupload CV baru</span>
+                    <span class="text-gray-700">jony sins mengupload CV baru</span>
                     <span class="text-sm text-gray-400">5 menit yang lalu</span>
                 </li>
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">Pengguna C telah login</span>
+                    <span class="text-gray-700">boboiboy kuasa 3 telah login</span>
                     <span class="text-sm text-gray-400">10 menit yang lalu</span>
                 </li>
             </ul>
