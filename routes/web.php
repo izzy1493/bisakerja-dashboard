@@ -12,6 +12,25 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 
+// routes/web.php
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+// Route untuk authenticate berdasarkan role
+Route::get('/authenticate/{role}', function ($role) {
+    if ($role === 'admin') {
+        return redirect()->route('admin.dashboard'); // Redirect ke halaman admin
+    } elseif ($role === 'super_admin') {
+        return redirect()->route('superadmin.dashboard'); // Redirect ke halaman super admin
+    }
+
+    // Jika role tidak valid
+    abort(403, 'Unauthorized');
+})->name('authenticate');
+
+
 Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');
 
 Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
@@ -39,4 +58,6 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 
 /// Tambahkan route untuk pengelolaan data operasional
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
+
+
 
