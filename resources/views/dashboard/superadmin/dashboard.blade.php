@@ -2,80 +2,89 @@
 
 @section('content')
     <!-- Dashboard Header -->
-    <div class="bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 p-6 rounded-3xl shadow-md mb-10 text-white">
-        <h2 class="text-4xl font-bold">Dashboard Superadmin</h2>
-        <p class="mt-2 text-lg">Ringkasan informasi untuk memudahkan pengelolaan sistem.</p>
+    <div class="bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 p-8 rounded-xl shadow-xl mb-12 text-white">
+        <h2 class="text-4xl font-extrabold">Dashboard Superadmin</h2>
+        <p class="mt-2 text-lg">Pantau dan kelola sistem dengan mudah melalui ringkasan data yang jelas.</p>
     </div>
 
     <!-- Dashboard Summary Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <!-- Total Users Card -->
-        <div class="bg-white p-6 rounded-2xl  transition-all hover:scale-105 transform duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
             <div class="flex items-center justify-between">
+                <i class="fas fa-users text-4xl text-indigo-500"></i>
                 <h3 class="text-2xl font-semibold text-gray-800">Total Pengguna</h3>
-                <span class="text-3xl font-bold text-blue-600">1,234</span>
             </div>
-            <p class="text-gray-500 mt-2">Jumlah total pengguna yang terdaftar di aplikasi.</p>
+            <div class="flex justify-between items-center mt-6">
+                <span class="text-3xl font-bold text-indigo-600">1,234</span>
+                <p class="text-gray-500">Jumlah total pengguna yang terdaftar di aplikasi.</p>
+            </div>
         </div>
 
         <!-- Active Sessions Card -->
-        <div class="bg-white p-6 rounded-2xl  transition-all hover:scale-105 transform duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
             <div class="flex items-center justify-between">
+                <i class="fas fa-laptop text-4xl text-green-500"></i>
                 <h3 class="text-2xl font-semibold text-gray-800">Sesi Aktif</h3>
-                <span class="text-3xl font-bold text-green-600">456</span>
             </div>
-            <p class="text-gray-500 mt-2">Sesi pengguna yang sedang aktif saat ini.</p>
+            <div class="flex justify-between items-center mt-6">
+                <span class="text-3xl font-bold text-green-600">456</span>
+                <p class="text-gray-500">Jumlah sesi pengguna yang aktif saat ini.</p>
+            </div>
         </div>
 
         <!-- New Signups Card -->
-        <div class="bg-white p-6 rounded-2xl  transition-all hover:scale-105 transform duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
             <div class="flex items-center justify-between">
+                <i class="fas fa-user-plus text-4xl text-yellow-500"></i>
                 <h3 class="text-2xl font-semibold text-gray-800">Pendaftaran Baru</h3>
-                <span class="text-3xl font-bold text-yellow-600">78</span>
             </div>
-            <p class="text-gray-500 mt-2">Jumlah pengguna baru yang mendaftar bulan ini.</p>
+            <div class="flex justify-between items-center mt-6">
+                <span class="text-3xl font-bold text-yellow-600">78</span>
+                <p class="text-gray-500">Jumlah pengguna baru yang mendaftar bulan ini.</p>
+            </div>
         </div>
     </div>
 
     <!-- Detailed Summary (Graphs & Tables) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Users Management Table -->
-        <div class="bg-white p-6 rounded-2xl  transition-all">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Daftar Pengguna Terbaru</h3>
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Daftar Pengguna Terbaru</h3>
             <table class="min-w-full text-sm text-left text-gray-600">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="py-3 px-4 text-gray-700">Nama</th>
-                        <th class="py-3 px-4 text-gray-700">Email</th>
-                        <th class="py-3 px-4 text-gray-700">Peran</th>
-                        <th class="py-3 px-4 text-gray-700">Aksi</th>
+                        <th class="py-3 px-6 text-gray-700">Nama</th>
+                        <th class="py-3 px-6 text-gray-700">Email</th>
+                        <th class="py-3 px-6 text-gray-700">Peran</th>
+                        <th class="py-3 px-6 text-gray-700">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b hover:bg-gray-100 transition-colors">
-                        <td class="py-3 px-4">John Doe</td>
-                        <td class="py-3 px-4">john@example.com</td>
-                        <td class="py-3 px-4">Admin</td>
-                        <td class="py-3 px-4">
-                            <button class="text-yellow-500 hover:text-yellow-600 transition-all">Edit</button> |
+                    <tr class="border-b hover:bg-gray-100 transition-all">
+                        <td class="py-3 px-6">John Doe</td>
+                        <td class="py-3 px-6">john@example.com</td>
+                        <td class="py-3 px-6">Admin</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
                             <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-100 transition-colors">
-                        <td class="py-3 px-4">Ilham Cuki</td>
-                        <td class="py-3 px-4">ilham@example.com</td>
-                        <td class="py-3 px-4">User</td>
-                        <td class="py-3 px-4">
-                            <button class="text-yellow-500 hover:text-yellow-600 transition-all">Edit</button> |
+                    <tr class="border-b hover:bg-gray-100 transition-all">
+                        <td class="py-3 px-6">Ilham Cuki</td>
+                        <td class="py-3 px-6">ilham@example.com</td>
+                        <td class="py-3 px-6">User</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
                             <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-100 transition-colors">
-                        <td class="py-3 px-4">Wawan</td>
-                        <td class="py-3 px-4">wawan@example.com</td>
-                        <td class="py-3 px-4">User</td>
-                        <td class="py-3 px-4">
-                            <button class="text-yellow-500 hover:text-yellow-600 transition-all">Edit</button> |
+                    <tr class="border-b hover:bg-gray-100 transition-all">
+                        <td class="py-3 px-6">Wawan</td>
+                        <td class="py-3 px-6">wawan@example.com</td>
+                        <td class="py-3 px-6">User</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
                             <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
                         </td>
                     </tr>
@@ -84,8 +93,8 @@
         </div>
 
         <!-- Recent Activities -->
-        <div class="bg-white p-6 rounded-2xl  transition-all">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Aktivitas Pengguna Terbaru</h3>
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Aktivitas Pengguna Terbaru</h3>
             <ul class="space-y-4">
                 <li class="flex justify-between items-center">
                     <span class="text-gray-700">Pengguna A telah mengubah profil</span>
@@ -104,23 +113,23 @@
     </div>
 
     <!-- Graph Section (Charts) -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
         <!-- Bar Chart (Jobs by Category) -->
-        <div class="bg-white p-6 rounded-2xl  transition-all">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Jumlah Lowongan per Kategori</h3>
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Jumlah Lowongan per Kategori</h3>
             <canvas id="barChart"></canvas>
         </div>
 
         <!-- Pie Chart (Job Types Distribution) -->
-        <div class="bg-white p-6 rounded-2xl  transition-all">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Distribusi Pekerjaan Berdasarkan Jenis</h3>
+        <div class="bg-white p-6 rounded-xl shadow-xl transition-transform">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Distribusi Pekerjaan Berdasarkan Jenis</h3>
             <canvas id="pieChart"></canvas>
         </div>
     </div>
 
     <!-- Line Chart (Jobs Trend) -->
-    <div class="bg-white p-6 rounded-2xl  transition-all mt-10">
-        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Tren Lowongan Pekerjaan Selama 6 Bulan</h3>
+    <div class="bg-white p-6 rounded-xl shadow-xl mt-12 transition-transform">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Tren Lowongan Pekerjaan Selama 6 Bulan</h3>
         <canvas id="lineChart"></canvas>
     </div>
 
@@ -154,6 +163,10 @@
                     y: {
                         beginAtZero: true
                     }
+                },
+                animation: {
+                    duration: 1000, // Animasi yang lebih halus
+                    easing: 'easeInOutQuart'
                 }
             }
         });
@@ -179,6 +192,12 @@
                     ],
                     borderWidth: 1
                 }]
+            },
+            options: {
+                animation: {
+                    duration: 1000, // Animasi lebih halus
+                    easing: 'easeInOutQuart'
+                }
             }
         });
 
@@ -202,6 +221,10 @@
                     y: {
                         beginAtZero: true
                     }
+                },
+                animation: {
+                    duration: 1000, // Animasi halus pada grafik garis
+                    easing: 'easeInOutQuart'
                 }
             }
         });
