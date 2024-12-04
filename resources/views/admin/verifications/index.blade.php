@@ -1,44 +1,26 @@
-@extends('layouts.main')
+<x-admin-layout>
+    <div class="container mx-auto py-8">
+        <h1 class="text-2xl font-bold mb-6">Verifikasi Pengguna</h1>
 
-@section('title', 'Daftar Verifikasi Pengguna')
+        @foreach ($verifications as $verification)
+            <div class="bg-white shadow p-4 mb-4 rounded-lg">
+                <h2 class="font-bold">{{ $verification['name'] }} ({{ $verification['role'] }})</h2>
+                <p><strong>No. KTP/SIM:</strong> {{ $verification['ktp'] }}</p>
+                <img src="{{ $verification['ktp_image'] }}" alt="KTP" class="w-1/4 mb-4">
+                <img src="{{ $verification['selfie_image'] }}" alt="Selfie" class="w-1/4 mb-4">
+                <p>Status Verifikasi: {{ $verification['status'] }}</p>
 
-@section('content')
-<h1 class="text-3xl font-bold mb-6">Daftar Verifikasi Pengguna</h1>
-
-@if(session('success'))
-    <div class="bg-green-100 text-green-600 p-4 rounded mb-4">{{ session('success') }}</div>
-@endif
-
-@if(session('error'))
-    <div class="bg-red-100 text-red-600 p-4 rounded mb-4">{{ session('error') }}</div>
-@endif
-
-<div class="bg-white rounded-md shadow overflow-hidden">
-    <table class="min-w-full">
-        <thead class="bg-gray-100">
-            <tr>
-                <th class="px-6 py-3 text-left font-semibold text-gray-600">Nama</th>
-                <th class="px-6 py-3 text-left font-semibold text-gray-600">Peran</th>
-                <th class="px-6 py-3 text-left font-semibold text-gray-600">Status</th>
-                <th class="px-6 py-3 text-center font-semibold text-gray-600">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($verifications as $verification)
-            <tr class="border-b">
-                <td class="px-6 py-4">{{ $verification['name'] }}</td>
-                <td class="px-6 py-4">{{ $verification['role'] }}</td>
-                <td class="px-6 py-4">
-                    <span class="px-3 py-1 rounded-full {{ $verification['status'] === 'Approved' ? 'bg-green-100 text-green-600' : ($verification['status'] === 'Rejected' ? 'bg-red-100 text-red-600' : 'bg-yellow-100 text-yellow-600') }}">
-                        {{ $verification['status'] }}
-                    </span>
-                </td>
-                <td class="px-6 py-4 text-center">
-                    <a href="{{ route('admin.verifications.show', $verification['id']) }}" class="text-blue-500 hover:underline">Detail</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection
+                <div class="mt-4">
+                    <form method="POST" action="{{ route('admin.verifications.approve', $verification['id']) }}" class="inline-block">
+                        @csrf
+                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Setujui</button>
+                    </form>
+                    <form method="POST" action="{{ route('admin.verifications.reject', $verification['id']) }}" class="inline-block ml-2">
+                        @csrf
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Tolak</button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</x-admin-layout>

@@ -6,46 +6,47 @@ use Illuminate\Http\Request;
 
 class AdminModerationController extends Controller
 {
-    // Menampilkan daftar pekerjaan
+    // Langkah 1: Data dummy untuk daftar pekerjaan
+    protected $jobs = [
+        [
+            'id' => 1,
+            'title' => 'Front-End Developer',
+            'description' => 'Membuat UI website menggunakan React.js',
+            'location' => 'Remote',
+            'duration' => '3 bulan',
+            'status' => 'Pending', // Bisa Pending, Approved, Rejected
+        ],
+        [
+            'id' => 2,
+            'title' => 'Back-End Developer',
+            'description' => 'Membuat API menggunakan Laravel',
+            'location' => 'On-site, Jakarta',
+            'duration' => '6 bulan',
+            'status' => 'Pending',
+        ],
+    ];
+
+    // Method untuk menampilkan daftar pekerjaan
     public function index()
     {
-        $jobs = [
-            ['id' => 1, 'title' => 'Web Developer', 'status' => 'pending'],
-            ['id' => 2, 'title' => 'Graphic Designer', 'status' => 'approved'],
-            ['id' => 3, 'title' => 'Content Writer', 'status' => 'pending'],
-        ];
-
-        return view('admin.jobs.index', compact('jobs'));
+        return view('admin.moderation.index', ['jobs' => $this->jobs]);
     }
 
-    // Menampilkan detail pekerjaan
+    // Method untuk menampilkan detail pekerjaan
     public function show($id)
     {
-        $job = [
-            'id' => $id,
-            'title' => 'Web Developer',
-            'description' => 'Membutuhkan Web Developer berpengalaman untuk proyek 3 bulan.',
-            'location' => 'Jakarta',
-            'duration' => '3 bulan',
-            'status' => 'pending',
-        ];
-
-        return view('admin.jobs.show', compact('job'));
+        $job = collect($this->jobs)->firstWhere('id', $id);
+        return view('admin.moderation.show', ['job' => $job]);
     }
 
-    // Menyetujui pekerjaan
     public function approve($id)
     {
-        // Logika menyetujui pekerjaan
         return redirect()->route('admin.jobs.index')->with('success', 'Pekerjaan disetujui.');
     }
 
-    // Menolak pekerjaan
     public function reject(Request $request, $id)
     {
         $reason = $request->input('reason');
-
-        // Logika menolak pekerjaan
-        return redirect()->route('admin.jobs.index')->with('error', 'Pekerjaan ditolak dengan alasan: ' . $reason);
+        return redirect()->route('admin.jobs.index')->with('error', 'Pekerjaan ditolak. Alasan: ' . $reason);
     }
 }

@@ -9,6 +9,6 @@ class DashboardController extends Controller
     public function index()
     {
         $role = 'penyedia'; // Hardcoded untuk saat ini
-        return view('dashboard.index', compact('role'));
+        return view('dashboard.penyedia.index', compact('role'));
     }
 }

@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Panel')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Landing Page</title>
+    @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100">
-    <div class="min-h-screen flex flex-col">
-        <!-- Navbar -->
-        <nav class="bg-blue-600 text-white py-4 shadow">
-            <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold">BisaKerja Admin</a>
-                <div>
-                    <a href="#" class="mr-4 hover:underline">Daftar Pekerjaan</a>
-                    <a href="#" class="hover:underline">Logout</a>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-8" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="Logo">
+                        <span class="ml-3 font-semibold text-xl text-gray-900">TalentHub</span>
+                    </a>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#" class="text-gray-900 hover:text-indigo-600">Content Moderation</a>
+                    <a href="#" class="text-gray-900 hover:text-indigo-600">Verification Validation</a>
+                    <a href="#" class="text-gray-900 hover:text-indigo-600">Report</a>
+                    <a href="#" class="text-gray-900 hover:text-indigo-600">Payment Validation</a>
+                    <a href="#" class="text-gray-900 hover:text-indigo-600">Operational Data Management</a>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Content -->
-        <main class="flex-grow">
-            <div class="max-w-7xl mx-auto py-6 px-4">
-                @yield('content')
-            </div>
-        </main>
+    <!-- Content -->
+    @yield('content')
 
-        <!-- Footer -->
-        <footer class="bg-blue-600 text-white py-4 mt-4 text-center">
-            &copy; 2024 BisaKerja. All rights reserved.
-        </footer>
-    </div>
 </body>
 </html>
