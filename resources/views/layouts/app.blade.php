@@ -11,6 +11,8 @@
     
     <!-- Flowbite CDN -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.4/dist/flowbite.min.js"></script>
+
+    
 </head>
 <body>
     @yield('content')
