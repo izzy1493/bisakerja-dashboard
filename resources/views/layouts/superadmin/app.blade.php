@@ -25,7 +25,7 @@
             <a href="{{ route('policy.management') }}" class="text-gray-600 {{ request()->is('policy-management') ? 'font-bold text-blue-600' : '' }}">Pengelola Kebijakan</a>
             <a href="{{ route('financial.monitoring') }}" class="text-gray-600 {{ request()->is('financial-monitoring') ? 'font-bold text-blue-600' : '' }}">Monitoring Keuangan</a>
         </div>
-
+        
         <!-- Tombol Logout dan Icon Notifikasi Kanan -->
         <div class="flex items-center space-x-4">
             <!-- Icon Notifikasi -->
