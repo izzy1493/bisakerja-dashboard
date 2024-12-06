@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentValidationController;
 use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
+use App\Http\Controllers\LandingController;
 
 // routes/web.php
 
@@ -60,8 +61,9 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 /// Tambahkan route untuk pengelolaan data operasional
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 
-Route::get('/', [JobController::class, 'index']);
-Route::get('/jobs', [JobController::class, 'index']);
-Route::get('/job/{id}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('/', [LandingController::class, 'index']); // Menu Loker
+Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
+Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
+Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 
 

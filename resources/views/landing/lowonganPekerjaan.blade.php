@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.landing.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobFinder</title>
-    <!-- Link ke Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
 
-<body class="bg-gray-50 text-gray-800 font-sans">
-
+@section('content')
+   
     <!-- Hero Section -->
     <section class="flex items-center justify-between py-24 px-6 bg-gradient-to-r from-indigo-600 to-indigo-800 text-white">
         <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center">
             <!-- Teks Kiri -->
             <div class="w-full md:w-1/2 text-center md:text-left">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Temukan Pekerjaan Impian Anda</h1>
-                <p class="text-lg mb-6">Bergabunglah dengan ribuan orang yang telah menemukan pekerjaan yang sesuai dengan keterampilan dan minat mereka. Mulai perjalanan karier Anda dengan langkah yang tepat!</p>
-                <a href="register.html" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-full text-xl font-semibold transition duration-300">Daftar Sekarang</a>
+
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Lowongan Pekerjaan untuk Anda</h1>
+                <p class="text-lg text-gray-600 mb-8">Bergabunglah dengan ribuan orang yang telah menemukan pekerjaan yang sesuai dengan keterampilan dan minat mereka. Mulai perjalanan karier Anda dengan langkah yang tepat!</p>
+                <a href="register.html" class="bg-indigo-600 text-white px-6 py-3 rounded-full text-xl hover:bg-indigo-700 transition duration-300">Daftar Sekarang</a>
+
             </div>
 
             <!-- Gambar Kanan -->
@@ -92,6 +86,5 @@
         });
     </script>
 
-</body>
-
-</html>
+</body> 
+@endsection
