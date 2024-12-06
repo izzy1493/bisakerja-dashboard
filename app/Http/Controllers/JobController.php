@@ -90,6 +90,12 @@ class JobController extends Controller
         // Kirim data pekerjaan yang sudah difilter atau semua pekerjaan ke view
         return view('jobs.index', compact('jobs'));
     }
+    public function client()
+    {
+       
+        // Kirim data pekerjaan yang sudah difilter atau semua pekerjaan ke view
+        return view('landing.client');
+    }
 
     // Menampilkan detail pekerjaan berdasarkan ID
     public function show($id)

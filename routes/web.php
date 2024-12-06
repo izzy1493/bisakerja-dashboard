@@ -61,6 +61,7 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 
 Route::get('/', [JobController::class, 'index']);
+Route::get('/client', [JobController::class, 'client']);
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/job/{id}', [JobController::class, 'show'])->name('jobs.show');
 
