@@ -7,93 +7,109 @@
     <title>Pasang Pekerjaan - Mitra Kami</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.4/dist/flowbite.min.js"></script>
+    <style>
+        /* Transisi halus antar section */
+        section {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Efek gambar saat hover */
+        .hover-zoom:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-white font-sans leading-relaxed text-gray-900">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-semibold text-blue-600">JobConnect</a>
+    <nav class="bg-white shadow-lg fixed top-0 left-0 w-full z-10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-semibold text-blue-600">JobConnect</a>
             <div class="space-x-6">
-                <a href="#about" class="text-gray-700 hover:text-blue-600">Tentang</a>
-                <a href="#steps" class="text-gray-700 hover:text-blue-600">Cara Kerja</a>
-                <a href="#join" class="text-white bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700">Gabung Mitra</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-200">Tentang</a>
+                <a href="#steps" class="text-gray-700 hover:text-blue-600 transition duration-200">Cara Kerja</a>
+                <a href="#join" class="font-semibold text-blue-600 bg-white px-3 py-3 rounded-lg transition duration-200">Cari Kerja</a>
+                <a href="#join" class="text-white bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200">Gabung Mitra</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-4xl font-bold mb-4">Pasang Pekerjaan dengan Mudah</h1>
-            <p class="text-lg mb-6">Temukan mitra terbaik untuk pekerjaan Anda. Proses cepat, mudah, dan terpercaya.</p>
-            <a href="#join" class="bg-white text-blue-600 px-6 py-3 rounded-lg text-xl hover:bg-gray-200">Bergabung Sebagai Mitra</a>
+    <section class="relative bg-gradient-to-r from-blue-600 to-indigo-800 text-white py-24 md:py-40 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+            <div class="md:w-1/2 space-y-6">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight sm:text-5xl">Pasang Pekerjaan dengan Mudah dan Cepat</h1>
+                <p class="text-lg md:text-xl">Temukan mitra terbaik untuk pekerjaan Anda. Proses cepat, aman, dan terpercaya. Proyek Anda akan selesai dengan hasil terbaik.</p>
+                <a href="#join" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg md:text-xl hover:bg-gray-100 transition duration-300">Bergabung Sebagai Mitra</a>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <img src="https://via.placeholder.com/600x400" alt="Gambar Hero" class="rounded-lg shadow-lg hover-zoom transition-transform duration-300">
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-white text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-semibold mb-4 text-gray-800">Kenapa Pasang Pekerjaan di Kami?</h2>
-            <p class="text-gray-600 text-lg mb-8">Platform kami memungkinkan Anda menemukan mitra yang tepat dengan keahlian yang dibutuhkan untuk menyelesaikan pekerjaan Anda. Kami memberikan proses yang cepat dan aman, mulai dari pengajuan hingga penyelesaian pekerjaan.</p>
-            <div class="flex justify-center space-x-8">
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-blue-500 text-white flex items-center justify-center mb-4">
-                        <i class="fa fa-rocket text-2xl"></i>
+    <section id="about" class="py-20 px-6 md:px-0 bg-gray-100 text-center">
+        <div class="max-w-7xl mx-auto space-y-12">
+            <h2 class="text-3xl font-semibold text-gray-800">Kenapa Pasang Pekerjaan di Kami?</h2>
+            <p class="text-lg text-gray-600">Kami menyediakan platform yang aman, transparan, dan efektif untuk memudahkan Anda menemukan mitra yang tepat. Bekerja dengan profesional terpercaya dan dapatkan hasil terbaik.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-blue-600 text-white rounded-full flex items-center justify-center">
+                        <i class="fa fa-clock text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold">Proses Cepat</h3>
-                    <p class="text-gray-600 text-sm">Buat pengajuan pekerjaan dalam beberapa menit dan dapatkan hasilnya dalam waktu singkat.</p>
+                    <h3 class="text-xl font-semibold">Proses Cepat</h3>
+                    <p class="text-gray-600">Pasang pekerjaan hanya dalam beberapa menit dan dapatkan solusi cepat dari mitra kami.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-600 text-white flex items-center justify-center mb-4">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-indigo-600 text-white rounded-full flex items-center justify-center">
                         <i class="fa fa-shield-alt text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold">Keamanan Terjamin</h3>
-                    <p class="text-gray-600 text-sm">Setiap transaksi pekerjaan kami jamin aman dan terpercaya, sehingga Anda tidak perlu khawatir.</p>
+                    <h3 class="text-xl font-semibold">Keamanan Terjamin</h3>
+                    <p class="text-gray-600">Kami menjaga keamanan data Anda, memastikan bahwa setiap pekerjaan diselesaikan dengan aman.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-green-500 text-white flex items-center justify-center mb-4">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-green-600 text-white rounded-full flex items-center justify-center">
                         <i class="fa fa-users text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold">Mitra Terbaik</h3>
-                    <p class="text-gray-600 text-sm">Kami memiliki jaringan mitra terbaik yang siap membantu menyelesaikan pekerjaan Anda.</p>
+                    <h3 class="text-xl font-semibold">Mitra Terbaik</h3>
+                    <p class="text-gray-600">Kami hanya bekerja dengan mitra terbaik yang memiliki pengalaman dan keahlian di bidangnya.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="steps" class="bg-gray-100 py-16 text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-semibold mb-6 text-gray-800">Cara Kerja Kami</h2>
-            <div class="space-y-8">
-                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-x-8 md:space-y-0">
-                    <div class="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mb-4 md:mb-0">
-                        <span class="text-xl">1</span>
+    <section id="steps" class="py-20 px-6 bg-white text-center">
+        <div class="max-w-7xl mx-auto space-y-12">
+            <h2 class="text-3xl font-semibold text-gray-800">Cara Kerja Kami</h2>
+            <p class="text-lg text-gray-600">Proses kami mudah dan langsung. Ikuti tiga langkah simpel untuk memulai pekerjaan Anda.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-blue-600 text-white rounded-full flex items-center justify-center">
+                        <span class="text-2xl">1</span>
                     </div>
-                    <div class="text-left">
-                        <h3 class="text-xl font-semibold">Daftarkan Pekerjaan</h3>
-                        <p class="text-gray-600">Isi form pekerjaan dengan detail yang jelas untuk mendapatkan penawaran terbaik dari mitra kami.</p>
-                    </div>
+                    <h3 class="text-xl font-semibold">Daftarkan Pekerjaan</h3>
+                    <p class="text-gray-600">Isi form pekerjaan Anda, beri deskripsi yang jelas agar mitra dapat memberikan penawaran terbaik.</p>
                 </div>
-                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-x-8 md:space-y-0">
-                    <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center mb-4 md:mb-0">
-                        <span class="text-xl">2</span>
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-indigo-600 text-white rounded-full flex items-center justify-center">
+                        <span class="text-2xl">2</span>
                     </div>
-                    <div class="text-left">
-                        <h3 class="text-xl font-semibold">Pilih Mitra</h3>
-                        <p class="text-gray-600">Pilih mitra terbaik berdasarkan keahlian dan pengalaman untuk mengerjakan proyek Anda.</p>
-                    </div>
+                    <h3 class="text-xl font-semibold">Pilih Mitra</h3>
+                    <p class="text-gray-600">Pilih mitra dengan keahlian yang sesuai dan tawarkan proyek Anda kepada mereka.</p>
                 </div>
-                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-x-8 md:space-y-0">
-                    <div class="w-16 h-16 rounded-full bg-green-600 text-white flex items-center justify-center mb-4 md:mb-0">
-                        <span class="text-xl">3</span>
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="h-16 w-16 bg-green-600 text-white rounded-full flex items-center justify-center">
+                        <span class="text-2xl">3</span>
                     </div>
-                    <div class="text-left">
-                        <h3 class="text-xl font-semibold">Pekerjaan Selesai</h3>
-                        <p class="text-gray-600">Setelah pekerjaan selesai, Anda dapat memberikan penilaian dan feedback kepada mitra kami.</p>
-                    </div>
+                    <h3 class="text-xl font-semibold">Selesaikan Proyek</h3>
+                    <p class="text-gray-600">Setelah proyek selesai, Anda dapat memberikan penilaian dan feedback untuk mitra kami.</p>
                 </div>
             </div>
         </div>
@@ -101,10 +117,10 @@
 
     <!-- Join Section -->
     <section id="join" class="bg-blue-600 text-white py-16 text-center">
-        <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-3xl font-semibold mb-4">Gabung Sebagai Mitra Kami</h2>
-            <p class="text-lg mb-6">Bergabung dengan kami dan temukan peluang bisnis yang menguntungkan. Buka kesempatan bagi diri Anda untuk mendapatkan proyek yang sesuai dengan keahlian Anda!</p>
-            <a href="https://link-registrasi.com" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-xl hover:bg-gray-200">Daftar Sekarang</a>
+        <div class="max-w-2xl mx-auto px-6 space-y-6">
+            <h2 class="text-3xl font-semibold">Gabung Sebagai Mitra Kami</h2>
+            <p class="text-lg">Kami membuka peluang bagi Anda untuk bergabung dengan platform kami dan mendapatkan proyek yang sesuai dengan keahlian Anda. Mulailah hari ini!</p>
+            <a href="https://link-registrasi.com" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-xl hover:bg-gray-200 transition duration-300">Daftar Sekarang</a>
         </div>
     </section>
 
