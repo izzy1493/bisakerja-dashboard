@@ -88,7 +88,7 @@ class JobController extends Controller
         }
 
         // Kirim data pekerjaan yang sudah difilter atau semua pekerjaan ke view
-        return view('jobs.index', compact('jobs'));
+        return view('landing.pencari', compact('jobs'));
     }
 
     // Menampilkan detail pekerjaan berdasarkan ID
