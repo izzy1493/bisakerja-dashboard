@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\AdminManagementController;
 use App\Http\Controllers\ActivityMonitoringController;
 use App\Http\Controllers\PolicyManagementController;
@@ -59,5 +60,8 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 /// Tambahkan route untuk pengelolaan data operasional
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 
+Route::get('/', [JobController::class, 'index']);
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/job/{id}', [JobController::class, 'show'])->name('jobs.show');
 
 
