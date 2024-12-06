@@ -1,100 +1,92 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobFinder</title>
     <!-- Link ke Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome untuk Ikon -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
 
-    <!-- Navbar -->
-   <!-- Navbar -->
-<nav class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 fixed w-full top-0 z-50 shadow-lg">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<body class="bg-white text-gray-800 font-sans">
 
-        <!-- Logo -->
-        <a href="{{ url('/') }}" class="text-3xl font-extrabold text-white hover:text-gray-100 transition duration-300">
-            JobFinder
-        </a>
+    <!-- Hero Section -->
+    <section class="flex items-center justify-between py-20 px-6 bg-white">
+        <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center">
+            <!-- Teks Kiri -->
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Temukan Pekerjaan Impian Anda</h1>
+                <p class="text-lg text-gray-600 mb-8">Bergabunglah dengan ribuan orang yang telah menemukan pekerjaan yang sesuai dengan keterampilan dan minat mereka. Mulai perjalanan karier Anda dengan langkah yang tepat!</p>
+                <a href="register.html" class="bg-indigo-600 text-white px-6 py-3 rounded-full text-xl hover:bg-indigo-700 transition duration-300">Daftar Sekarang</a>
+            </div>
 
-        <!-- Navbar Links untuk Desktop -->
-        <div class="hidden lg:flex items-center space-x-8">
-            <!-- Tautan Kategori -->
-            <a href="{{ url('/jobs?category=Design') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Design</a>
-            <a href="{{ url('/jobs?category=Writing') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Writing</a>
-            <a href="{{ url('/jobs?category=Development') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Development</a>
-            <a href="{{ url('/jobs?category=Marketing') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Marketing</a>
-            <a href="{{ url('/jobs?category=Translation') }}" class="text-white hover:text-gray-200 transition duration-300 hover:underline">Translation</a>
+            <!-- Gambar Kanan -->
+            <div class="w-full md:w-1/2 mt-8 md:mt-0">
+                <img src="https://via.placeholder.com/600x400" alt="Pekerjaan" class="w-full h-auto rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
 
-            <!-- Dropdown untuk Opsi Lain -->
-            <div class="relative">
-                <button class="text-white hover:text-gray-200 transition duration-300 focus:outline-none">
-                    <i class="fas fa-ellipsis-h"></i> <!-- Ikon tiga titik -->
-                </button>
-                <div class="absolute hidden mt-2 bg-white text-gray-700 shadow-xl rounded-lg w-48 group-hover:block transition-opacity duration-300">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Tentang Kami</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Kontak</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">FAQ</a>
+    <!-- Daftar Pekerjaan -->
+    <section id="job-list" class="py-16 px-6 bg-gray-50">
+        <div class="max-w-screen-xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-8">Pekerjaan Terbaru</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Job 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden transition duration-300 hover:shadow-md">
+                    <img src="https://via.placeholder.com/500x300" alt="Web Developer" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Web Developer</h3>
+                        <p class="text-gray-600 mb-4">Bergabunglah dengan tim kami untuk membangun solusi web inovatif di perusahaan teknologi terkemuka.</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800">Lihat Detail</a>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden transition duration-300 hover:shadow-md">
+                    <img src="https://via.placeholder.com/500x300" alt="UI/UX Designer" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">UI/UX Designer</h3>
+                        <p class="text-gray-600 mb-4">Bergabung dengan tim desain kami untuk menciptakan pengalaman pengguna yang luar biasa dan antarmuka yang intuitif.</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800">Lihat Detail</a>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden transition duration-300 hover:shadow-md">
+                    <img src="https://via.placeholder.com/500x300" alt="Product Manager" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Product Manager</h3>
+                        <p class="text-gray-600 mb-4">Kami mencari seorang Product Manager yang berpengalaman untuk memimpin proyek-proyek penting dan membawa produk kami ke tingkat selanjutnya.</p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800">Lihat Detail</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Ikon Hamburger untuk Mobile (disembunyikan pada layar besar) -->
-        <div class="lg:hidden flex items-center">
-            <button id="burger-menu" class="text-white">
-                <i class="fas fa-bars"></i>
-            </button>
+    <!-- Call to Action -->
+    <section class="py-16 px-6 text-center bg-white">
+        <div class="max-w-screen-md mx-auto">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-4">Daftar untuk Akses Pekerjaan</h2>
+            <p class="text-lg text-gray-600 mb-6">Daftarkan diri Anda dan temukan peluang pekerjaan yang sesuai dengan keahlian dan minat Anda.</p>
+            <a href="register.html" class="bg-indigo-600 text-white px-6 py-3 rounded-full text-xl hover:bg-indigo-700 transition duration-300">Daftar Sekarang</a>
         </div>
-    </div>
-</nav>
+    </section>
 
-<!-- Menu Mobile (disembunyikan secara default) -->
-<div id="mobile-menu" class="lg:hidden hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 z-50">
-    <div class="flex flex-col items-center justify-center space-y-6 mt-24">
-        <a href="{{ url('/jobs?category=Design') }}" class="text-white text-xl hover:text-gray-200 transition duration-300 hover:underline">Design</a>
-        <a href="{{ url('/jobs?category=Writing') }}" class="text-white text-xl hover:text-gray-200 transition duration-300 hover:underline">Writing</a>
-        <a href="{{ url('/jobs?category=Development') }}" class="text-white text-xl hover:text-gray-200 transition duration-300 hover:underline">Development</a>
-        <a href="{{ url('/jobs?category=Marketing') }}" class="text-white text-xl hover:text-gray-200 transition duration-300 hover:underline">Marketing</a>
-        <a href="{{ url('/jobs?category=Translation') }}" class="text-white text-xl hover:text-gray-200 transition duration-300 hover:underline">Translation</a>
-        <button id="close-menu" class="text-white mt-6">
-            <i class="fas fa-times text-3xl"></i>
-        </button>
-    </div>
-</div>
+    <script>
+        // Toggle menu mobile ketika tombol burger diklik
+        document.getElementById('burger-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
 
-<!-- Script untuk Mengubah Status Menu -->
-<script>
-    // Toggle menu mobile ketika tombol burger diklik
-    document.getElementById('burger-menu').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    // Menutup menu mobile ketika tombol X diklik
-    document.getElementById('close-menu').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.add('hidden');
-    });
-</script>
-
-
-                <!-- Ikon Pencarian -->
-                <div class="relative">
-                    <input type="text" class="hidden md:block px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Cari pekerjaan..." />
-                    <button class="md:hidden text-white">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Konten Utama -->
-    <main class="pt-24">
-        @yield('content') <!-- Konten halaman lain akan dimuat di sini -->
-    </main>
+        // Menutup menu mobile ketika tombol X diklik
+        document.getElementById('close-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+    </script>
 
 </body>
+
 </html>
