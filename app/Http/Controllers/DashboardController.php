@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function admin()
     {
-        $role = 'penyedia'; // Hardcoded untuk saat ini
-        return view('dashboard.penyedia.index', compact('role'));
+        return view('dashboard.admin.dashboard');  // Halaman untuk Admin
+    }
+    public function superadmin()
+    {
+        return view('dashboard.superadmin.dashboard');  // Halaman untuk Admin
     }
 }
