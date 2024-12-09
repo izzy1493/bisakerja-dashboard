@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\JobModerationController as AdminJobModerationController;
 use App\Http\Controllers\Admin\AdminModerationController;
+
 
 // Route untuk Landing Page
 Route::get('/', [LandingController::class, 'index'])->name('landing');
