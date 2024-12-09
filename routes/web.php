@@ -13,6 +13,10 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\AdminModerationController;
+use App\Http\Controllers\Admin\JobModerationController as AdminJobModerationController;
 
 // routes/web.php
 
@@ -47,7 +51,7 @@ Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 
 // Rute untuk Moderasi Pekerjaan
-Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
+Route::get('/admin/jobs', [AdminJobModerationController::class, 'index'])->name('admin.jobs');
 
 // Rute untuk Validasi Pembayaran
 Route::get('/admin/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
@@ -68,12 +72,6 @@ Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 
 
 
-use App\Http\Controllers\Admin\JobModerationController;
-use App\Http\Controllers\Admin\VerificationController;
-use App\Http\Controllers\Admin\ReportController;
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\AdminModerationController;
 
 
 // Route untuk Landing Page
@@ -91,10 +89,10 @@ Route::prefix('penyedia')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     
     // Moderasi Pekerjaan
-    Route::get('/jobs', [JobModerationController::class, 'index'])->name('jobs.index');
-    Route::get('/jobs/{id}', [JobModerationController::class, 'show'])->name('jobs.show');
-    Route::post('/jobs/{id}/approve', [JobModerationController::class, 'approve'])->name('jobs.approve');
-    Route::post('/jobs/{id}/reject', [JobModerationController::class, 'reject'])->name('jobs.reject');
+    Route::get('/jobs', [AdminJobModerationController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs/{id}', [AdminJobModerationController::class, 'show'])->name('jobs.show');
+    Route::post('/jobs/{id}/approve', [AdminJobModerationController::class, 'approve'])->name('jobs.approve');
+    Route::post('/jobs/{id}/reject', [AdminJobModerationController::class, 'reject'])->name('jobs.reject');
 
     // Verifikasi Pengguna
     Route::get('/verifications', [VerificationController::class, 'index'])->name('verifications.index');
