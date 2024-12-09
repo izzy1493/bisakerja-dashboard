@@ -35,7 +35,13 @@
   <a href="#" class="text-3xl font-semibold text-blue-600">JobConnect</a>
   </a>
   <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+<<<<<<< Updated upstream
       <button type="button" class="text-black bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 me-3 text-center dark:bg-gray-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cari Kerja</button>
+=======
+  <a href="/jobs" class="text-black bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 me-3 text-center dark:bg-gray-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Cari Kerja
+        </a>
+>>>>>>> Stashed changes
       <button type="button" class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Gabung Mitra</button>
       <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -70,3 +76,8 @@
 </body>
 
 </html>
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
