@@ -14,6 +14,10 @@ use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
 
+
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+
 // routes/web.php
 
 Route::get('/login', function () {
