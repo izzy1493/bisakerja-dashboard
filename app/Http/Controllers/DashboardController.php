@@ -14,4 +14,8 @@ class DashboardController extends Controller
     {
         return view('dashboard.superadmin.dashboard');  // Halaman untuk Admin
     }
+    public function penyedia()
+    {
+        return view('dashboard.penyedia.index');  // Halaman untuk Admin
+    }
 }
