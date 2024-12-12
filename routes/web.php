@@ -31,22 +31,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
 
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard')->middleware('role:admin');
-
-    Route::get('/superadmin/dashboard', function () {
-        return view('superadmin.dashboard');
-    })->name('superadmin.dashboard')->middleware('role:superadmin');
+    // Single route to redirect to appropriate dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-
-
-Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');
 
 Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
 Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
@@ -79,5 +70,6 @@ Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // M
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
