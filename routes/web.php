@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AdminManagementController;
@@ -18,23 +19,31 @@ use App\Http\Controllers\LandingController;
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
-// routes/web.php
 
+
+// Route untuk halaman login
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
 
-// Route untuk authenticate berdasarkan role
-Route::get('/authenticate/{role}', function ($role) {
-    if ($role === 'admin') {
-        return redirect()->route('admin.dashboard'); // Redirect ke halaman admin
-    } elseif ($role === 'super_admin') {
-        return redirect()->route('superadmin.dashboard'); // Redirect ke halaman super admin
-    }
+// Route untuk proses login (POST)
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-    // Jika role tidak valid
-    abort(403, 'Unauthorized');
-})->name('authenticate');
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard')->middleware('role:admin');
+
+    Route::get('/superadmin/dashboard', function () {
+        return view('superadmin.dashboard');
+    })->name('superadmin.dashboard')->middleware('role:superadmin');
+});
+
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');

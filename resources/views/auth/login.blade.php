@@ -1,70 +1,63 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-2xl font-bold text-center text-gray-700 mb-6">Welcome Back!</h1>
 
-@section('content')
-<div class="flex justify-center items-center h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/login-bg.jpg') }}');">
-    <div class="bg-white bg-opacity-80 p-6 rounded-xl shadow-lg w-full max-w-md">
+        <!-- Flash Messages -->
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
 
-        <!-- Form Login -->
-        <h2 class="text-3xl font-semibold text-center text-gray-900 mb-6">Login</h2>
-        
-        <!-- Form -->
-        <form action="#" method="POST" class="space-y-5">
-            <div>
-                <!-- Input Username -->
-                <label for="username" class="block mb-2 text-lg font-medium text-gray-800">Username</label>
-                <input type="text" id="username" name="username" required class="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" placeholder="Masukkan username">
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <!-- Email Input -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Enter your email" 
+                    value="{{ old('email') }}" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                @error('email')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div>
-                <!-- Input Password -->
-                <label for="password" class="block mb-2 text-lg font-medium text-gray-800">Password</label>
-                <input type="password" id="password" name="password" required class="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" placeholder="Masukkan password">
+            <!-- Password Input -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="Enter your password" 
+                    required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                @error('password')
+                    <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full p-3 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 transform hover:scale-105">Login</button>
+            <button type="submit" 
+                class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-md shadow hover:bg-green-600 transition duration-200">
+                Log In
+            </button>
         </form>
-
-        <!-- Belum punya akun -->
-        <p class="text-center text-lg text-gray-700 mt-4">Belum punya akun? <a href="#" class="text-blue-600 hover:underline">Daftar di sini</a></p>
-
-        <!-- Pilihan Role -->
-        <div class="mt-6 space-y-4">
-            <!-- Kartu Admin -->
-            <div class="cursor-pointer bg-gradient-to-r from-blue-500 to-indigo-600 p-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:opacity-90"
-                onclick="window.location.href='{{ route('authenticate', ['role' => 'admin']) }}'">
-                <h3 class="text-xl font-semibold text-center text-white">Admin</h3>
-                <p class="text-center text-gray-100 mt-1">Access to the admin dashboard</p>
-            </div>
-
-            <!-- Kartu Super Admin -->
-            <div class="cursor-pointer bg-gradient-to-r from-green-500 to-teal-600 p-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:opacity-90"
-                onclick="window.location.href='{{ route('authenticate', ['role' => 'super_admin']) }}'">
-                <h3 class="text-xl font-semibold text-center text-white">Super Admin</h3>
-                <p class="text-center text-gray-100 mt-1">Full access to system settings</p>
-            </div>
-        </div>
-
-        <!-- Flowbite Tooltip -->
-        <div class="mt-6 text-center text-gray-700">
-            <span class="text-lg">
-                Need help? 
-                <a href="#" class="text-blue-500 hover:underline" data-tooltip-target="tooltip-login">
-                    Contact Support
-                </a>
-            </span>
-            <!-- Tooltip Content -->
-            <div id="tooltip-login" role="tooltip" class="absolute hidden z-10 w-48 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 transition-opacity duration-300" data-popper-placement="top">
-                Reach out to us at support@example.com
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-        </div>
-
     </div>
-</div>
-@endsection
-
-@section('scripts')
-    <!-- Flowbite JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.4/dist/flowbite.min.js"></script>
-@endsection
+</body>
+</html>
