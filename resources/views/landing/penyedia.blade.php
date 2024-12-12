@@ -147,26 +147,26 @@
     </div>
 </section>
 
- <!-- Testimoni -->
+<!-- Testimoni -->
 <section class="py-24 px-6" style="background: linear-gradient(to bottom,#90AFC5,#336B87);">
     <div class="max-w-screen-xl mx-auto text-center">
-        <h2 class="text-4xl font-semibold text-gray-900 mb-12">Apa Kata Pengguna Kami?</h2>
+        <h2 class="text-4xl font-semibold text-white mb-12">Apa Kata Pengguna Kami?</h2>
         <div class="flex flex-wrap justify-center gap-12">
             <!-- Testimoni Cards -->
-            <div class="bg-white text-indigo-600 p-8 rounded-lg shadow-xl max-w-xs transform hover:scale-105 transition duration-300">
+            <div class="bg-white text-teal-700 p-8 rounded-lg shadow-lg max-w-xs transform hover:scale-105 transition duration-300">
                 <p class="text-lg mb-4">"Platform ini sangat mudah digunakan! Tim kami berhasil menemukan kandidat yang tepat untuk proyek dalam waktu yang singkat."</p>
-                <p class="font-semibold">PT. Solusi Digital</p>
-                <span class="text-gray-600">HR Manager</span>
+                <p class="font-semibold text-teal-900">PT. Solusi Digital</p>
+                <span class="text-gray-500">HR Manager</span>
             </div>
-            <div class="bg-white text-indigo-600 p-8 rounded-lg shadow-xl max-w-xs transform hover:scale-105 transition duration-300">
+            <div class="bg-white text-teal-700 p-8 rounded-lg shadow-lg max-w-xs transform hover:scale-105 transition duration-300">
                 <p class="text-lg mb-4">"Fitur statistiknya sangat membantu untuk melacak kinerja lowongan pekerjaan kami. Sangat direkomendasikan!"</p>
-                <p class="font-semibold">PT. Inovasi Kreatif</p>
-                <span class="text-gray-600">CEO</span>
+                <p class="font-semibold text-teal-900">PT. Inovasi Kreatif</p>
+                <span class="text-gray-500">CEO</span>
             </div>
-            <div class="bg-white text-indigo-600 p-8 rounded-lg shadow-xl max-w-xs transform hover:scale-105 transition duration-300">
+            <div class="bg-white text-teal-700 p-8 rounded-lg shadow-lg max-w-xs transform hover:scale-105 transition duration-300">
                 <p class="text-lg mb-4">"Kami berhasil mengisi posisi penting dalam tim dengan kandidat yang luar biasa. Prosesnya cepat dan efisien."</p>
-                <p class="font-semibold">PT. Techno Ventures</p>
-                <span class="text-gray-600">Recruitment Lead</span>
+                <p class="font-semibold text-teal-900">PT. Techno Ventures</p>
+                <span class="text-gray-500">Recruitment Lead</span>
             </div>
         </div>
     </div>
