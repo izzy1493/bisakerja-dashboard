@@ -3,27 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
-    
-    public function index()
-    {
-        return view('login');
-    }
-
     public function login(Request $request)
     {
-        // Menentukan role berdasarkan tombol yang dipilih
-        if ($request->role == 'super-admin') {
-            // Simulasikan login untuk super-admin
-            return redirect()->route('dashboard')->with('role', 'Super Admin');
-        } elseif ($request->role == 'admin') {
-            // Simulasikan login untuk admin
-            return redirect()->route('dashboard')->with('role', 'Admin');
+        // Validasi input
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Cek kredensial pengguna
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Regenerasi session untuk keamanan
+
+            // Redirect otomatis ke halaman dashboard berdasarkan role
+            return redirect()->intended('/dashboard'); // Route dashboard akan di-handle middleware
         }
 
-        return redirect()->back()->withErrors(['role' => 'Role tidak valid.']);
+        // Jika login gagal
+        return back()->with('error', 'Email atau password salah!');
     }
+    public function logout()
+    {
+        // Logout the current authenticated user
+        Auth::guard('web')->logout();
+
+        // Redirect to the login page or admin dashboard
+        return redirect()->route('login'); // Ubah dengan route login Anda
+    }
+
+    
 }
+

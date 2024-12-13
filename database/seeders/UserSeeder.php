@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
-class UsersTableSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,9 +19,19 @@ class UsersTableSeeder extends Seeder
         // Menambahkan data dummy untuk user
         DB::table('users')->insert([
             [
+                'name' => 'Super Admin User',
+                'email' => 'superadmin@example.com',
+                'password' => Hash::make('password'), // Hash password
+                'phone' => '081234567890',
+                'role' => 'superadmin',
+                'is_verified' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
                 'name' => 'Admin User',
                 'email' => 'admin@example.com',
-                'password' => Hash::make('admin1234'), // Hash password
+                'password' => Hash::make('password'), // Hash password
                 'phone' => '081234567890',
                 'role' => 'admin',
                 'is_verified' => true,
@@ -31,7 +41,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Regular User',
                 'email' => 'user@example.com',
-                'password' => Hash::make('user1234'), // Hash password
+                'password' => Hash::make('password'), // Hash password
                 'phone' => '089876543210',
                 'role' => 'user',
                 'is_verified' => false,
@@ -41,7 +51,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Verified User',
                 'email' => 'verifieduser@example.com',
-                'password' => Hash::make('verified1234'), // Hash password
+                'password' => Hash::make('password'), // Hash password
                 'phone' => '082345678901',
                 'role' => 'user',
                 'is_verified' => true,

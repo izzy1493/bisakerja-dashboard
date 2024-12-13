@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AdminManagementController;
@@ -18,26 +19,25 @@ use App\Http\Controllers\LandingController;
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
-// routes/web.php
 
+
+// Route untuk halaman login
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
 
-// Route untuk authenticate berdasarkan role
-Route::get('/authenticate/{role}', function ($role) {
-    if ($role === 'admin') {
-        return redirect()->route('admin.dashboard'); // Redirect ke halaman admin
-    } elseif ($role === 'super_admin') {
-        return redirect()->route('superadmin.dashboard'); // Redirect ke halaman super admin
-    }
-
-    // Jika role tidak valid
-    abort(403, 'Unauthorized');
-})->name('authenticate');
+// Route untuk proses login (POST)
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
-Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    // Single route to redirect to appropriate dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
 Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
@@ -70,5 +70,6 @@ Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // M
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

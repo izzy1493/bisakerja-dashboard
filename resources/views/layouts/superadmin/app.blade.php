@@ -15,8 +15,9 @@
             <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">
                 L
             </div>
-            <a href="{{ route('superadmin.dashboard') }}" class="text-xl font-semibold text-gray-800">Beranda</a>
+            <a href="dashboard" class="text-xl font-semibold text-gray-800">Beranda</a>
         </div>
+        
 
         <!-- Menu Tengah -->
         <div class="flex space-x-6">
@@ -29,18 +30,15 @@
         <!-- Tombol Logout dan Icon Notifikasi Kanan -->
         <div class="flex items-center space-x-4">
             <!-- Icon Notifikasi -->
-            <button class="text-gray-600 hover:text-blue-500">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A9.961 9.961 0 0020 12a9.96 9.96 0 00-1.405-3.595L20 7h-5m-6 0H4l1.405 1.405A9.961 9.961 0 004 12a9.96 9.96 0 001.405 3.595L4 17h5m2 0h4m-4-6h4"></path>
-                </svg>
+           
+        <!-- Logout Button -->
+        <form action="{{ route('logout') }}" method="POST" class="flex items-center">
+            @csrf
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all">
+                Logout
             </button>
+        </form>
 
-            <!-- Tombol Logout -->
-            <button class="text-gray-600 hover:text-blue-500">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H3m10-4H3"></path>
-                </svg>
-            </button>
         </div>
     </nav>
 
