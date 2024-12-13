@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Job;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class JobSeeder extends Seeder
 {
@@ -14,29 +14,37 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
-        // Menambahkan beberapa data pekerjaan untuk pengujian
-        Job::create([
-            'title' => 'Web Developer',
-            'company' => 'Digital Agency',
-            'location' => 'Bandung, Indonesia',
-            'salary' => 8000000,
-            'description' => 'Building websites and web applications for clients.',
-        ]);
-
-        Job::create([
-            'title' => 'Project Manager',
-            'company' => 'Tech Innovators',
-            'location' => 'Jakarta, Indonesia',
-            'salary' => 15000000,
-            'description' => 'Managing software development projects from start to finish.',
-        ]);
-
-        Job::create([
-            'title' => 'UX/UI Designer',
-            'company' => 'Creative Studio',
-            'location' => 'Surabaya, Indonesia',
-            'salary' => 7000000,
-            'description' => 'Designing user-friendly interfaces and experiences for web and mobile apps.',
+        DB::table('jobs')->insert([
+            [
+                'title' => 'Software Engineer',
+                'company' => 'PT. Teknologi Canggih',
+                'location' => 'Jakarta, Indonesia',
+                'salary' => 15000000.00,
+                'qualification' => 'Minimum 3.50 GPA or equivalent. Proficient in programming languages such as Java, Python, or C++.',
+                'description' => 'Develop and maintain software applications.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Graphic Designer',
+                'company' => 'PT. Desain Kreatif',
+                'location' => 'Bandung, Indonesia',
+                'salary' => 8000000.00,
+                'qualification' => 'Proficient in design tools like Adobe Photoshop, Illustrator, and InDesign. Strong creativity and communication skills.',
+                'description' => 'Create visual concepts to communicate ideas.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Marketing Manager',
+                'company' => 'PT. Pemasaran Global',
+                'location' => 'Surabaya, Indonesia',
+                'salary' => 20000000.00,
+                'qualification' => 'Proven experience in marketing strategies, leadership skills, and a degree in marketing or related fields.',
+                'description' => 'Lead and execute marketing strategies.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

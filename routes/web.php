@@ -69,7 +69,7 @@ Route::get('admin/operations', [OperationsController::class, 'index'])->name('ad
 Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 
-Route::get('/jobs', [DashboardController::class, 'index'])->name('jobs.index');;
+Route::get('/jobs', [DashboardController::class, 'lowonganPekerjaan'])->name('jobs.index');;
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

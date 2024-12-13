@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
 
     // Menampilkan daftar pekerjaan
-    public function index()
+    public function lowonganPekerjaan()
     {
         // Mengambil semua pekerjaan dari database
         $jobs = Job::all();
@@ -42,4 +42,5 @@ class DashboardController extends Controller
         // Mengembalikan tampilan detail pekerjaan
         return view('jobs.show', compact('job'));
     }
-    
+
+}

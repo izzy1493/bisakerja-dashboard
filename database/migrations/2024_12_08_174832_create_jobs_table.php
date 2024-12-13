@@ -19,6 +19,7 @@ class CreateJobsTable extends Migration
             $table->string('company'); // Nama perusahaan
             $table->string('location'); // Lokasi pekerjaan
             $table->decimal('salary', 15, 2); // Gaji pekerjaan
+            $table->text('qualification'); // Kualifikasi pekerjaan
             $table->text('description'); // Deskripsi pekerjaan
             $table->timestamps(); // Kolom created_at dan updated_at
         });
