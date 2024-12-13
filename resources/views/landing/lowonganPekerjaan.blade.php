@@ -1,17 +1,6 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Job Finder
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
- </head>
- <body class="font-roboto">
-  <!-- Hero Section -->
+@extends('layouts.landing.app')
+@section('content')
+
   <section class="relative bg-indigo-600 text-white py-20 px-6">
    <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center">
     <!-- Teks Kiri -->
@@ -138,5 +127,5 @@
     </a>
    </div>
   </section>
- </body>
-</html>
+  
+  @endsection
