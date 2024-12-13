@@ -64,7 +64,9 @@ Route::get('admin/operations', [OperationsController::class, 'index'])->name('ad
 Route::get('/', [LandingController::class, 'index']); // Menu Loker
 Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
-Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
+
+Route::get('/jobs', [DashboardController::class, 'index'])->name('jobs.index');;
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
 
-
+// Menampilkan detail pekerjaan berdasarkan ID
+Route::get('jobs/{id}', [DashboardController::class, 'show'])->name('jobs.show');
