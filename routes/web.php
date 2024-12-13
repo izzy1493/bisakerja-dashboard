@@ -26,6 +26,11 @@ Route::get('/login', function () {
     return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
 
+// Route untuk halaman login
+Route::get('/signup', function () {
+    return view('auth.signup'); // Pastikan sesuai dengan lokasi file
+})->name('signup');
+
 // Route untuk proses login (POST)
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -71,5 +76,5 @@ Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Men
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+Route::post('/signup', [AuthController::class, 'signup']); // Proses registrasi
 
