@@ -29,6 +29,7 @@ Route::get('/login', function () {
 // Route untuk proses login (POST)
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+Route::get('/', [LandingController::class, 'index']); // Menu Loker
 
 
 Route::middleware(['auth'])->group(function () {
@@ -65,7 +66,6 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 /// Tambahkan route untuk pengelolaan data operasional
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 
-Route::get('/', [LandingController::class, 'index']); // Menu Loker
 Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
