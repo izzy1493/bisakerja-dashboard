@@ -1,24 +1,27 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function admin()
+    public function index()
     {
-        return view('dashboard.admin.dashboard');  // Halaman untuk Admin
+        $user = Auth::user();
+
+        // Redirect based on the user's role
+        if ($user->role == 'superadmin') {
+            return view('dashboard.superadmin.dashboard');
+        } elseif ($user->role == 'admin') {
+            return view('dashboard.admin.dashboard');
+        }
+
+        // Default redirect for other roles (e.g. regular user)
+        return redirect()->route('user.dashboard');
     }
-    public function superadmin()
-    {
-        return view('dashboard.superadmin.dashboard');  // Halaman untuk Admin
-    }
-    public function penyedia()
-    {
-        return view('dashboard.penyedia.index');  // Halaman untuk Admin
-    }
+
 
     // Menampilkan daftar pekerjaan
     public function index()
@@ -40,4 +43,3 @@ class DashboardController extends Controller
         return view('jobs.show', compact('job'));
     }
     
-}

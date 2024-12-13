@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AdminManagementController;
@@ -14,26 +15,30 @@ use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
 
-// routes/web.php
 
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+
+
+
+// Route untuk halaman login
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
 
-// Route untuk authenticate berdasarkan role
-Route::get('/authenticate/{role}', function ($role) {
-    if ($role === 'admin') {
-        return redirect()->route('admin.dashboard'); // Redirect ke halaman admin
-    } elseif ($role === 'super_admin') {
-        return redirect()->route('superadmin.dashboard'); // Redirect ke halaman super admin
-    }
+// Route untuk proses login (POST)
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-    // Jika role tidak valid
-    abort(403, 'Unauthorized');
-})->name('authenticate');
+Route::get('/', [LandingController::class, 'index']); // Menu Loker
 
 
-Route::get('superadmin/dashboard', [DashboardController::class, 'superadmin'])->name('superadmin.dashboard');
+Route::middleware(['auth'])->group(function () {
+    // Single route to redirect to appropriate dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
 Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
@@ -61,12 +66,12 @@ Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('
 /// Tambahkan route untuk pengelolaan data operasional
 Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 
-Route::get('/', [LandingController::class, 'index']); // Menu Loker
 Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 
 Route::get('/jobs', [DashboardController::class, 'index'])->name('jobs.index');;
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Menampilkan detail pekerjaan berdasarkan ID
 Route::get('jobs/{id}', [DashboardController::class, 'show'])->name('jobs.show');
