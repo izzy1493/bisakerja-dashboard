@@ -67,3 +67,18 @@ Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Men
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 
 
+// Rute untuk memasang pekerjaan
+Route::get('/penyedia/pasang-pekerjaan', [DashboardController::class, 'pasangPekerjaan'])->name('penyedia.pasang_pekerjaan');
+Route::post('/penyedia/store-pekerjaan', [DashboardController::class, 'storePekerjaan'])->name('penyedia.store_pekerjaan');
+Route::post('/penyedia/store-pekerjaan', [DashboardController::class, 'storePekerjaan'])->name('penyedia.store_pekerjaan');
+// Rute untuk pembayaran fee
+Route::get('/penyedia/bayar-fee', [DashboardController::class, 'bayarFee'])->name('penyedia.bayar');
+// Rute untuk menyimpan pembayaran fee
+Route::post('/penyedia/store-bayar-fee', [DashboardController::class, 'storeBayarFee'])->name('penyedia.store_bayar_fee');
+// Rute untuk tinjau proposal
+Route::get('/penyedia/tinjau-proposal', [DashboardController::class, 'tinjauProposal'])->name('penyedia.tinjau');
+
+// Rute untuk memilih pekerja
+Route::get('/penyedia/pilih-pekerja/{id}', [DashboardController::class, 'pilihPekerja'])->name('penyedia.pilih');
+
+Route::post('/penyedia/konfirmasi-selesai', [DashboardController::class, 'konfirmasiSelesai'])->name('penyedia.konfirmasi_selesai');
