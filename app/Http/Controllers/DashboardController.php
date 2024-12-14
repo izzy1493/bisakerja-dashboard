@@ -21,7 +21,7 @@ class DashboardController extends Controller
     {
         return view('dashboard.superadmin.dashboard');  // Halaman untuk Superadmin
     }
-        // Menampilkan halaman Pasang Pekerjaan
+    // Menampilkan halaman Pasang Pekerjaan
     public function pasangPekerjaan()
     {
         return view('penyedia.pasang_pekerjaan');
@@ -36,10 +36,10 @@ class DashboardController extends Controller
             'kategori' => 'required|string',
             'tenggat_waktu' => 'required|date',
         ]);
-    
+
         // Simpan data ke database
-        Pekerjaan::saved($validatedData);
-    
+        Pekerjaan::create($validatedData);
+
         return redirect()->route('penyedia.tinjau')->with('success', 'Pekerjaan berhasil disimpan!');
     }
     // Menampilkan halaman Bayar Fee
@@ -92,4 +92,4 @@ class DashboardController extends Controller
 
         return redirect()->route('penyedia.pasang_pekerjaan')->with('status', 'Pekerjaan Selesai');
     }
-    }
+}

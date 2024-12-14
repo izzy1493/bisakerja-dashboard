@@ -80,5 +80,5 @@ Route::get('/penyedia/tinjau-proposal', [DashboardController::class, 'tinjauProp
 
 // Rute untuk memilih pekerja
 Route::get('/penyedia/pilih-pekerja/{id}', [DashboardController::class, 'pilihPekerja'])->name('penyedia.pilih');
-
-Route::post('/penyedia/konfirmasi-selesai', [DashboardController::class, 'konfirmasiSelesai'])->name('penyedia.konfirmasi_selesai');
+//konfirmasi
+Route::get('/penyedia/konfirmasi-selesai', 'Controller@konfirmasiSelesai')->middleware('verify.csrf.token');
