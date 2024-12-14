@@ -82,3 +82,8 @@ Route::get('/penyedia/tinjau-proposal', [DashboardController::class, 'tinjauProp
 Route::get('/penyedia/pilih-pekerja/{id}', [DashboardController::class, 'pilihPekerja'])->name('penyedia.pilih');
 //konfirmasi
 Route::get('/penyedia/konfirmasi-selesai', 'Controller@konfirmasiSelesai')->middleware('verify.csrf.token');
+
+
+Route::group(['middleware' => 'web'], function () {
+    // Rute yang memerlukan session
+});
