@@ -70,6 +70,7 @@ Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // M
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
 Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

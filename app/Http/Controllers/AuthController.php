@@ -19,6 +19,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Regenerasi session untuk keamanan
 
+        
+
             // Redirect otomatis ke halaman dashboard berdasarkan role
             return redirect()->intended('/dashboard'); // Route dashboard akan di-handle middleware
         }
