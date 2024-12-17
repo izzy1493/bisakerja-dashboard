@@ -21,40 +21,40 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Super Admin User',
                 'email' => 'superadmin@example.com',
-                'password' => Hash::make('password'), // Hash password
                 'phone' => '081234567890',
                 'role' => 'superadmin',
-                'is_verified' => true,
+                'is_verified' => 1,
+                'password' => Hash::make('password'), // Hash password
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Admin User',
                 'email' => 'admin@example.com',
-                'password' => Hash::make('password'), // Hash password
                 'phone' => '081234567890',
                 'role' => 'admin',
-                'is_verified' => true,
+                'is_verified' => 1,
+                'password' => Hash::make('password'), // Hash password
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Regular User',
                 'email' => 'user@example.com',
-                'password' => Hash::make('password'), // Hash password
                 'phone' => '089876543210',
                 'role' => 'user',
                 'is_verified' => false,
+                'password' => Hash::make('password'), // Hash password
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Verified User',
                 'email' => 'verifieduser@example.com',
-                'password' => Hash::make('password'), // Hash password
                 'phone' => '082345678901',
                 'role' => 'user',
-                'is_verified' => true,
+                'is_verified' => 1,
+                'password' => Hash::make('password'), // Hash password
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
