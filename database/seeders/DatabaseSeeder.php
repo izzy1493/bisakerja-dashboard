@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Memanggil seeder untuk tabel `users`
-        // $this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);
 
         $this->call(UserVerificationSeeder::class);
 
