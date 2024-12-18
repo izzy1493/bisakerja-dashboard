@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 class CreateUsersTable extends Migration
 {
     public function up()
@@ -15,9 +14,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->enum('role', ['SuperAdmin', 'Admin', 'WorkProvider', 'JobSeeker']);
+            $table->enum('role', ['superadmin', 'admin', 'penyedia', 'pencari']);
             $table->boolean('is_verified')->default(false);
-            $table->timestamps();
+            $table->timestamps(0);
         });
     }
 

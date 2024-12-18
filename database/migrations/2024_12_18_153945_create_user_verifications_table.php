@@ -10,13 +10,19 @@ class CreateUserVerificationsTable extends Migration
     {
         Schema::create('user_verifications', function (Blueprint $table) {
             $table->id('verification_id');
-            $table->foreignId('user_id')->constrained('users');
+            $table->unsignedBigInteger('user_id'); // Ganti dengan unsignedBigInteger untuk kolom user_id
             $table->string('id_card_number');
             $table->string('id_card_photo');
             $table->string('selfie_photo');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamp('verified_at')->nullable();
-            $table->timestamps();
+            $table->timestamps(0);
+
+            // Menambahkan foreign key
+            $table->foreign('user_id')
+                ->references('user_id') // Mengarah ke kolom 'user_id' di tabel users
+                ->on('users')
+                ->onDelete('cascade'); // Tambahkan aksi penghapusan jika user dihapus
         });
     }
 
