@@ -16,6 +16,7 @@
         <h1 class="text-5xl font-bold z-10 leading-tight">Temukan Pekerjaan Impian Anda</h1>
         <p class="mt-4 text-xl z-10 max-w-2xl mx-auto">Cari pekerjaan yang sesuai dengan keterampilan dan minat Anda di sini, dan wujudkan karir terbaik Anda.</p>
     </section>
+    
 
     <!-- Daftar Pekerjaan -->
     <section class="container mx-auto py-16 px-4">
@@ -28,6 +29,15 @@
                 <button class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-300">Cari</button>
             </div>
         </div>
+
+        @auth
+        <div class="text-right mb-4">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all duration-300">Logout</button>
+            </form>
+        </div>
+    @endauth
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($jobs as $job)

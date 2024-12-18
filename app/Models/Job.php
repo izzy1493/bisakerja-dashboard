@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
-<<<<<<< Updated upstream
-=======
 
     // Tentukan kolom-kolom yang dapat diisi (mass assignment)
     protected $fillable = [
@@ -19,5 +17,5 @@ class Job extends Model
         'salary',
         'description',
     ];
->>>>>>> Stashed changes
+
 }

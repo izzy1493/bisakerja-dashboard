@@ -19,24 +19,34 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Regenerasi session untuk keamanan
 
-        
+            // Mendapatkan pengguna yang saat ini login
+            $user = Auth::user();
 
-            // Redirect otomatis ke halaman dashboard berdasarkan role
-            return redirect()->intended('/dashboard'); // Route dashboard akan di-handle middleware
+            // Cek role pengguna dan arahkan sesuai
+            switch ($user->role) {
+                case 'superadmin':
+                case 'admin':
+                    return redirect()->intended('/dashboard');
+                case 'pelamar':
+                    return redirect()->intended('/jobs');
+                case 'penyedia':
+                    return redirect()->intended('/dashboard-penyedia'); // Sesuaikan dengan route dashboard penyedia
+                default:
+                    // Jika role tidak dikenali, arahkan ke halaman default
+                    return redirect()->intended('/dashboard');
+            }
         }
 
         // Jika login gagal
         return back()->with('error', 'Email atau password salah!');
     }
+
     public function logout()
     {
         // Logout the current authenticated user
         Auth::guard('web')->logout();
 
-        // Redirect to the login page or admin dashboard
-        return redirect()->route('login'); // Ubah dengan route login Anda
+        // Redirect to the login page
+        return redirect()->route('login');
     }
-
-    
 }
-
