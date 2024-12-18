@@ -2,18 +2,6 @@
 
 @section('content')
 
-
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Job Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <link href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" rel="stylesheet"/>
-</head>
-<body class="font-roboto bg-gray-100">
     <!-- Hero Section -->
     <section class="relative bg-gray-800 text-white py-40 px-6">
         <img alt="Background image of a professional office environment" class="absolute inset-0 w-full h-full object-cover opacity-30" height="1080" src="https://storage.googleapis.com/a1aa/image/uFDXEy8HEqJdCBGzgTAG9iTVQsxzop7PKeqph6OCqo612B9JA.jpg" width="1920"/>
@@ -163,7 +151,5 @@
             <a class="bg-indigo-600 text-white px-10 py-5 rounded-lg text-xl hover:bg-indigo-700 transition duration-300 transform hover:scale-105" href="register.html">Pasang Lowongan</a>
         </div>
     </section>
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
-</body>
-</html>
+
 @endsection

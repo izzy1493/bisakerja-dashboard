@@ -2,9 +2,14 @@
 
 @section('content')
     <!-- Dashboard Header -->
-    <div class="bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 p-6 rounded-3xl shadow-md mb-10 text-white">
-        <h2 class="text-4xl font-bold">Dashboard Superadmin</h2>
-        <p class="mt-2 text-lg">Ringkasan informasi untuk memudahkan pengelolaan sistem.</p>
+    <div class="bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 p-6 rounded-3xl shadow-md mb-10 text-white flex items-center justify-between">
+        <!-- Title Section -->
+        <div>
+            <h2 class="text-4xl font-bold">Dashboard Superadmin</h2>
+            <p class="mt-2 text-lg">Ringkasan informasi untuk memudahkan pengelolaan sistem.</p>
+        </div>
+
+       
     </div>
 
     <!-- Dashboard Summary Cards -->
@@ -36,7 +41,7 @@
             <p class="text-gray-500 mt-2">Jumlah pengguna baru yang mendaftar bulan ini.</p>
         </div>
     </div>
-
+    
     <!-- Detailed Summary (Graphs & Tables) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Users Management Table -->
