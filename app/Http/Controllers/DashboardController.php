@@ -20,9 +20,13 @@ class DashboardController extends Controller
         } elseif ($user->role == 'admin') {
             return view('dashboard.admin.dashboard');
         }
+        elseif ($user->role == 'penyedia') {
+            return view('dashboard.penyedia.index');
+    
+        }
 
         // Default redirect for other roles (e.g. regular user)
-        return redirect()->route('user.dashboard');
+        return redirect()->route('dashboard');
     }
     // Menampilkan halaman Dashboard untuk Admin
     public function admin()
@@ -40,7 +44,6 @@ class DashboardController extends Controller
     {
         return view('penyedia.pasang_pekerjaan');
     }
-
     // Menyimpan pekerjaan yang dipasang
     public function storePekerjaan(Request $request)
     {
