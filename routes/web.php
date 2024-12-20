@@ -19,7 +19,9 @@ use App\Http\Controllers\LandingController;
 Route::get('/login', function () {
     return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('loginSubmit');
+// Rute untuk dashboard
+Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 // Route untuk halaman SIgn Up

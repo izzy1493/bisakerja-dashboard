@@ -6,7 +6,7 @@ use App\Models\User; // Jangan lupa untuk menggunakan model User
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
@@ -24,7 +24,7 @@ class AuthController extends Controller
             $request->session()->regenerate(); // Regenerasi session untuk keamanan
 
             // Redirect otomatis ke halaman dashboard berdasarkan role
-            return redirect()->intended('/dashboard'); // Route dashboard akan di-handle middleware
+            return redirect()->route('dashboard'); // Route dashboard akan di-handle middleware
         }
 
         // Jika login gagal
@@ -47,6 +47,7 @@ class AuthController extends Controller
         return view('auth.signup'); // Mengarah ke view signup.blade.php
     }
 
+    // Proses registrasi (sign-up)
     public function signup(Request $request)
     {
         // Validasi input
@@ -61,7 +62,7 @@ class AuthController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => $request->phone, 
             'role' => 'user', // Default role
             'is_verified' => false, // Default status
             'password' => Hash::make($request->password),
