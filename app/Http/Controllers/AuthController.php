@@ -20,11 +20,18 @@ class AuthController extends Controller
         ]);
 
         // Cek kredensial pengguna
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // Regenerasi session untuk keamanan
+        if (Auth::attempt($credentials)) {            
+            $request->session()->regenerate();
+            $user = Auth::user();
 
-            // Redirect otomatis ke halaman dashboard berdasarkan role
-            return redirect()->route('dashboard'); // Route dashboard akan di-handle middleware
+            // Redirect based on the user's role
+            if ($user->role == 'superadmin') {
+                return view('dashboard.superadmin.dashboard');
+            } elseif ($user->role == 'admin') {
+                return view('dashboard.admin.dashboard');
+            } elseif ($user->role == 'penyedia') {
+                return view('dashboard.penyedia.lamaran');
+            }
         }
 
         // Jika login gagal
