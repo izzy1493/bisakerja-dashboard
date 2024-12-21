@@ -54,7 +54,7 @@
 
         <!-- Footer Text -->
         <div class="mt-4 text-center text-sm text-gray-600">
-            <p>Don't have an account? <a href="#" class="text-green-600 hover:underline">Sign Up</a></p>
+            <p>Don't have an account? <a href="{{ route('signup') }}" class="text-green-600 hover:underline">Sign Up</a></p>
         </div>
     </div>
 
