@@ -62,8 +62,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 });
 
 // Admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Rute untuk Moderasi Pekerjaan
+Route::middleware(['auth'])->group(function () {
+    // Rute untuk Moderasi Pekerjaan Admin
     Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
 
     // Rute untuk Validasi Pembayaran
