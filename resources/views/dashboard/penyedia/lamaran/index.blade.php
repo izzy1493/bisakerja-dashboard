@@ -7,6 +7,7 @@
         <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Daftar Lamaran Pekerjaan</h1>
 
         <div class="bg-white shadow-md rounded-lg p-6"> 
+            @if($applications->isNotEmpty())
                 <div class="space-y-6">
                     @foreach($applications as $application)
                         <div class="p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
@@ -29,9 +30,10 @@
                         </div>
                     @endforeach
                 </div>
+            @else
+                <p class="text-center text-gray-600">Tidak ada lamaran pekerjaan yang ditemukan.</p>
             @endif
         </div>
     </div>
 </body>
 @endsection
-
