@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 
 class JobModerationController extends Controller
 {
+    public function __construct()
+    {
+        // Menambahkan middleware pada constructor untuk memastikan role 'admin'
+        $this->middleware(['auth', 'role:admin']);
+    }
+
     public function index()
     {
-        $role = 'admin'; // Tentukan role yang sesuai
-
-        if ($role == 'admin') {
+        // Cek role pengguna sebelum menampilkan halaman
+        if (auth()->user() && auth()->user()->role == 'admin') {
             return view('dashboard.admin.job-moderation');  // Halaman Moderasi Pekerjaan Admin
         }
 
