@@ -8,16 +8,43 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
-<<<<<<< Updated upstream
-=======
 
-    // Tentukan kolom-kolom yang dapat diisi (mass assignment)
+    protected $table = 'jobs';
+
     protected $fillable = [
+        'provider_id',
         'title',
-        'company',
-        'location',
-        'salary',
         'description',
+        'location',
+        'wage',
+        'duration',
+        'requirements',
+        'status',
     ];
->>>>>>> Stashed changes
+
+    protected $casts = [
+        'wage' => 'decimal:2',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function provider()
+    {
+        return $this->belongsTo(User::class, 'provider_id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class, 'job_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'job_id');
+    }
+
+    public function escrows()
+    {
+        return $this->hasMany(Escrow::class, 'job_id');
+    }
 }

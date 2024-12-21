@@ -1,24 +1,63 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="flex justify-center items-center h-screen">
-    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
-        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-        <!-- Pilihan Role -->
-        <div class="space-y-4">
-            <!-- Kartu Admin -->
-            <div class="cursor-pointer bg-gray-100 p-6 rounded-lg shadow hover:bg-gray-200 transition"
-                onclick="window.location.href='{{ route('authenticate', ['role' => 'admin']) }}'">
-                <h3 class="text-lg font-semibold text-center">Admin</h3>
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+
+    <!-- Container -->
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-8">Welcome Back!</h1>
+
+        <!-- Flash Messages -->
+        @if (session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg mb-6">
+            {{ session('error') }}
+        </div>
+        @endif
+
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <!-- Email Input -->
+            <div class="mb-6">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" value="{{ old('email') }}"
+                    required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                @error('email')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
-            <!-- Kartu Super Admin -->
-            <div class="cursor-pointer bg-gray-100 p-6 rounded-lg shadow hover:bg-gray-200 transition"
-                onclick="window.location.href='{{ route('authenticate', ['role' => 'super_admin']) }}'">
-                <h3 class="text-lg font-semibold text-center">Super Admin</h3>
+            <!-- Password Input -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                @error('password')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:bg-green-700 transition duration-200 ease-in-out">
+                Log In
+            </button>
+        </form>
+
+        <!-- Footer Text -->
+        <div class="mt-4 text-center text-sm text-gray-600">
+            <p>Don't have an account? <a href="#" class="text-green-600 hover:underline">Sign Up</a></p>
         </div>
     </div>
-</div>
-@endsection
+
+</body>
+
+</html>
