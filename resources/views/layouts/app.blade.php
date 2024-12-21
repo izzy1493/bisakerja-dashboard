@@ -1,4 +1,4 @@
- @yield('content')
+
  <!DOCTYPE html>
 
 <html lang="id">

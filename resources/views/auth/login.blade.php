@@ -22,7 +22,7 @@
         @endif
 
         <!-- Login Form -->
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('loginSubmit') }}">
             @csrf
 
             <!-- Email Input -->
