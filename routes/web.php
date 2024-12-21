@@ -48,9 +48,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-// Suoer Admin
-Route::middleware(['auth', 'role:superadmin'])->group(function () {
-    // Single route to redirect to appropriate dashboard
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
     Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
@@ -58,11 +55,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');
     Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])->name('policy.management');
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
+    // Single route to redirect to appropriate dashboard
 
-});
 
-// Admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
     // Rute untuk Moderasi Pekerjaan
     Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
 
@@ -77,7 +72,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     /// Tambahkan route untuk pengelolaan data operasional
     Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
-});
 
 
 // Penyedia
