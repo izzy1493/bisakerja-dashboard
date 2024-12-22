@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
 // Penyedia Routes
 // -------------------------------------------
 
+    Route::get('/pasang-pekerjaan', [JobController::class, 'index'])->name('pasang-pekerjaan');
     Route::get('/list-pekerjaan', [JobController::class, 'showPekerjaan'])->name('list-pekerjaan');
     Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-lamaran');
 

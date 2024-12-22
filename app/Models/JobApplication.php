@@ -24,11 +24,11 @@ class JobApplication extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'job_id');
+        return $this->belongsTo(Job::class, 'job_id','job_id');
     }
 
     public function seeker()
     {
-        return $this->belongsTo(User::class, 'seeker_id');
+        return $this->belongsTo(User::class, 'seeker_id', 'user_id');
     }
 }

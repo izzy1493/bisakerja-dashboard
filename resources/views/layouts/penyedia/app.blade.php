@@ -22,7 +22,7 @@
 
         <!-- Menu Tengah -->
         <div class="flex space-x-6">
-            <a href="/dashboard" class="text-gray-600 {{ request()->is('management-admin') ? 'font-bold text-blue-600' : '' }}">Pasang Pekerjaan</a>
+            <a href="{{ route('pasang-pekerjaan') }}" class="text-gray-600 {{ request()->is('management-admin') ? 'font-bold text-blue-600' : '' }}">Pasang Pekerjaan</a>
             <a href="{{ route('list-pekerjaan') }}" class="text-gray-600 {{ request()->is('list-pekerjaan') ? 'font-bold text-blue-600' : '' }}">List Pekerjaan</a>
             <a href="{{ route('list-lamaran') }}" class="text-gray-600 {{ request()->is('policy-management') ? 'font-bold text-blue-600' : '' }}">List Lamaran</a>
             
