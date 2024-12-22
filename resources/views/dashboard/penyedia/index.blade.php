@@ -7,12 +7,13 @@
     <div class="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-xl mt-16">
         <h1 class="text-4xl font-semibold text-gray-800 mb-6 text-center">Pasang Pekerjaan</h1>
 
-        <form action="" method="POST">
+        <form action="{{ route('penyedia.store') }}" method="POST">
             @csrf
+            <!-- Input fields -->
 
             <div class="space-y-6">
                 <div class="border-b-2 pb-4">
-                    <label for="judul" class="block text-lg font-medium text-gray-700">Judul Pekerjaan</label>
+                    <label for="judul" class="block text-lg font-medium text-gray-700">Nama Pekerjaan</label>
                     <input type="text" id="judul" name="judul" class="w-full p-4 mt-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-300" required>
                 </div>
 

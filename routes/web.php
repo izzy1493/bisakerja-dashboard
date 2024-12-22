@@ -62,8 +62,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 });
 
 // Admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Rute untuk Moderasi Pekerjaan
+Route::middleware(['auth'])->group(function () {
+    // Rute untuk Moderasi Pekerjaan Admin
     Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
 
     // Rute untuk Validasi Pembayaran
@@ -84,7 +84,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:penyedia'])->group(function () {
     Route::get('/list-pekerjaan', [JobController::class, 'showPekerjaan'])->name('list-pekerjaan');
     Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-lamaran');
+    
+    // Tambahkan rute untuk form pasang pekerjaan
+    Route::get('/dashboard/penyedia', [JobController::class, 'create'])->name('penyedia.create'); // Halaman form
+    Route::post('/dashboard/penyedia', [JobController::class, 'store'])->name('penyedia.store'); // Proses form
 });
+
 
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
