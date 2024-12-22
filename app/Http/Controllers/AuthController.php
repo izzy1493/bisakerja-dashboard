@@ -30,7 +30,7 @@ class AuthController extends Controller
             } elseif ($user->role == 'admin') {
                 return view('dashboard.admin.dashboard');
             } elseif ($user->role == 'penyedia') {
-                return view('dashboard.penyedia.lamaran');
+                return view('dashboard.penyedia.index');
             }
         }
 
