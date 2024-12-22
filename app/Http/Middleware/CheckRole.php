@@ -10,10 +10,16 @@ class CheckRole
 {
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (!in_array(Auth::user()->role, $roles)) {
-            return redirect('/home');  // Ganti dengan halaman yang sesuai
+        // Pastikan pengguna sudah login
+        if (!Auth::check()) {
+            return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        return $next($request);
+        // Periksa apakah peran pengguna termasuk dalam daftar $roles
+        if (!in_array(Auth::user()->role, $roles)) {
+            return redirect('/dashboard')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        return $next($request); // Lanjutkan jika peran sesuai
     }
 }
