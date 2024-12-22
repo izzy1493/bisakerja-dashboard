@@ -10,12 +10,11 @@ class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, $role)
     {
-        // Check if the authenticated user has the required role
-        if (Auth::check() && Auth::user()->role == $role) {
-            return $next($request);
+        if (!Auth::check() || Auth::user()->role !== $role) {
+            return redirect()->route('login')->with('error', 'Akses ditolak.');
         }
 
-        // Redirect to home or another page if the user doesn't have the required role
-        return redirect('/home');
+        return $next($request);
     }
 }
+

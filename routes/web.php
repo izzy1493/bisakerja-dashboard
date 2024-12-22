@@ -19,10 +19,12 @@ use App\Http\Controllers\LandingController;
 Route::get('/login', function () {
     return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('loginSubmit');
-// Rute untuk dashboard
-Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Rute untuk menangani proses login
+Route::post('/login', [AuthController::class, 'login'])->name('loginSubmit');
+
+// Rute untuk dashboard umum
+Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route untuk halaman SIgn Up
 Route::get('/signup', function () {
@@ -41,37 +43,33 @@ Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
 
-// Dashboard Awal (All role)
+// Rute umum untuk dashboard
 Route::middleware(['auth'])->group(function () {
-    // Single route to redirect to appropriate dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-
+// Rute khusus untuk superadmin
+Route::middleware(['auth', 'role:superadmin'])->group(function () {
+    Route::get('/dashboard/superadmin', [DashboardController::class, 'superadmin'])->name('dashboard.superadmin');
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
     Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
-    
+
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');
     Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])->name('policy.management');
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
-    // Single route to redirect to appropriate dashboard
+});
 
-
-    // Rute untuk Moderasi Pekerjaan
+// Rute khusus untuk admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
     Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
-
-    // Rute untuk Validasi Pembayaran
     Route::get('/admin/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
-
-    // Rute untuk Penanganan Laporan
     Route::get('/admin/reports', [ReportHandlingController::class, 'index'])->name('admin.reports');
-
-    // Rute untuk Verifikasi Pengguna
     Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('admin.users');
-
-    /// Tambahkan route untuk pengelolaan data operasional
     Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
+});
+
 
 
 // Penyedia
