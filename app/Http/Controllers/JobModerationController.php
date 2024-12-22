@@ -6,14 +6,23 @@ use Illuminate\Http\Request;
 
 class JobModerationController extends Controller
 {
+    // Memastikan middleware 'auth' sudah diaktifkan
+    public function __construct()
+    {
+        $this->middleware('auth');  // Pastikan pengguna login sebelum mengakses
+    }
+
     public function index()
     {
-        $role = 'admin'; // Tentukan role yang sesuai
+        // Memeriksa apakah pengguna memiliki role 'admin'
+        $user = auth()->user();
 
-        if ($role == 'admin') {
-            return view('dashboard.admin.job-moderation');  // Halaman Moderasi Pekerjaan Admin
+        // Jika pengguna bukan admin, kirimkan response 403
+        if ($user && $user->role !== 'admin') {
+            return abort(403, 'Unauthorized action.');
         }
 
-        return abort(403, 'Unauthorized action.');  // Jika role tidak valid
+        // Jika role admin, tampilkan halaman moderasi pekerjaan
+        return view('dashboard.admin.job-moderation');
     }
 }
