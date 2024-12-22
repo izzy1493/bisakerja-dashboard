@@ -14,7 +14,7 @@
         <!-- Logo Kiri -->
         <div class="flex items-center space-x-2">
             <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">
-                L
+                7
             </div>
             <a href="dashboard" class="text-xl font-semibold text-gray-800">Beranda</a>
         </div>

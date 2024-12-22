@@ -13,7 +13,7 @@
 
             <div class="space-y-6">
                 <div class="border-b-2 pb-4">
-                    <label for="judul" class="block text-lg font-medium text-gray-700">Judul Pekerjaan</label>
+                    <label for="judul" class="block text-lg font-medium text-gray-700">Nama Pekerjaan</label>
                     <input type="text" id="judul" name="judul" class="w-full p-4 mt-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-300" required>
                 </div>
 
