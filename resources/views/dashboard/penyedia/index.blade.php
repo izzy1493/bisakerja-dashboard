@@ -3,7 +3,7 @@
 @section('content')
 
 <body class="bg-gradient-to-br from-blue-50 to-purple-100 font-sans antialiased">
-
+<!-- Form Pemasang Kerja -->
     <div class="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-lg mt-16">
         <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Pasang Pekerjaan</h1>
 

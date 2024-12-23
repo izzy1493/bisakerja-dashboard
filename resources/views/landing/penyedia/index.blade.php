@@ -1,4 +1,4 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 
 @section('content')
 <!-- Hero Section -->
@@ -22,4 +22,4 @@
         </div>
     </div>
 </header>
-@endsection
+@endsection --}}
