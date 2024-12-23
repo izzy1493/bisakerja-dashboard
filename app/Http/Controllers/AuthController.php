@@ -17,46 +17,33 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         // Cek kredensial pengguna
         if (Auth::attempt($credentials)) {
             // Regenerate session untuk mencegah session fixation attacks
             $request->session()->regenerate();
-    
+
             // Ambil data pengguna yang sedang login
             $user = Auth::user();
 
-    
             // Redirect berdasarkan role pengguna
             switch ($user->role) {
                 case 'superadmin':
-                    return view('dashboard.superadmin.dashboard'); // Mengarahkan ke dashboard.superadmin.dashboard
+                    return view('dashboard.superadmin.dashboard');
                 case 'admin':
-                    return view('dashboard.admin.dashboard'); // Mengarahkan ke dashboard.admin.dashboard
+                    return view('dashboard.admin.dashboard');
                 case 'penyedia':
-                    return view('dashboard.penyedia.dashboard'); // Mengarahkan ke dashboard.penyedia.dashboard
+                    return view('dashboard.penyedia.dashboard');
                 case 'pencari':
-                    return view('dashboard.pencari.dashboard'); // Mengarahkan ke dashboard.pencari.dashboard
+                    return view('dashboard.pencari.dashboard');
                 default:
                     return redirect()->route('login')->with('error', 'Role tidak dikenal.');
-
-
-            // Redirect based on the user's role
-            if ($user->role == 'superadmin') {
-                return view('dashboard.superadmin.dashboard');
-            } elseif ($user->role == 'admin') {
-                return view('dashboard.admin.dashboard');
-            } elseif ($user->role == 'penyedia') {
-                return view('dashboard.penyedia.index');
-
             }
         }
-    
+
         // Jika login gagal
         return back()->with('error', 'Email atau password salah!');
     }
-    
-    
 
     // Metode untuk logout
     public function logout(Request $request)
@@ -96,4 +83,3 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Account created successfully. Please log in.');
     }
 }
-
