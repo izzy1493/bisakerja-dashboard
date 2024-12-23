@@ -5,9 +5,9 @@
 
     <!-- Hero Section -->
     <section class="relative bg-gray-800 text-white py-20 px-6">
-        <img alt="Background image of a professional office environment" class="absolute inset-0 w-full h-full object-cover opacity-30" height="1080" src="https://storage.googleapis.com/a1aa/image/uFDXEy8HEqJdCBGzgTAG9iTVQsxzop7PKeqph6OCqo612B9JA.jpg" width="1920"/>
+        <img alt="Background image of a professional office environment" class="absolute inset-0 w-full h-full object-cover opacity-30" height="1080" src="https://images.unsplash.com/photo-1514894780887-121968d00567?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="1920"/>
         <div class="relative z-10 max-w-screen-xl mx-auto text-center">
-            <h1 class="text-4xl font-extrabold leading-tight mb-4">Daftar Lamaran Pekerjaan</h1>
+            <h1 class="text-5xl font-extrabold mb-4">Daftar Lamaran Pekerjaan</h1>
             <p class="text-lg mb-8">Lihat semua lamaran yang telah diterima dan statusnya.</p>
         </div>
     </section>

@@ -1,37 +1,5 @@
 <?php
 
-// namespace App\Http\Controllers;
-
-// use Illuminate\Http\Request;
-
-// class JobController extends Controller
-// {
-//     // Menampilkan form pasang pekerjaan
-//     public function create()
-//     {
-//         return view('dashboard.penyedia.index'); // File Blade form Anda
-//     }
-
-//     // Memproses data form
-//     public function store(Request $request)
-//     {
-//         // Validasi data
-//         $validatedData = $request->validate([
-//             'judul' => 'required|string|max:255',
-//             'deskripsi' => 'required|string',
-//             'kategori' => 'required|string',
-//             'tenggat_waktu' => 'required|date',
-//         ]);
-
-//         // Simpan data ke database
-//         // Contoh: Job::create($validatedData);
-
-//         return redirect()->route('penyedia.create')->with('success', 'Pekerjaan berhasil dipasang!');
-//     }
-// }
-
-
-
 namespace App\Http\Controllers;
 
 use App\Models\Job;
