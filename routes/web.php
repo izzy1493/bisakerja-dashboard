@@ -48,7 +48,7 @@ Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name(
 // Rute untuk Dashboard (All Roles)
 // -------------------------------------------
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 // -------------------------------------------
@@ -60,7 +60,7 @@ Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 // -------------------------------------------
 // Super Admin Routes
 // -------------------------------------------
-Route::middleware(['auth', 'role:superadmin'])->group(function () {
+
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
     Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
@@ -68,8 +68,6 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');
     Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])->name('policy.management');
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
-});
-
 // -------------------------------------------
 // Admin Routes
 // -------------------------------------------
