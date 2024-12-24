@@ -15,7 +15,7 @@
             <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-xl">
                 L
             </div>
-            <a href="dashboard" class="text-xl font-semibold text-gray-800">Beranda</a>
+            <a href="dashboard-page" class="text-xl font-semibold text-gray-800">Beranda</a>
         </div>
         
 
