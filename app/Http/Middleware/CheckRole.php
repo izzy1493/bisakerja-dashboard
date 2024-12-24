@@ -17,7 +17,7 @@ class CheckRole
 
         // Cek apakah role pengguna sesuai dengan yang diharapkan
         if (Auth::user()->role !== $role) {
-            return redirect()->route('login')->with('error', 'Akses ditolak.');
+            return redirect()->route('dashboard-page');
         }
 
         return $next($request);

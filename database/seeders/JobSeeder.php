@@ -15,7 +15,7 @@ class JobSeeder extends Seeder
 
         // Menambah data pekerjaan dengan status Pending
         Job::create([
-            'provider_id' => $provider->user_id, // Pastikan menggunakan ID user yang ada
+            'provider_id' => $provider->id, // Pastikan menggunakan ID user yang ada
             'title' => 'Software Developer',
             'description' => 'We are looking for an experienced software developer to join our team.',
             'location' => 'Jakarta, Indonesia',
@@ -27,7 +27,7 @@ class JobSeeder extends Seeder
 
         // Menambah data pekerjaan dengan status Active
         Job::create([
-            'provider_id' => $provider->user_id,
+            'provider_id' => $provider->id,
             'title' => 'UI/UX Designer',
             'description' => 'Looking for a UI/UX designer to work on web and mobile app designs.',
             'location' => 'Bandung, Indonesia',
@@ -39,7 +39,7 @@ class JobSeeder extends Seeder
 
         // Menambah data pekerjaan dengan status Completed
         Job::create([
-            'provider_id' => $provider->user_id,
+            'provider_id' => $provider->id,
             'title' => 'Project Manager',
             'description' => 'We are looking for an experienced project manager to oversee multiple teams.',
             'location' => 'Surabaya, Indonesia',
@@ -51,7 +51,7 @@ class JobSeeder extends Seeder
 
         // Menambah data pekerjaan dengan status Cancelled
         Job::create([
-            'provider_id' => $provider->user_id,
+            'provider_id' => $provider->id,
             'title' => 'Frontend Developer',
             'description' => 'We are looking for a skilled frontend developer to build modern web applications.',
             'location' => 'Yogyakarta, Indonesia',

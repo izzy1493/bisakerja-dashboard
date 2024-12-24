@@ -14,6 +14,7 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
+use Illuminate\Support\Facades\Auth;
 
 // Route untuk halaman login
 Route::get('/login', function () {
@@ -31,9 +32,13 @@ Route::get('/signup', function () {
     return view('auth.signup'); // Pastikan sesuai dengan lokasi file
 })->name('signup');
 
-
+Route::get('logintest', function () {
+    Auth::loginUsingId(2);
+    return true;
+});
 // Landing Awal
 Route::get('/', [LandingController::class, 'index']); // Menu Loker
+Route::get('/dashboard-page', [LandingController::class, 'page'])->name('dashboard-page');
 
 Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
