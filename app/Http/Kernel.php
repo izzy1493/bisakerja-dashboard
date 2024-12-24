@@ -67,18 +67,8 @@ class Kernel extends HttpKernel
     ];
 
 
-    //penyedia *izzy
-    protected $routeMiddleware = [
-        // Middleware bawaan
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        // Middleware kustom
-        'role' => \App\Http\Middleware\CheckRole::class,
-
-
     protected $routeMiddleware = [
         'role' => \App\Http\Middleware\RoleMiddleware::class,
-
     ];
     
 }
-

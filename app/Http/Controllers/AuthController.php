@@ -23,15 +23,6 @@ class AuthController extends Controller
             // Regenerate session untuk mencegah session fixation attacks
             // $request->session()->regenerate();
 
-
-            // Redirect based on the user's role
-            if ($user->role == 'superadmin') {
-                return view('dashboard.superadmin.dashboard');
-            } elseif ($user->role == 'admin') {
-                return view('dashboard.admin.dashboard');
-            } elseif ($user->role == 'penyedia') {
-                return view('dashboard.penyedia.index');
-
             // // Ambil data pengguna yang sedang login
             Auth::loginUsingId(User::where('email', $request->email)->first()->id);
             $user = Auth::user();
@@ -47,7 +38,6 @@ class AuthController extends Controller
                     return view('dashboard.pencari.dashboard');
                 default:
                     return redirect()->route('login')->with('error', 'Role tidak dikenal.');
-
             }
 
             return redirect()->intended('dashboard-page');
