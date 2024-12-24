@@ -103,15 +103,15 @@
             <h3 class="text-2xl font-semibold text-gray-800 mb-6">Aktivitas Pengguna update </h3>
             <ul class="space-y-4">
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">bang ambalabu telah mengubah profil</span>
+                    <span class="text-gray-700">temon telah mengubah profil</span>
                     <span class="text-sm text-gray-400">2 menit yang lalu</span>
                 </li>
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">jony sins mengupload CV baru</span>
+                    <span class="text-gray-700">jony  mengupload CV baru</span>
                     <span class="text-sm text-gray-400">5 menit yang lalu</span>
                 </li>
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">boboiboy kuasa 3 telah login</span>
+                    <span class="text-gray-700">rusdi kuasa 3 telah login</span>
                     <span class="text-sm text-gray-400">10 menit yang lalu</span>
                 </li>
             </ul>
@@ -141,7 +141,7 @@
 
     <!-- Flowbite and Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+    <script>    
         // Bar Chart (Jobs by Category)
         const ctxBar = document.getElementById('barChart').getContext('2d');
         const barChart = new Chart(ctxBar, {

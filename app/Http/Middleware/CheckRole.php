@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next, $role)
     {
+
         // Pastikan pengguna sudah login
         if (!Auth::check()) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
+
+        // Pastikan pengguna sudah terautentikasi
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
+        // Cek apakah role pengguna sesuai dengan yang diharapkan
+        if (Auth::user()->role !== $role) {
+            return redirect()->route('dashboard-page');
+
         }
 
         // Periksa apakah peran pengguna termasuk dalam daftar $roles
@@ -23,3 +34,5 @@ class CheckRole
         return $next($request); // Lanjutkan jika peran sesuai
     }
 }
+
+

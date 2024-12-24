@@ -66,12 +66,18 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 
+
     //penyedia *izzy
     protected $routeMiddleware = [
         // Middleware bawaan
         'auth' => \App\Http\Middleware\Authenticate::class,
         // Middleware kustom
         'role' => \App\Http\Middleware\CheckRole::class,
+
+
+    protected $routeMiddleware = [
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+
     ];
     
 }
