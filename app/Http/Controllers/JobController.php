@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -14,7 +15,7 @@ class JobController extends Controller
         $jobs = Job::all();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
 
         // Mengirim data pekerjaan ke view
-        return view('jobs.index', compact('jobs'));
+        return view('dashboard.penyedia.index', compact('jobs'));
     }
 
     public function showPekerjaan()
@@ -29,10 +30,10 @@ class JobController extends Controller
     public function showlamaran()
     {
         // Mengambil semua data pekerjaan dari database
-        $jobs = Job::all();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
+        $jobApplications = JobApplication::with('seeker', 'job')->get();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
 
         // Mengirim data pekerjaan ke view
-        return view('dashboard.penyedia.lamaran.index',compact('jobs'));
+        return view('dashboard.penyedia.lamaran.index',compact('jobApplications'));
 
     }
 

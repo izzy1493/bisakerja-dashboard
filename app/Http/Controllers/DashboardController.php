@@ -8,7 +8,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Jika tidak ada role khusus, default saja
-        return view('dashboard');
+        return view('dashboard.index');
     }
 
     public function superadmin()
