@@ -14,7 +14,7 @@
     <div class="bg-white p-6 rounded-xl border border-gray-200 transition-all hover:scale-105">
         <div class="flex items-center justify-between">
             <h3 class="text-xl font-semibold text-gray-700">Jumlah Pengguna</h3>
-            <span class="text-2xl font-bold text-blue-600">1,234</span>
+            <span class="text-2xl font-bold text-blue-600">{{$userCount}} orang</span>
         </div>
         <p class="text-gray-600 mt-2">Jumlah total pengguna aktif dan nonaktif di aplikasi.</p>
     </div>
@@ -23,7 +23,7 @@
     <div class="bg-white p-6 rounded-xl border border-gray-200 transition-all hover:scale-105">
         <div class="flex items-center justify-between">
             <h3 class="text-xl font-semibold text-gray-700">Jumlah Pekerjaan</h3>
-            <span class="text-2xl font-bold text-green-600">567</span>
+            <span class="text-2xl font-bold text-green-600">{{$jobCount}} Pekerjaan</span>
         </div>
         <p class="text-gray-600 mt-2">Jumlah pekerjaan yang telah diposting (termasuk selesai dan dibatalkan).</p>
     </div>
@@ -32,7 +32,7 @@
     <div class="bg-white p-6 rounded-xl border border-gray-200 transition-all hover:scale-105">
         <div class="flex items-center justify-between">
             <h3 class="text-xl font-semibold text-gray-700">Total Transaksi Pembayaran</h3>
-            <span class="text-2xl font-bold text-yellow-600">Rp 1,200,000</span>
+            <span class="text-2xl font-bold text-yellow-600">{{$paymentCount}} Transaksi</span>
         </div>
         <p class="text-gray-600 mt-2">Jumlah total transaksi pembayaran yang telah berhasil.</p>
     </div>
@@ -69,16 +69,7 @@
                     <td class="py-2 px-4">Menambah lowongan pekerjaan</td>
                     <td class="py-2 px-4">2024-12-01 10:30</td>
                 </tr>
-                <tr class="border-b hover:bg-gray-50 transition-all">
-                    <td class="py-2 px-4">Admin B</td>
-                    <td class="py-2 px-4">Menyetujui transaksi pembayaran</td>
-                    <td class="py-2 px-4">2024-12-01 11:15</td>
-                </tr>
-                <tr class="border-b hover:bg-gray-50 transition-all">
-                    <td class="py-2 px-4">Admin C</td>
-                    <td class="py-2 px-4">Menghapus pekerjaan yang dibatalkan</td>
-                    <td class="py-2 px-4">2024-12-01 12:00</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>

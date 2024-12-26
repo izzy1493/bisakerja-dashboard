@@ -29,13 +29,13 @@ class AuthController extends Controller
             
             switch ($user->role) {
                 case 'superadmin':
-                    return view('dashboard.superadmin.dashboard');
-                case 'admin':
-                    return view('dashboard.admin.dashboard');
-                case 'penyedia':
-                    return view('dashboard.penyedia.index ');
-                case 'pencari':
-                    return view('dashboard.pencari.dashboard');
+                    return redirect()->route('dashboard-page');
+                    case 'admin':
+                        return redirect()->route('dashboard-page');
+                        case 'penyedia':
+                            return redirect()->route('dashboard-page');
+                            case 'pencari':
+                                return redirect()->route('dashboard-page');
                 default:
                     return redirect()->route('login')->with('error', 'Role tidak dikenal.');
             }

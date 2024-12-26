@@ -7,7 +7,7 @@
     <div class="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-lg mt-16">
         <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Pasang Pekerjaan</h1>
 
-        <form action="{{ route('penyedia.store') }}" method="POST" class="space-y-6">
+        <form action="" method="POST" class="space-y-6">
             @csrf
 
             <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">

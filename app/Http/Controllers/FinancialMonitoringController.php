@@ -1,27 +1,32 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-
+use App\Models\Payment;
+use App\Models\Escrow;
 class FinancialMonitoringController extends Controller
 {
     public function index()
     {
-        // Sample data untuk laporan keuangan
-        $revenue = 500000; // Total pemasukan
-        $expenditure = 300000; // Total pengeluaran
-        $pendingTransactions = 120000; // Transaksi pending
-        $completedTransactions = 380000; // Transaksi selesai
+        $payments = Payment::with('job', 'provider')->get();
+        $totalAmount = Payment::sum('amount'); // Menjumlahkan semua nilai di kolom amount
 
-        // Daftar transaksi pembayaran
-        $transactions = [
-            ['id' => 1, 'amount' => 100000, 'status' => 'Selesai', 'date' => '2024-12-01'],
-            ['id' => 2, 'amount' => 50000, 'status' => 'Pending', 'date' => '2024-12-05'],
-            ['id' => 3, 'amount' => 200000, 'status' => 'Selesai', 'date' => '2024-12-07'],
-            ['id' => 4, 'amount' => 120000, 'status' => 'Pending', 'date' => '2024-12-10'],
-        ];
+        $escrows = Escrow::with('job', 'seeker')->get();
+        $escrowAmount = Escrow::sum('amount'); // 
 
-        return view('dashboard.superadmin.financial-monitoring', compact(
-            'revenue', 'expenditure', 'pendingTransactions', 'completedTransactions', 'transactions'
-        ));
+        $paymentValidatedAmount = Payment::where('status', 'validated')->sum('amount'); // Menjumlahkan kolom amount untuk status validated
+
+        $paymentRejectedAmount = payment::where('status', 'pending')->sum('amount'); // Menjumlahkan kolom amount untuk status pending
+        
+        return view('dashboard.superadmin.financial-monitoring')->with([
+            'payments' => $payments, // data
+            'totalAmount'=> $totalAmount, // angka/jumlah
+            'escrows' => $escrows, // data
+            'escrowAmount'=> $escrowAmount, // angka/jumlah
+             'paymentValidatedAmount' => $paymentValidatedAmount, // data
+             'paymentRejectedAmount' => $paymentRejectedAmount, // data
+
+
+
+        ]);
     }
 }

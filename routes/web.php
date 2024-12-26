@@ -24,9 +24,6 @@ Route::get('/login', function () {
 // Rute untuk menangani proses login
 Route::post('/login', [AuthController::class, 'login'])->name('loginSubmit');
 
-// Rute untuk dashboard umum
-Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 // Route untuk halaman SIgn Up
 Route::get('/signup', function () {
     return view('auth.signup'); // Pastikan sesuai dengan lokasi file

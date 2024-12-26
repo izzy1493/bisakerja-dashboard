@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -84,7 +85,9 @@ class LandingController extends Controller
     public function page(){
         switch (Auth::user()->role) {
                 case 'superadmin':
-                    return view('dashboard.superadmin.dashboard');
+                    $role = Auth::user()->role;
+                    $users = User::all();
+                    return view('dashboard.superadmin.dashboard')->with('users', $users);
                 case 'admin':
                     return view('dashboard.admin.dashboard');
                 case 'penyedia':

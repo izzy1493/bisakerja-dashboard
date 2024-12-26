@@ -67,33 +67,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($users as $user)
                     <tr class="border-b hover:bg-gray-100 transition-all">
-                        <td class="py-3 px-6">John Doe</td>
-                        <td class="py-3 px-6">john@example.com</td>
-                        <td class="py-3 px-6">Admin</td>
+                        <td class="py-3 px-6">{{$user->name}}</td>
+                        <td class="py-3 px-6">{{$user->email}}</td>
+                        <td class="py-3 px-6">{{$user->role}}</td>
                         <td class="py-3 px-6">
                             <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
                             <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-100 transition-all">
-                        <td class="py-3 px-6">bang ambalabu</td>
-                        <td class="py-3 px-6">ilham@example.com</td>
-                        <td class="py-3 px-6">User</td>
-                        <td class="py-3 px-6">
-                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
-                            <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-100 transition-all">
-                        <td class="py-3 px-6">Wawan</td>
-                        <td class="py-3 px-6">wawan@example.com</td>
-                        <td class="py-3 px-6">User</td>
-                        <td class="py-3 px-6">
-                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
-                            <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

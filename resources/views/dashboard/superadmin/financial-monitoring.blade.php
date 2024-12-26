@@ -9,11 +9,11 @@
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700">Total Pemasukan</h3>
-                <p class="text-xl font-bold text-blue-600 mt-2">Rp {{ number_format($revenue, 0, ',', '.') }}</p>
+                <p class="text-xl font-bold text-blue-600 mt-2"> RP{{$totalAmount }}</p>
             </div>
             <div class="bg-red-50 p-4 rounded-lg shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700">Total Pengeluaran</h3>
-                <p class="text-xl font-bold text-red-600 mt-2">Rp {{ number_format($expenditure, 0, ',', '.') }}</p>
+                <p class="text-xl font-bold text-red-600 mt-2">{{$escrowAmount}}</p>
             </div>
         </div>
 
@@ -21,11 +21,11 @@
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-green-50 p-4 rounded-lg shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700">Transaksi Selesai</h3>
-                <p class="text-xl font-bold text-green-600 mt-2">Rp {{ number_format($completedTransactions, 0, ',', '.') }}</p>
+                <p class="text-xl font-bold text-green-600 mt-2">Rp{{$paymentValidatedAmount}} </p>
             </div>
             <div class="bg-yellow-50 p-4 rounded-lg shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700">Transaksi Pending</h3>
-                <p class="text-xl font-bold text-yellow-600 mt-2">Rp {{ number_format($pendingTransactions, 0, ',', '.') }}</p>
+                <p class="text-xl font-bold text-yellow-600 mt-2">Rp {{$paymentRejectedAmount}}</p>
             </div>
         </div>
 
@@ -36,18 +36,22 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 text-left">ID Transaksi</th>
+                        <th class="px-4 py-2 text-left">Pekerjaan</th>
+                        <th class="px-4 py-2 text-left">Nama Klient</th>
                         <th class="px-4 py-2 text-left">Jumlah</th>
                         <th class="px-4 py-2 text-left">Status</th>
                         <th class="px-4 py-2 text-left">Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($transactions as $transaction)
+                    @foreach($payments as $payment)
                         <tr class="border-b">
-                            <td class="px-4 py-2">{{ $transaction['id'] }}</td>
-                            <td class="px-4 py-2">Rp {{ number_format($transaction['amount'], 0, ',', '.') }}</td>
-                            <td class="px-4 py-2 text-{{ $transaction['status'] == 'Selesai' ? 'green' : 'yellow' }}-600">{{ $transaction['status'] }}</td>
-                            <td class="px-4 py-2">{{ $transaction['date'] }}</td>
+                            <td class="px-4 py-2">{{ $payment['payment_id'] }}</td>
+                            <td class="px-4 py-2">{{ $payment->job->title}}</td>
+                            <td class="px-4 py-2">{{ $payment->provider->name}}</td>
+                            <td class="px-4 py-2">Rp {{ number_format($payment['amount'], 0, ',', '.') }}</td>
+                            <td class="px-4 py-2 text-{{ $payment['status'] == 'Selesai' ? 'green' : 'yellow' }}-600">{{ $payment['status'] }}</td>
+                            <td class="px-4 py-2">{{ $payment->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>

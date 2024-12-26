@@ -23,7 +23,7 @@
     
         <!-- Menu Tengah -->
         <div class="flex space-x-6 mt-2 md:mt-0">
-            <a href="{{ route('pasang-pekerjaan') }}" class="relative text-gray-600 hover:text-blue-600 transition duration-200 {{ request()->is('pasang-pekerjaan') ? 'font-bold text-blue-600' : '' }}">
+            <a href="{{ route('dashboard-page') }}" class="relative text-gray-600 hover:text-blue-600 transition duration-200 {{ request()->is('pasang-pekerjaan') ? 'font-bold text-blue-600' : '' }}">
                 Pasang Pekerjaan
                 @if(request()->is('pasang-pekerjaan'))
                     <span class="absolute -bottom-1 left-0 w-full h-1 bg-blue-600 rounded"></span>
