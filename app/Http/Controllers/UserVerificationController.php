@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserVerification;
 
 class UserVerificationController extends Controller
 {
@@ -11,9 +12,13 @@ class UserVerificationController extends Controller
         $role = 'admin'; // Tentukan role yang sesuai
 
         if ($role == 'admin') {
-            return view('dashboard.admin.user-verification');  // Halaman Verifikasi Pengguna Admin
+            // Ambil semua data dari tabel user_verifications
+            $verifications = UserVerification::all();
+
+            // Kirim data ke view
+            return view('dashboard.admin.user-verification', compact('verifications'));
         }
 
-        return abort(403, 'Unauthorized action.');  // Jika role tidak valid
+        return abort(403, 'Unauthorized action.');
     }
 }
