@@ -7,7 +7,7 @@
     <div class="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-xl mt-16">
         <h1 class="text-4xl font-semibold text-gray-800 mb-6 text-center">Pasang Pekerjaan</h1>
 
-        <form action="{{ route('penyedia.store') }}" method="POST">
+        <form action="" method="POST">
             @csrf
             <!-- Input fields -->
 
