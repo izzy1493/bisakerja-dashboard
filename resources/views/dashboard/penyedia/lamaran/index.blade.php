@@ -19,8 +19,8 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     @foreach($jobApplications as $jobApplication)
                         <div class="p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-2">Pelamar: {{ $jobApplication->seeker->name }}</h2>
-                            <p class="text-gray-600 mb-4">{{ $jobApplication->job->description }}</p>
+                            <h2 class="text-xl font-semibold text-gray-800 mb-2">Pelamar: {{ $jobApplication->seeker_id }}</h2>
+                            <p class="text-gray-600 mb-4">{{ $jobApplication->application_id }}</p>
 
                             <div class="text-sm text-gray-600">
                                 <span class="font-medium">Status: 
