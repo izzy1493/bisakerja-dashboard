@@ -9,16 +9,44 @@ class UserVerificationController extends Controller
 {
     public function index()
     {
-        $role = 'admin'; // Tentukan role yang sesuai
+        // Ambil semua verifikasi yang ada untuk ditampilkan di dashboard admin
+        $verifications = UserVerification::all();
 
-        if ($role == 'admin') {
-            // Ambil semua data dari tabel user_verifications
-            $verifications = UserVerification::all();
+        return view('dashboard.admin.user-verification', compact('verifications'));
+    }
 
-            // Kirim data ke view
-            return view('dashboard.admin.user-verification', compact('verifications'));
-        }
+    public function show($id)
+    {
+        // Ambil verifikasi berdasarkan ID yang diterima
+        $verification = UserVerification::findOrFail($id);
 
-        return abort(403, 'Unauthorized action.');
+        // Kirim data ke view untuk ditampilkan
+        return view('dashboard.admin.detail', compact('verification'));
+    }
+
+    public function approve($id)
+    {
+        // Cari verifikasi berdasarkan ID
+        $verification = UserVerification::findOrFail($id);
+
+        // Set status menjadi 'approved'
+        $verification->status = 'approved';
+        $verification->save();
+
+        // Arahkan kembali ke halaman daftar verifikasi
+        return redirect()->route('admin.user-verifications.index')->with('success', 'Verifikasi telah disetujui.');
+    }
+
+    public function reject($id)
+    {
+        // Cari verifikasi berdasarkan ID
+        $verification = UserVerification::findOrFail($id);
+
+        // Set status menjadi 'rejected'
+        $verification->status = 'rejected';
+        $verification->save();
+
+        // Arahkan kembali ke halaman daftar verifikasi
+        return redirect()->route('admin.user-verifications.index')->with('error', 'Verifikasi telah ditolak.');
     }
 }

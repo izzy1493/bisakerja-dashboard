@@ -58,6 +58,7 @@
     <div class="container mx-auto p-6">
         @yield('content')
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.6/dist/flowbite.min.js"></script>
 
 </body>
 </html>

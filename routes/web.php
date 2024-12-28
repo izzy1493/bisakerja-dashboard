@@ -66,14 +66,18 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 });
 
 // Rute khusus untuk admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
-    Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
-    Route::get('/admin/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
-    Route::get('/admin/reports', [ReportHandlingController::class, 'index'])->name('admin.reports');
-    Route::get('/admin/users', [UserVerificationController::class, 'index'])->name('admin.users');
-    Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin');
+    Route::get('/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
+    Route::get('/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
+    Route::get('/reports', [ReportHandlingController::class, 'index'])->name('admin.reports');
+    Route::get('/users', [UserVerificationController::class, 'index'])->name('admin.users');
+    Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
+    Route::get('/users/{id}', [UserVerificationController::class, 'show'])->name('admin.users.detail');
+    Route::post('/verify/approve/{id}', [UserVerificationController::class, 'approve'])->name('admin.verify.approve');
+    Route::post('/verify/reject/{id}', [UserVerificationController::class, 'reject'])->name('admin.verify.reject');
 });
+
 
 
 
