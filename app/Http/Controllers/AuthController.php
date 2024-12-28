@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; // Jangan lupa untuk menggunakan model User
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 
 class AuthController extends Controller
 {
@@ -20,18 +19,28 @@ class AuthController extends Controller
         ]);
 
         // Cek kredensial pengguna
-        if (Auth::attempt($credentials)) {            
-            $request->session()->regenerate();
-            $user = Auth::user();
+        if (Auth::attempt($credentials)) {
+            // Regenerate session untuk mencegah session fixation attacks
+            // $request->session()->regenerate();
 
-            // Redirect based on the user's role
-            if ($user->role == 'superadmin') {
-                return view('dashboard.superadmin.dashboard');
-            } elseif ($user->role == 'admin') {
-                return view('dashboard.admin.dashboard');
-            } elseif ($user->role == 'penyedia') {
-                return view('dashboard.penyedia.index');
+            // // Ambil data pengguna yang sedang login
+            Auth::loginUsingId(User::where('email', $request->email)->first()->id);
+            $user = Auth::user();
+            
+            switch ($user->role) {
+                case 'superadmin':
+                    return view('dashboard.superadmin.dashboard');
+                case 'admin':
+                    return view('dashboard.admin.dashboard');
+                case 'penyedia':
+                    return view('dashboard.penyedia.index ');
+                case 'pencari':
+                    return view('dashboard.pencari.dashboard');
+                default:
+                    return redirect()->route('login')->with('error', 'Role tidak dikenal.');
             }
+
+            return redirect()->intended('dashboard-page');
         }
 
         // Jika login gagal
@@ -39,25 +48,24 @@ class AuthController extends Controller
     }
 
     // Metode untuk logout
-    public function logout()
+    public function logout(Request $request)
     {
-        // Logout the current authenticated user
-        Auth::guard('web')->logout();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        // Redirect ke halaman login
-        return redirect()->route('login'); // Ubah dengan route login Anda
+        return redirect()->route('login');
     }
 
-    // Menampilkan halaman pendaftaran (sign-up)
+    // Metode untuk menampilkan halaman signup
     public function showSignupForm()
     {
-        return view('auth.signup'); // Mengarah ke view signup.blade.php
+        return view('auth.signup');
     }
 
-    // Proses registrasi (sign-up)
+    // Proses signup
     public function signup(Request $request)
     {
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -65,17 +73,15 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:8',
         ]);
 
-        // Simpan data pengguna baru
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone, 
+            'phone' => $request->phone,
             'role' => 'user', // Default role
             'is_verified' => false, // Default status
             'password' => Hash::make($request->password),
         ]);
 
-        // Redirect ke halaman login setelah registrasi berhasil
         return redirect()->route('login')->with('success', 'Account created successfully. Please log in.');
     }
 }

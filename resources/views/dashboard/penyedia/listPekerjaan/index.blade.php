@@ -16,27 +16,27 @@
     <div class="relative w-full mt-16 p-4">
         <div class="relative bg-white shadow-lg rounded-lg p-6 z-10">
             @if($jobs->isEmpty())
-                <p class="text-gray-500 text-center">Belum ada lowongan pekerjaan yang dipasang.</p>
+                <p class="text-gray-500 text-center text-lg">Belum ada lowongan pekerjaan yang dipasang.</p>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($jobs as $job)
-                        <div class="p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $job->title }}</h2>
-                            <p class="text-gray-600 mb-4">{{ Str::limit($job->description, 100) }}</p>
+                        <div class="p-6 bg-gradient-to-r from-blue-200 to-purple-200 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                            <h2 class="text-xl font-bold text-gray-800 mb-2">{{ $job->title }}</h2>
+                            <p class="text-gray-700 mb-4">{{ Str::limit($job->description, 100) }}</p>
     
                             <div class="flex justify-between items-center text-sm text-gray-600 mb-2">
-                                <span class="font-medium">Kategori: <span class="text-blue-600">{{ $job->duration }}</span></span>
-                                <span class="font-medium">Tenggat: <span class="text-red-600">{{ \Carbon\Carbon::parse($job->tenggat_waktu)->format('d M Y') }}</span></span>
+                                <span class="font-medium">Kategori: <span class="text-blue-600">{{ $job->title }}</span></span>
+                                <span class="font-medium">Tenggat: <span class="text-blue-600">{{ $job->duration }}</span></span>
                             </div>
     
                             <div class="text-sm text-gray-600 mb-2">
                                 <span class="font-medium">Lokasi: <span class="text-blue-600">{{ $job->location }}</span></span>
                             </div>
                             <div class="text-sm text-gray-600 mb-2">
-                                <span class="font-medium">Persyaratan: <span class="text-blue-600">{{ $job->requirement }}</span></span>
+                                <span class="font-medium">Persyaratan: <span class="text-blue-600">{{ $job->requirements }}</span></span>
                             </div>
                             <div class="text-sm text-gray-600 mb-4">
-                                <span class="font-medium">Gaji: <span class="text-blue-600">{{ $job->salary }}</span></span>
+                                <span class="font-medium">Gaji: <span class="text-blue-600">Rp {{ number_format($job->wage, 0, ',', '.') }}</span></span>
                             </div>
     
                             <div class="mt-4">
