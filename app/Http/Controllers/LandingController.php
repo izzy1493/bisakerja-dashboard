@@ -96,6 +96,7 @@ class LandingController extends Controller
                     return view('dashboard.pencari.dashboard');
                 default:
                     return redirect()->route('login')->with('error', 'Role tidak dikenal.');
+                    
             }
     }
 

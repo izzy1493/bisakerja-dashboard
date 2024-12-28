@@ -1,14 +1,24 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminManagementController extends Controller
 {
     public function index()
     {
-
-        return view('dashboard.superadmin.adminManagement.index');
+        $users = User::where('role', 'admin')->get(); // Mengambil data user dengan role 'admin'
+        $userCount = $users->count(); // Menghitung jumlah user dengan role 'admin'
+        $users = User::where('role', 'admin')->orderBy('created_at', 'desc')->get(); // Mengambil data user dengan role 'admin', diurutkan berdasarkan created_at
+        $userCount = $users->count(); // Menghitung jumlah user dengan role 'admin'
+        return view('dashboard.superadmin.adminManagement.index')->with([
+            'users' => $users, // Data user dengan role 'admin'
+            'userCount' => $userCount, // Jumlah user dengan role 'admin'
+            'users' => $users, // Data user dengan role 'admin' yang dibuat pada tanggal tertentu
+             'userCount' => $userCount, // Jumlah user yang sesuai
+        ]);
+    
     }
 
     public function create()

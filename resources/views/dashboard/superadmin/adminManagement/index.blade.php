@@ -10,13 +10,14 @@
     
 
     <!-- Main Content -->
+    
     <main class="flex-1 p-6">
         <h1 class="text-2xl font-semibold">Dashboard</h1>
         <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- Card Example -->
             <div class="bg-white p-4 rounded-lg shadow">
                 <h2 class="font-bold">Total Users</h2>
-                <p class="text-2xl">1,234</p>
+                <p class="text-2xl">{{$userCount}}</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow">
                 <h2 class="font-bold">Active Sessions</h2>
@@ -24,9 +25,10 @@
             </div>
             <div class="bg-white p-4 rounded-lg shadow">
                 <h2 class="font-bold">New Signups</h2>
-                <p class="text-2xl">78</p>
+                <p class="text-2xl">{{$userCount}}</p>
             </div>
         </div>
+        
 
         <!-- Table Example -->
         <div class="mt-8 bg-white p-4 rounded-lg shadow">
