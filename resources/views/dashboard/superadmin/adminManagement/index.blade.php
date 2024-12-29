@@ -50,33 +50,38 @@
                     </tr>
                 </thead>
                 <tbody>
+                @foreach ($admins as $admin)
                     <tr>
-                        <td class="border-b py-2 px-4">John Doe</td>
-                        <td class="border-b py-2 px-4">john@example.com</td>
-                        <td class="border-b py-2 px-4">Admin</td>
+                    <td class="border-b py-2 px-4"> {{ $admin->name }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->email }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->role}}</td>
+                        
                         <td class="border-b py-2 px-4">
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
-                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
+                        <a href="{{ route('edit', $admin->id)}}" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</a>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="border-b py-2 px-4">Ilham Cuki</td>
-                        <td class="border-b py-2 px-4">ilham@example.com</td>
-                        <td class="border-b py-2 px-4">User</td>
+                    <td class="border-b py-2 px-4"> {{ $admin->name }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->email }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->role}}</td>
+                        
                         <td class="border-b py-2 px-4">
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
-                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
+                        <a href="{{ route('edit', $admin->id)}}" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</a>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="border-b py-2 px-4">Wawan</td>
-                        <td class="border-b py-2 px-4">wawan@example.com</td>
-                        <td class="border-b py-2 px-4">User</td>
+                    <td class="border-b py-2 px-4"> {{ $admin->name }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->email }}</td>
+                        <td class="border-b py-2 px-4">{{ $admin->role}}</td>
+                        
                         <td class="border-b py-2 px-4">
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
-                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
+                        <a href="{{ route('edit', $admin->id)}}" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</a>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Hapus</button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
