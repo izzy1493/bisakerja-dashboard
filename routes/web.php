@@ -69,11 +69,21 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin');
     Route::get('/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
+    Route::get('/moderasi-pekerjaan', [JobModerationController::class, 'index'])->name('moderasi-pekerjaan');
+    Route::get('/moderasi-pekerjaan/{id}', [JobModerationController::class, 'show'])->name('moderasi-pekerjaan.detail');
+    Route::post('moderasi-pekerjaan/{id}/approve', [JobModerationController::class, 'approve'])->name('moderasi-pekerjaan.approve');
+    Route::post('/moderasi-pekerjaan/{id}/reject', [JobModerationController::class, 'reject'])->name('moderasi-pekerjaan.reject');
     Route::get('/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
     Route::get('/reports', [ReportHandlingController::class, 'index'])->name('admin.reports');
+    // Route untuk aksi menyelesaikan laporan
+    Route::post('/admin/reports/{id}/resolve', [ReportHandlingController::class, 'resolve'])->name('admin.reports.resolve');
+
+    // Route untuk aksi menaikkan status laporan menjadi eskalasi
+    Route::post('/admin/reports/{id}/escalate', [ReportHandlingController::class, 'escalate'])->name('admin.reports.escalate');
+
     Route::get('/users', [UserVerificationController::class, 'index'])->name('admin.users');
-    Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
     Route::get('/users/{id}', [UserVerificationController::class, 'show'])->name('admin.users.detail');
+    Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
     Route::post('/verify/approve/{id}', [UserVerificationController::class, 'approve'])->name('admin.verify.approve');
     Route::post('/verify/reject/{id}', [UserVerificationController::class, 'reject'])->name('admin.verify.reject');
 });

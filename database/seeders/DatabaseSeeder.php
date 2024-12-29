@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EscrowsSeeder::class);
 
         // Memanggil seeder untuk tabel `user_logs`
-        $this->call(UserLogsSeeder::class);
+
+        // Memanggil seeder untuk tabel `report`
+        $this->call(ReportSeeder::class);
     }
 }

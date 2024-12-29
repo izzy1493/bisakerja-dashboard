@@ -10,6 +10,8 @@ class Job extends Model
     use HasFactory;
 
     protected $table = 'jobs';
+    protected $primaryKey = 'job_id';
+
 
     protected $fillable = [
         'provider_id',
@@ -46,5 +48,10 @@ class Job extends Model
     public function escrows()
     {
         return $this->hasMany(Escrow::class, 'job_id');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'job_id');
     }
 }

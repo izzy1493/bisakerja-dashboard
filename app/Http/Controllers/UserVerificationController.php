@@ -12,7 +12,7 @@ class UserVerificationController extends Controller
         // Ambil semua verifikasi yang ada untuk ditampilkan di dashboard admin
         $verifications = UserVerification::all();
 
-        return view('dashboard.admin.user-verification', compact('verifications'));
+        return view('dashboard.admin.verif.user-verification', compact('verifications'));
     }
 
     public function show($id)
@@ -21,7 +21,7 @@ class UserVerificationController extends Controller
         $verification = UserVerification::findOrFail($id);
 
         // Kirim data ke view untuk ditampilkan
-        return view('dashboard.admin.detail', compact('verification'));
+        return view('dashboard.admin.verif.detail', compact('verification'));
     }
 
     public function approve($id)

@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Report; // Import model Report
 
 class ReportHandlingController extends Controller
 {
     public function index()
     {
-        $role = 'admin'; // Tentukan role yang sesuai
+        $role = auth()->user()->role; // Pastikan role diambil dari user yang sedang login
 
         if ($role == 'admin') {
-            return view('dashboard.admin.report-handling');  // Halaman Penanganan Laporan Admin
+            // Ambil semua data laporan beserta relasi user dan job
+            $reports = Report::with(['user', 'job'])->get();
+
+            // Kirim data ke view
+            return view('dashboard.admin.laporan.report-handling', compact('reports'));
         }
 
-        return abort(403, 'Unauthorized action.');  // Jika role tidak valid
+        return abort(403, 'Unauthorized action.'); // Jika role tidak valid
     }
 }
