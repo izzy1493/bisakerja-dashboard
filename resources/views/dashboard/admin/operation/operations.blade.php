@@ -114,6 +114,7 @@
                         </td>
                         <td class="px-4 py-2 text-sm">
                             <a href="#" class="text-green-600 hover:text-green-800">Aktifkan</a>
+                            
                         </td>
                     </tr>
                 </tbody>

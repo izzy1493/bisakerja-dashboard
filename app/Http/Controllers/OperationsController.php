@@ -11,7 +11,7 @@ class OperationsController extends Controller
         $role = 'admin'; // Tentukan role yang sesuai
 
         if ($role == 'admin') {
-            return view('dashboard.admin.operations');  // Halaman Validasi Pembayaran Admin
+            return view('dashboard.admin.operation.operations');  // Halaman Validasi Pembayaran Admin
         }
 
         return abort(403, 'Unauthorized action.');  // Jika role tidak valid
