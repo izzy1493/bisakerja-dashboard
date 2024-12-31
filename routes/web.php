@@ -58,6 +58,7 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
     Route::get('/edit/{id}', [AdminManagementController::class, 'detail'])->name('edit');
     Route::put('/admin/{id}/update', [AdminManagementController::class, 'update'])->name('admin.update');
+
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');
     Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])->name('policy.management');
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
