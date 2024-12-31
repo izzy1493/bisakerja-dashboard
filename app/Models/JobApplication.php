@@ -29,6 +29,6 @@ class JobApplication extends Model
 
     public function seeker()
     {
-        return $this->belongsTo(User::class, 'seeker_id', 'user_id');
+        return $this->belongsTo(User::class, 'seeker_id', 'id');
     }
 }
