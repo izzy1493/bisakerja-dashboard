@@ -50,13 +50,7 @@
 
         <!-- Pagination -->
         <div class="mt-12 text-center">
-            <nav class="inline-flex items-center space-x-2">
-                <a href="#" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Previous</a>
-                <a href="#" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">1</a>
-                <a href="#" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">2</a>
-                <a href="#" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">3</a>
-                <a href="#" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Next</a>
-            </nav>
+            {{ $jobs->links() }}  <!-- Menampilkan pagination -->
         </div>
     </section>
 

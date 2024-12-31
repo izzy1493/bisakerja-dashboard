@@ -39,9 +39,13 @@
                             
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $job->applications->count() }} Pelamar</td>
                             <td class="px-4 py-2 text-sm">
-                                <a href="#" class="text-blue-600 hover:text-blue-800">Edit</a> |
+                                <a href="{{ route('admin.operations.edit', $job->job_id) }}" class="text-blue-600 hover:text-blue-800">Edit</a> |
                                 <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> 
-                                <a href="#" class="text-red-600 hover:text-red-800">Hapus</a>
+                                <form action="{{ route('admin.operations.destroy', $job->job_id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -72,11 +76,17 @@
                         </td>
                         <td class="px-4 py-2 text-sm">
                             @if($user->status == 'active')
-                                <a href="#" class="text-red-600 hover:text-red-800">Nonaktifkan</a>
+                                <form action="{{ route('admin.operations.users.deactivate', $user->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer">Nonaktifkan</button>
+                                </form>
                             @else
-                                <a href="#" class="text-green-600 hover:text-green-800">Aktifkan</a>
+                                <form action="{{ route('admin.operations.users.activate', $user->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="text-green-600 hover:text-green-800 bg-transparent border-none cursor-pointer">Aktifkan</button>
+                                </form>
                             @endif
-                        </td>
+                        </td>   
                     </tr>
                 @endforeach
                 

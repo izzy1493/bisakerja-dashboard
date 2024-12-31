@@ -28,6 +28,7 @@ class DashboardController extends Controller
 
     public function pencari()
     {
+        
         return view('dashboard.pencari.dashboard');
     }
 }

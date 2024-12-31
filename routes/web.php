@@ -69,6 +69,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin');
     Route::get('/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
+
+    // Route untuk Moderasi Pekerjaan
     Route::get('/moderasi-pekerjaan', [JobModerationController::class, 'index'])->name('moderasi-pekerjaan');
     Route::get('/moderasi-pekerjaan/{id}', [JobModerationController::class, 'show'])->name('moderasi-pekerjaan.detail');
     Route::post('moderasi-pekerjaan/{id}/approve', [JobModerationController::class, 'approve'])->name('moderasi-pekerjaan.approve');
@@ -81,9 +83,18 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     // Route untuk aksi menaikkan status laporan menjadi eskalasi
     Route::post('/admin/reports/{id}/escalate', [ReportHandlingController::class, 'escalate'])->name('admin.reports.escalate');
 
+    // Route untuk Valiadasi Pembayaran
     Route::get('/users', [UserVerificationController::class, 'index'])->name('admin.users');
     Route::get('/users/{id}', [UserVerificationController::class, 'show'])->name('admin.users.detail');
+
+    // Route untuk Operasional Data
     Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
+    Route::get('/operations/{id}/edit', [OperationsController::class, 'edit'])->name('admin.operations.edit');
+    Route::put('/operations/{id}', [OperationsController::class, 'update'])->name('admin.operations.update');
+    Route::delete('/operations/{id}', [OperationsController::class, 'destroy'])->name('admin.operations.destroy');
+    Route::post('/operations/users/{id}/activate', [OperationsController::class, 'activateUser'])->name('admin.operations.users.activate');
+    Route::post('/operations/users/{id}/deactivate', [OperationsController::class, 'deactivateUser'])->name('admin.operations.users.deactivate');
+
     Route::post('/verify/approve/{id}', [UserVerificationController::class, 'approve'])->name('admin.verify.approve');
     Route::post('/verify/reject/{id}', [UserVerificationController::class, 'reject'])->name('admin.verify.reject');
 });

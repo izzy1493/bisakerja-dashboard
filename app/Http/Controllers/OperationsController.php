@@ -10,22 +10,70 @@ class OperationsController extends Controller
 {
     public function index()
     {
-        // Role check tetap bisa dilakukan jika perlu
         $role = 'admin'; // Tentukan role yang sesuai
-    
+
         if ($role == 'admin') {
-            // Ambil data pekerjaan beserta aplikasi dan pelamar
             $jobs = Job::with('applications.seeker')->get();
-    
-            // Ambil data pengguna (hanya yang memiliki role 'pencari' dan 'penyedia')
             $users = User::whereIn('role', ['pencari', 'penyedia'])->get();
-    
-            // Kirim data ke view
+
             return view('dashboard.admin.operation.operations', compact('jobs', 'users'));
         }
-    
-        // Jika role tidak valid
+
         return abort(403, 'Unauthorized action.');
     }
-    
+
+    // Method untuk menampilkan form edit
+    public function edit($id)
+    {
+        $job = Job::findOrFail($id);
+        return view('dashboard.admin.operation.edit', compact('job'));
+    }
+
+    public function destroy($id)
+    {
+        $job = Job::findOrFail($id);
+        $job->delete();
+
+        return redirect()->route('admin.operations')->with('success', 'Data pekerjaan berhasil dihapus.');
+    }
+
+    public function activateUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'active';
+        $user->save();
+
+        return redirect()->route('admin.operations')->with('success', 'Pengguna berhasil diaktifkan.');
+    }
+
+    public function deactivateUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'inactive';
+        $user->save();
+
+        return redirect()->route('admin.operations')->with('success', 'Pengguna berhasil dinonaktifkan.');
+    }
+
+
+
+    // Method untuk menyimpan perubahan data
+    public function update(Request $request, $id)
+    {
+        $job = Job::findOrFail($id);
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'status' => 'required|in:pending,active,completed,cancelled',
+            'description' => 'required|string',
+        ]);
+
+        $job->update([
+            'title' => $request->title,
+            'status' => $request->status,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('operations.index')->with('success', 'Data pekerjaan berhasil diperbarui.');
+    }
 }
