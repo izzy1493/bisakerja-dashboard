@@ -52,19 +52,16 @@ use Illuminate\Support\Facades\Auth;
 });
 
 // Rute khusus untuk superadmin
-    Route::middleware(['auth', 'role:superadmin'])->group(function () {
-    Route::get('/dashboard/superadmin', [DashboardController::class, 'superadmin'])->name('dashboard.superadmin');
+Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
     Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
     Route::get('/edit/{id}', [AdminManagementController::class, 'detail'])->name('edit');
-    Route::post('/admin/{id}/update', [AdminManagementController::class, 'update'])->name('admin.update');
-
+    Route::put('/admin/{id}/update', [AdminManagementController::class, 'update'])->name('admin.update');
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');
     Route::get('/pengelola-kebijakan', [PolicyManagementController::class, 'index'])->name('policy.management');
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
 });
-
 // Rute khusus untuk admin
     Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');

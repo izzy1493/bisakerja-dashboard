@@ -95,7 +95,7 @@
                     <span class="text-sm text-gray-400">5 menit yang lalu</span>
                 </li>
                 <li class="flex justify-between items-center">
-                    <span class="text-gray-700">rusdi kuasa 3 telah login</span>
+                    <span class="text-gray-700">putra telah login</span>
                     <span class="text-sm text-gray-400">10 menit yang lalu</span>
                 </li>
             </ul>
