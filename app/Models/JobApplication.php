@@ -22,13 +22,17 @@ class JobApplication extends Model
         'applied_at' => 'datetime',
     ];
 
+    // Relasi dengan Job
     public function job()
     {
-        return $this->belongsTo(Job::class, 'job_id','job_id');
+        return $this->belongsTo(Job::class, 'job_id', 'job_id'); // Relasi ke Job, pastikan 'job_id' benar
     }
 
+    // Relasi dengan User (Seeker/Pelamar)
     public function seeker()
     {
-        return $this->belongsTo(User::class, 'seeker_id', 'user_id');
+        return $this->belongsTo(User::class, 'seeker_id', 'id'); // 'seeker_id' merujuk ke 'id' di tabel users
     }
 }
+
+

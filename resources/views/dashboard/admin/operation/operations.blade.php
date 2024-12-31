@@ -20,64 +20,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Contoh data pekerjaan -->
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">1</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Desain Grafis</td>
-                        <td class="px-4 py-2 text-sm">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Active</span>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-gray-700">5 Pelamar</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Edit</a> |
-                            <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> |
-                            <a href="#" class="text-red-600 hover:text-red-800">Hapus</a>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">2</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Pembuatan Website</td>
-                        <td class="px-4 py-2 text-sm">
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Completed</span>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-gray-700">12 Pelamar</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Edit</a> |
-                            <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> |
-                            <a href="#" class="text-red-600 hover:text-red-800">Hapus</a>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">3</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Pemasaran Digital</td>
-                        <td class="px-4 py-2 text-sm">
-                            <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full">Pending</span>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-gray-700">3 Pelamar</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Edit</a> |
-                            <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> |
-                            <a href="#" class="text-red-600 hover:text-red-800">Hapus</a>
-                        </td>
-                    </tr>
+                    @foreach($jobs as $job)
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="px-4 py-2 text-sm text-gray-700">{{ $job->job_id }}</td>
+                            <td class="px-4 py-2 text-sm text-gray-700">{{ $job->title }}</td>
+                            <td class="px-4 py-2 text-sm">
+                                <span class="px-3 py-1 rounded-full 
+                                    @if($job->status == 'pending') bg-yellow-100 text-yellow-800
+                                    @elseif($job->status == 'completed') bg-green-100 text-green-800
+                                    @elseif($job->status == 'active') bg-blue-100 text-blue-800
+                                    @elseif($job->status == 'cancelled') bg-red-100 text-red-800
+                                    @else bg-gray-100 text-gray-800
+                                    @endif
+                                ">
+                                    {{ ucfirst($job->status) }}
+                                </span>
+                            </td>
+                            
+                            <td class="px-4 py-2 text-sm text-gray-700">{{ $job->applications->count() }} Pelamar</td>
+                            <td class="px-4 py-2 text-sm">
+                                <a href="#" class="text-blue-600 hover:text-blue-800">Edit</a> |
+                                <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> 
+                                <a href="#" class="text-red-600 hover:text-red-800">Hapus</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-        </div>
-
-        <!-- Statistik Pekerjaan -->
-        <div class="grid grid-cols-3 gap-6 mb-8">
-            <div class="bg-blue-50 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-gray-800">Jumlah Pekerjaan Selesai</h3>
-                <p class="text-3xl font-bold text-blue-600">5</p>
-            </div>
-            <div class="bg-green-50 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-gray-800">Jumlah Pelamar</h3>
-                <p class="text-3xl font-bold text-green-600">50</p>
-            </div>
-            <div class="bg-yellow-50 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-gray-800">Jumlah Pekerjaan Pending</h3>
-                <p class="text-3xl font-bold text-yellow-600">3</p>
-            </div>
         </div>
 
         <!-- Data Pengguna -->
@@ -93,30 +62,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Contoh data pengguna -->
+                    @foreach($users as $index => $user)
                     <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">U001</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">John Doe</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Penyedia Kerja</td>
+                        <td class="px-4 py-2 text-sm text-gray-700">{{ $index + 1 }}</td> <!-- Nomor urut -->
+                        <td class="px-4 py-2 text-sm text-gray-700">{{ $user->name }}</td>
+                        <td class="px-4 py-2 text-sm text-gray-700">{{ $user->role == 'pencari' ? 'Pencari Kerja' : 'Penyedia Kerja' }}</td>
                         <td class="px-4 py-2 text-sm">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Active</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{{ $user->status == 'active' ? 'Active' : 'Nonaktif' }}</span>
                         </td>
                         <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-red-600 hover:text-red-800">Nonaktifkan</a>
+                            @if($user->status == 'active')
+                                <a href="#" class="text-red-600 hover:text-red-800">Nonaktifkan</a>
+                            @else
+                                <a href="#" class="text-green-600 hover:text-green-800">Aktifkan</a>
+                            @endif
                         </td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">U002</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Jane Smith</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">Pencari Kerja</td>
-                        <td class="px-4 py-2 text-sm">
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full">Nonaktif</span>
-                        </td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-green-600 hover:text-green-800">Aktifkan</a>
-                            
-                        </td>
-                    </tr>
+                @endforeach
+                
                 </tbody>
             </table>
         </div>
