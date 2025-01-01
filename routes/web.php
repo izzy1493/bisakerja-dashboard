@@ -85,13 +85,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 });
 
-// ========================================
-// Rute untuk Penyedia
-// ========================================
-Route::middleware(['auth', 'role:penyedia'])->group(function () {
-    Route::get('/list-pekerjaan', [JobController::class, 'showPekerjaan'])->name('list-pekerjaan');
-    Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-lamaran');
-});
+// -------------------------------------------
+// Penyedia Routes
+// -------------------------------------------
+
+Route::get('/pasang-pekerjaan', [JobController::class, 'index'])->name('pasang-pekerjaan');
+Route::get('/list-pekerjaan', [JobController::class, 'showPekerjaan'])->name('list-pekerjaan');
+Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-lamaran');
+
+Route::get('/dashboard/penyedia', [JobController::class, 'create'])->name('penyedia.create'); // Halaman form
+Route::post('/dashboard/penyedia', [JobController::class, 'store'])->name('penyedia.store'); // Proses form
+
 
 // ========================================
 // Rute dengan Middleware Web
