@@ -16,44 +16,52 @@ use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Auth;
 
-// Route untuk halaman login
+// ========================================
+// Rute untuk Authentication
+// ========================================
 Route::get('/login', function () {
     return view('auth.login'); // Pastikan sesuai dengan lokasi file
 })->name('login');
 
-// Rute untuk menangani proses login
 Route::post('/login', [AuthController::class, 'login'])->name('loginSubmit');
 
-// Rute untuk dashboard umum
-Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// Route untuk halaman SIgn Up
 Route::get('/signup', function () {
     return view('auth.signup'); // Pastikan sesuai dengan lokasi file
 })->name('signup');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('logintest', function () {
     Auth::loginUsingId(2);
     return true;
 });
-// Landing Awal
-Route::get('/', [LandingController::class, 'index']); // Menu Loker
+
+// ========================================
+// Rute untuk Landing Page
+// ========================================
+Route::get('/', [LandingController::class, 'index']);
 Route::get('/dashboard-page', [LandingController::class, 'page'])->name('dashboard-page');
+Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']);
+Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']);
+Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
+Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
 
-Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // Menu Penyedia
-Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
-
-
+// ========================================
+// Rute untuk Job Management
+// ========================================
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
-
-// Rute umum untuk dashboard
-Route::middleware(['auth'])->group(function () {
+// ========================================
+// Rute untuk Dashboard Umum
+// ========================================
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-// Rute khusus untuk superadmin
+// ========================================
+// Rute untuk Superadmin
+// ========================================
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/dashboard/superadmin', [DashboardController::class, 'superadmin'])->name('dashboard.superadmin');
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
@@ -65,7 +73,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/monitoring-keuangan', [FinancialMonitoringController::class, 'index'])->name('financial.monitoring');
 });
 
-// Rute khusus untuk admin
+// ========================================
+// Rute untuk Admin
+// ========================================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
     Route::get('/admin/jobs', [JobModerationController::class, 'index'])->name('admin.jobs');
@@ -75,23 +85,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 });
 
-
-
-// Penyedia
+// ========================================
+// Rute untuk Penyedia
+// ========================================
 Route::middleware(['auth', 'role:penyedia'])->group(function () {
     Route::get('/list-pekerjaan', [JobController::class, 'showPekerjaan'])->name('list-pekerjaan');
     Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-lamaran');
 });
 
-
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
-Route::get('/job/{id}', [LandingController::class, 'show'])->name('jobs.show');
-Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name('dashboard-penyedia');
-
-
+// ========================================
+// Rute dengan Middleware Web
+// ========================================
 Route::group(['middleware' => 'web'], function () {
-    // Rute yang memerlukan session
+    // Tambahkan rute tambahan di sini jika diperlukan
 });
