@@ -2,36 +2,40 @@
 
 @section('content')
 
-<body class="bg-gradient-to-br from-blue-50 to-purple-100 font-sans antialiased">
-<!-- Form Pemasang Kerja -->
-    <div class="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-lg mt-16">
-        <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Pasang Pekerjaan</h1>
+<body class="bg-black font-sans antialiased h-screen flex items-center justify-center">
 
-        <form action="{{ route('penyedia.store') }}" method="POST" class="space-y-6">
-            @csrf
+    <!-- Kontainer untuk Form -->
+    <div class="w-full h-full flex items-center justify-center">
+        <!-- Form Pemasang Kerja -->
+        <div class="w-full max-w-lg p-8 bg-gray-900 rounded-3xl shadow-lg">
+            <h1 class="text-3xl font-bold text-white mb-8 text-center">Pasang Pekerjaan</h1>
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                <label for="judul" class="block text-lg font-semibold text-gray-700 mb-2">Nama Pekerjaan</label>
-                <input type="text" id="judul" name="judul" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300" required>
-            </div>
+            <form action="{{ route('penyedia.store') }}" method="POST" class="space-y-6">
+                @csrf
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                <label for="deskripsi" class="block text-lg font-semibold text-gray-700 mb-2">Deskripsi Pekerjaan</label>
-                <textarea id="deskripsi" name="deskripsi" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300" required></textarea>
-            </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <label for="judul" class="block text-lg font-semibold text-white mb-2">Nama Pekerjaan</label>
+                    <input type="text" id="judul" name="judul" class="w-full p-4 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 text-gray-900" required>
+                </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                <label for="kategori" class="block text-lg font-semibold text-gray-700 mb-2">Kategori</label>
-                <input type="text" id="kategori" name="kategori" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300" required>
-            </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <label for="deskripsi" class="block text-lg font-semibold text-white mb-2">Deskripsi Pekerjaan</label>
+                    <textarea id="deskripsi" name="deskripsi" class="w-full p-4 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 text-gray-900" required></textarea>
+                </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                <label for="tenggat_waktu" class="block text-lg font-semibold text-gray-700 mb-2">Tenggat Waktu</label>
-                <input type="date" id="tenggat_waktu" name="tenggat_waktu" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300" required>
-            </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <label for="kategori" class="block text-lg font-semibold text-white mb-2">Kategori</label>
+                    <input type="text" id="kategori" name="kategori" class="w-full p-4 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 text-gray-900" required>
+                </div>
 
-            <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white py-3 mt-6 rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition duration-300">Pasang Pekerjaan</button>
-        </form>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <label for="tenggat_waktu" class="block text-lg font-semibold text-white mb-2">Tenggat Waktu</label>
+                    <input type="date" id="tenggat_waktu" name="tenggat_waktu" class="w-full p-4 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 text-gray-900" required>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 mt-6 rounded-lg shadow-lg hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-300">Pasang Pekerjaan</button>
+            </form>
+        </div>
     </div>
 
 </body>
