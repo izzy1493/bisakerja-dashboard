@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
 {
@@ -80,9 +81,25 @@ class LandingController extends Controller
         ];
     }
 
+    public function page(){
+        switch (Auth::user()->role) {
+                case 'superadmin':
+                    return view('dashboard.superadmin.dashboard');
+                case 'admin':
+                    return view('dashboard.admin.dashboard');
+                case 'penyedia':
+                    return view('dashboard.penyedia.index ');
+                case 'pencari':
+                    return view('dashboard.pencari.dashboard');
+                default:
+                    return redirect()->route('login')->with('error', 'Role tidak dikenal.');
+            }
+    }
+
     // Menampilkan daftar pekerjaan, dengan filter berdasarkan kategori (jika ada)
     public function index(Request $request)
     {
+        // dd();
         // Jika ada filter kategori di query string, filter pekerjaan
         if ($request->has('category')) {
             $category = $request->category;

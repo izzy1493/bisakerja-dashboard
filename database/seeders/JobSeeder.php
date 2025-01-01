@@ -14,7 +14,7 @@ class JobSeeder extends Seeder
         $provider = User::where('role', 'penyedia')->first();
 
         Job::create([
-            'provider_id' => $provider->user_id, // Menggunakan user_id
+            'provider_id' => $provider->user_id, // Pastikan menggunakan ID user yang ada
             'title' => 'Software Developer',
             'description' => 'We are looking for an experienced software developer to join our team.',
             'location' => 'Jakarta, Indonesia',
@@ -25,7 +25,7 @@ class JobSeeder extends Seeder
         ]);
 
         Job::create([
-            'provider_id' => $provider->user_id,
+            'provider_id' => $provider->id,
             'title' => 'UI/UX Designer',
             'description' => 'Seeking a creative UI/UX designer to enhance user experience.',
             'location' => 'Bandung, Indonesia',
@@ -47,7 +47,7 @@ class JobSeeder extends Seeder
         ]);
 
         Job::create([
-            'provider_id' => $provider->user_id,
+            'provider_id' => $provider->id,
             'title' => 'Project Manager',
             'description' => 'We need a project manager to oversee projects and ensure timely delivery.',
             'location' => 'Yogyakarta, Indonesia',
@@ -137,13 +137,13 @@ class JobSeeder extends Seeder
 
         Job::create([
             'provider_id' => $provider->user_id,
-            'title' => 'Database Administrator',
-            'description' => 'Looking for a database administrator to manage our databases and ensure data integrity.',
-            'location' => 'Medan, Indonesia',
-            'wage' => 7500000.00,
-            'duration' => '12 months',
-            'requirements' => 'Experience with SQL and database management',
-            'status' => 'Active', // Status ditetapkan secara manual
+            'title' => 'Frontend Developer',
+            'description' => 'We are looking for a skilled frontend developer to build modern web applications.',
+            'location' => 'Yogyakarta, Indonesia',
+            'wage' => 6000000.00,
+            'duration' => 'Contract',
+            'requirements' => 'Experience with React, Vue.js, and HTML/CSS',
+            'status' => 'Cancelled',
         ]);
     }
 }
