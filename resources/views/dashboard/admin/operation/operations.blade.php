@@ -10,22 +10,22 @@
         <!-- Daftar Pekerjaan -->
         <div class="overflow-x-auto shadow-md rounded-lg mb-8">
             <table class="min-w-full table-auto">
-                <thead class="bg-gray-200">
+                <thead class="bg-gradient-to-r from-blue-500 to-green-500 text-white">
                     <tr>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID Pekerjaan</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Judul Pekerjaan</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Status</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Pelamar</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Tindakan</th>
+                        <th class="px-4 py-2 text-left text-sm font-bold">ID Pekerjaan</th>
+                        <th class="px-4 py-2 text-left text-sm font-bold">Judul Pekerjaan</th>
+                        <th class="px-4 py-2 text-left text-sm font-bold">Status</th>
+                        <th class="px-4 py-2 text-left text-sm font-bold">Pelamar</th>
+                        <th class="px-4 py-2 text-left text-sm font-bold">Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($jobs as $job)
-                        <tr class="border-b hover:bg-gray-50">
+                        <tr class="border-b hover:bg-gray-100 transition-all duration-200">
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $job->job_id }}</td>
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $job->title }}</td>
                             <td class="px-4 py-2 text-sm">
-                                <span class="px-3 py-1 rounded-full 
+                                <span class="px-3 py-1 rounded-full shadow-md 
                                     @if($job->status == 'pending') bg-yellow-100 text-yellow-800
                                     @elseif($job->status == 'completed') bg-green-100 text-green-800
                                     @elseif($job->status == 'active') bg-blue-100 text-blue-800
@@ -36,62 +36,68 @@
                                     {{ ucfirst($job->status) }}
                                 </span>
                             </td>
-                            
                             <td class="px-4 py-2 text-sm text-gray-700">{{ $job->applications->count() }} Pelamar</td>
-                            <td class="px-4 py-2 text-sm">
-                                <a href="{{ route('admin.operations.edit', $job->job_id) }}" class="text-blue-600 hover:text-blue-800">Edit</a> |
-                                <a href="#" class="text-yellow-600 hover:text-yellow-800">Ganti Status</a> 
-                                <form action="{{ route('admin.operations.destroy', $job->job_id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer">Hapus</button>
-                                </form>
+                            <td class="px-4 py-2 text-sm relative">
+                                <div class="inline-block text-left">
+                                    <button onclick="toggleDropdown(this)" class="inline-flex justify-between items-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-100 text-gray-800 text-sm font-medium focus:outline-none hover:bg-gray-200">
+                                     
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 hidden">
+                                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                            <a href="{{ route('admin.operations.edit', $job->job_id) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                            <form action="{{ route('admin.operations.updateStatus', $job->job_id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="status" value="pending">
+                                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-yellow-800 hover:bg-yellow-100">Pending</button>
+                                            </form>
+                                            <form action="{{ route('admin.operations.updateStatus', $job->job_id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="status" value="active">
+                                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-blue-800 hover:bg-blue-100">Active</button>
+                                            </form>
+                                            <form action="{{ route('admin.operations.updateStatus', $job->job_id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="status" value="completed">
+                                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-green-800 hover:bg-green-100">Completed</button>
+                                            </form>
+                                            <form action="{{ route('admin.operations.updateStatus', $job->job_id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="status" value="cancelled">
+                                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-800 hover:bg-red-100">Cancelled</button>
+                                            </form>
+                                            <form action="{{ route('admin.operations.destroy', $job->job_id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-red-200">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-        <!-- Data Pengguna -->
-        <div class="overflow-x-auto shadow-md rounded-lg">
-            <table class="min-w-full table-auto">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID Pengguna</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Nama</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Jenis</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Status</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $index => $user)
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $index + 1 }}</td> <!-- Nomor urut -->
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $user->name }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-700">{{ $user->role == 'pencari' ? 'Pencari Kerja' : 'Penyedia Kerja' }}</td>
-                        <td class="px-4 py-2 text-sm">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{{ $user->status == 'active' ? 'Active' : 'Nonaktif' }}</span>
-                        </td>
-                        <td class="px-4 py-2 text-sm">
-                            @if($user->status == 'active')
-                                <form action="{{ route('admin.operations.users.deactivate', $user->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="text-red-600 hover:text-red-800 bg-transparent border-none cursor-pointer">Nonaktifkan</button>
-                                </form>
-                            @else
-                                <form action="{{ route('admin.operations.users.activate', $user->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="text-green-600 hover:text-green-800 bg-transparent border-none cursor-pointer">Aktifkan</button>
-                                </form>
-                            @endif
-                        </td>   
-                    </tr>
-                @endforeach
-                
-                </tbody>
-            </table>
-        </div>
     </div>
+
+    <script>
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Klik di luar dropdown untuk menutup
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.origin-top-right');
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(event.target) && !dropdown.previousElementSibling.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 @endsection

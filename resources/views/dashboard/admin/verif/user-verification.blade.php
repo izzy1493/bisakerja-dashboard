@@ -48,9 +48,15 @@
                             </td>
                             <!-- Aksi -->
                             <td class="px-6 py-4 text-sm text-gray-700">
-                                <a href="{{ route('admin.users.detail', $verification->verification_id) }}" class="inline-block px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg">Detail</a>
-
+                                <a href="{{ route('admin.users.detail', $verification->verification_id) }}" class="inline-block text-blue-600 hover:text-blue-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right">
+                                        <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/>
+                                        <path d="m21 3-9 9"/>
+                                        <path d="M15 3h6v6"/>
+                                    </svg>
+                                </a>
                             </td>
+                            
                             
                         </tr>
                     @empty

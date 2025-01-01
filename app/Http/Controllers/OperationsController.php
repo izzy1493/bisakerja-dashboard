@@ -58,22 +58,14 @@ class OperationsController extends Controller
 
 
     // Method untuk menyimpan perubahan data
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $jobId)
     {
-        $job = Job::findOrFail($id);
-
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'status' => 'required|in:pending,active,completed,cancelled',
-            'description' => 'required|string',
-        ]);
-
-        $job->update([
-            'title' => $request->title,
-            'status' => $request->status,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('operations.index')->with('success', 'Data pekerjaan berhasil diperbarui.');
+        $job = Job::findOrFail($jobId);
+    
+        // Validasi dan perbarui status pekerjaan
+        $job->status = $request->input('status');
+        $job->save();
+    
+        return redirect()->back()->with('success', 'Status pekerjaan berhasil diperbarui');
     }
 }

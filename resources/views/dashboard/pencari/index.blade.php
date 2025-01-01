@@ -1,13 +1,15 @@
-@extends('layouts.pencari.app')  <!-- Menggunakan layout utama -->
+@extends('layouts.pencari.app') <!-- Menggunakan layout utama -->
 
-@section('title', 'Daftar Pekerjaan - JobConnect')  <!-- Judul halaman -->
+@section('title', 'Daftar Pekerjaan - JobConnect') <!-- Judul halaman -->
 
 @section('content')
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-20 px-6 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 z-10"></div>
         <div class="relative z-20">
-            <h1 class="text-5xl font-extrabold leading-tight sm:text-6xl md:text-7xl tracking-tight drop-shadow-lg">Temukan Pekerjaan Impian Anda</h1>
+            <h1 class="text-5xl font-extrabold leading-tight sm:text-6xl md:text-7xl tracking-tight drop-shadow-lg">
+                Temukan Pekerjaan Impian Anda
+            </h1>
             <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-white/90 drop-shadow-md">
                 Jelajahi berbagai peluang kerja sesuai minat dan keterampilan Anda dengan mudah.
             </p>
@@ -38,7 +40,7 @@
         <!-- Grid Pekerjaan -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($jobs as $job)
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-all relative group">
+                <a href="{{ route('pencari.show', $job->job_id) }}" class="group bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-all relative">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <img src="https://via.placeholder.com/50" alt="Logo Perusahaan" class="w-14 h-14 rounded-full mr-4 border border-gray-300 shadow-sm">
@@ -50,22 +52,15 @@
                         <p class="text-sm text-gray-500">Gaji: <span class="font-bold text-gray-700">Rp {{ number_format($job->wage, 0, ',', '.') }}/bulan</span></p>
                     </div>
 
-                    <!-- Tombol Lihat Detail -->
-                    <div class="p-4">
-                        <a href="{{ route('jobs.show', $job->job_id) }}" 
-                           class="block w-full text-center bg-cyan-600 text-white font-medium text-sm px-6 py-2 rounded-full hover:bg-cyan-700 transition-all duration-200">
-                           Lihat Detail
-                        </a>
-                    </div>
                     <!-- Border Animasi -->
                     <div class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-cyan-500 transition-all"></div>
-                </div>
+                </a>
             @endforeach
         </div>
 
         <!-- Pagination -->
         <div class="mt-12 text-center">
-            {{ $jobs->links() }}  <!-- Menampilkan pagination -->
+            {{ $jobs->links() }} <!-- Menampilkan pagination -->
         </div>
     </section>
 @endsection

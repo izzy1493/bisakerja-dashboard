@@ -14,6 +14,7 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PencariController;
 use Illuminate\Support\Facades\Auth;
 
 // Route untuk halaman login
@@ -44,8 +45,8 @@ Route::get('/penyedia-kerja', [LandingController::class, 'penyediaKerja']); // M
 Route::get('/pencari-kerja', [LandingController::class, 'pencariKerja']); // Menu Pencari
 
 
-Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('/pencari', [JobController::class, 'index'])->name('pencari.index');
+Route::get('/pencari/{id}', [PencariController::class, 'show'])->name('pencari.show');
 
 
 // Rute umum untuk dashboard
@@ -77,13 +78,15 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/moderasi-pekerjaan/{id}/reject', [JobModerationController::class, 'reject'])->name('moderasi-pekerjaan.reject');
     Route::get('/payments', [PaymentValidationController::class, 'index'])->name('admin.payments');
     Route::get('/reports', [ReportHandlingController::class, 'index'])->name('admin.reports');
+
+
     // Route untuk aksi menyelesaikan laporan
     Route::post('/admin/reports/{id}/resolve', [ReportHandlingController::class, 'resolve'])->name('admin.reports.resolve');
 
     // Route untuk aksi menaikkan status laporan menjadi eskalasi
     Route::post('/admin/reports/{id}/escalate', [ReportHandlingController::class, 'escalate'])->name('admin.reports.escalate');
 
-    // Route untuk Valiadasi Pembayaran
+    // Route untuk Verifikasi Pengguna
     Route::get('/users', [UserVerificationController::class, 'index'])->name('admin.users');
     Route::get('/users/{id}', [UserVerificationController::class, 'show'])->name('admin.users.detail');
 
@@ -91,6 +94,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
     Route::get('/operations/{id}/edit', [OperationsController::class, 'edit'])->name('admin.operations.edit');
     Route::put('/operations/{id}', [OperationsController::class, 'update'])->name('admin.operations.update');
+    Route::put('/admin/operations/{job}/update-status', [OperationsController::class, 'updateStatus'])->name('admin.operations.updateStatus');
     Route::delete('/operations/{id}', [OperationsController::class, 'destroy'])->name('admin.operations.destroy');
     Route::post('/operations/users/{id}/activate', [OperationsController::class, 'activateUser'])->name('admin.operations.users.activate');
     Route::post('/operations/users/{id}/deactivate', [OperationsController::class, 'deactivateUser'])->name('admin.operations.users.deactivate');
