@@ -33,8 +33,7 @@ class JobController extends Controller
         $jobApplications = JobApplication::with('seeker', 'job')->get();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
 
         // Mengirim data pekerjaan ke view
-        return view('dashboard.penyedia.lamaran.index',compact('jobApplications'));
-
+        return view('dashboard.penyedia.lamaran.index', compact('jobApplications'));
     }
 
     // Method untuk menampilkan detail pekerjaan

@@ -1,47 +1,69 @@
 @extends('layouts.penyedia.app')
 
 @section('content')
-<body class="bg-gradient-to-br from-blue-50 to-purple-100 font-sans antialiased">
+
+<body class="bg-black font-sans antialiased h-screen flex flex-col">
 
     <!-- Hero Section -->
-    <section class="relative bg-gray-800 text-white py-20 px-6">
-        <img alt="Background image of a professional office environment" class="absolute inset-0 w-full h-full object-cover opacity-30" height="1080" src="https://images.unsplash.com/photo-1514894780887-121968d00567?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="1920"/>
-        <div class="relative z-10 max-w-screen-xl mx-auto text-center">
-            <h1 class="text-5xl font-extrabold mb-4">Daftar Lamaran Pekerjaan</h1>
-            <p class="text-lg mb-8">Lihat semua lamaran yang telah diterima dan statusnya.</p>
+    <section class="relative bg-gradient-to-r from-black to-gray-800 text-white flex-grow">
+        <img alt="Background image of a professional office environment"
+            class="absolute inset-0 w-full h-full object-cover opacity-20" height="1080"
+            src="https://images.unsplash.com/photo-1514894780887-121968d00567?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            width="1920" />
+        <div class="relative z-10 max-w-screen-xl mx-auto text-center py-20">
+            <h1 class="text-5xl font-extrabold mb-4 animate__animated animate__fadeInDown">Daftar Lamaran Pekerjaan</h1>
+            <p class="text-lg mb-8 animate__animated animate__fadeInUp">Lihat semua lamaran yang telah diterima dan statusnya.</p>
         </div>
     </section>
 
     <!-- Daftar Lamaran Pekerjaan Section -->
-    <section class="py-24 px-6 bg-white">
-        <div class="max-w-screen-xl mx-auto bg-white bg-opacity-80 rounded-lg p-6">
-            @if($jobApplications->isNotEmpty())
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    @foreach($jobApplications as $jobApplication)
-                        <div class="p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-2">Pelamar: {{ $jobApplication->seeker->name }}</h2>
-                            <p class="text-gray-600 mb-4">{{ $jobApplication->job->description }}</p>
+    <section class="py-24 px-6 bg-gray-900 flex-grow">
+        <div class="bg-gray-800 bg-opacity-90 rounded-lg p-6 shadow-lg">
+            @if ($jobApplications->isNotEmpty())
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach ($jobApplications as $jobApplication)
+                        <div
+                            class="p-6 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://via.placeholder.com/50" alt="Avatar" class="rounded-full mr-3">
+                                <h2 class="text-xl font-semibold text-green-400">{{ $jobApplication->seeker->name }}</h2>
+                            </div>
+                            <p class="text-gray-300 mb-4">{{ $jobApplication->status }}</p>
 
-                            <div class="text-sm text-gray-600">
-                                <span class="font-medium">Status: 
-                                    <span class="text-{{ $jobApplication->status == 'Accepted' ? 'green-500' : ($jobApplication->status == 'Rejected' ? 'red-500' : 'yellow-500') }}">
+                            <div class="text-sm text-gray-300">
+                                <span class="font-medium">Status:
+                                    <span
+                                        class="text-{{ $jobApplication->status == 'Accepted' ? 'green-400' : ($jobApplication->status == 'Rejected' ? 'red-400' : 'yellow-400') }}">
                                         {{ $jobApplication->status }}
                                     </span>
                                 </span>
                             </div>
 
                             <div class="mt-4">
-                                <a href="{{ route('list-lamaran', $jobApplication->id) }}" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
-                                    Lihat Detail Lamaran
+                                <a href="{{ route('list-lamaran', $jobApplication->id) }}"
+                                    class="inline-block bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 transition transform hover:scale-105">
+                                    <i class="fas fa-eye mr-2"></i> Lihat Detail Lamaran
                                 </a>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @else
-                <p class="text-center text-gray-600">Tidak ada lamaran pekerjaan yang ditemukan.</p>
+                <p class="text-center text-gray-400">Tidak ada lamaran pekerjaan yang ditemukan.</p>
             @endif
         </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-white py-6">
+        <div class="text-center">
+            <p>&copy; {{ date('Y') }} Perusahaan Anda. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Include Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Include Animate.css for Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </body>
 @endsection
