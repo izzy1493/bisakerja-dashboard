@@ -18,7 +18,7 @@
                         <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Foto KTP</th>
                         <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Foto Selfie</th>
                         <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Status</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Aksi</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Detail</th>
                     </tr>
                 </thead>
                 

@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="container mx-auto py-8">
+    <div class="container mx-auto py-8">w
         <h1 class="text-2xl font-bold mb-6">Verifikasi Pengguna</h1>
 
         @foreach ($verifications as $verification)
