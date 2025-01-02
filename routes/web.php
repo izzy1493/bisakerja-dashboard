@@ -92,4 +92,17 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::group(['middleware' => 'web'], function () {
     // Rute yang memerlukan session
+
+    Route::delete('/admin/{id}', [AdminmanagementController::class, 'destroy'])->name('delete');
+
+    // Menampilkan form tambah admin
+    Route::get('admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
+
+// Menyimpan admin baru
+    Route::post('admin', [AdminManagementController::class, 'store'])->name('admin.store');
+    Route::resource('admin', AdminManagementController::class);
+
+
+    
+
 });

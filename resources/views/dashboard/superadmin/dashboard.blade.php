@@ -63,7 +63,7 @@
                         <th class="py-3 px-6 text-gray-700">Nama</th>
                         <th class="py-3 px-6 text-gray-700">Email</th>
                         <th class="py-3 px-6 text-gray-700">Peran</th>
-                        <th class="py-3 px-6 text-gray-700">Aksi</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -72,9 +72,8 @@
                         <td class="py-3 px-6">{{$user->name}}</td>
                         <td class="py-3 px-6">{{$user->email}}</td>
                         <td class="py-3 px-6">{{$user->role}}</td>
-                        <td class="py-3 px-6">
-                            <button class="text-blue-500 hover:text-blue-600 transition-all">Edit</button> |
-                            <button class="text-red-500 hover:text-red-600 transition-all">Hapus</button>
+                       
+                   
                         </td>
                     </tr>
                     @endforeach

@@ -6,6 +6,13 @@
         <p class="mt-2 text-white/90">Isi form berikut untuk menambah admin baru ke dalam sistem.</p>
     </div>
 
+    <!-- Flash Message -->
+    @if(session('success'))
+        <div class="bg-green-500 text-white p-4 rounded-lg mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Form Tambah Admin -->
     <main class="flex-1 p-6">
         <div class="bg-white p-8 rounded-lg shadow-md">
@@ -34,7 +41,7 @@
                 </div>
 
                 <div class="flex justify-end space-x-4 mt-6">
-                    <a href="/management-admin" class="bg-gray-300 text-gray-700 px-5 py-2 rounded-lg shadow hover:bg-gray-400 transition">Kembali</a>
+                    <a href="{{ route('admin.management') }}" class="bg-gray-300 text-gray-700 px-5 py-2 rounded-lg shadow hover:bg-gray-400 transition">Kembali</a>
                     <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition">Tambah Admin</button>
                 </div>
             </form>

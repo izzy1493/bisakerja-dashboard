@@ -43,12 +43,14 @@ class AdminManagementController extends Controller
     // Menyimpan admin baru ke database
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
+        // Membuat admin baru
         $admin = new User();
         $admin->name = $request->name;
         $admin->email = $request->email;
@@ -56,6 +58,7 @@ class AdminManagementController extends Controller
         $admin->role = 'admin'; // Pastikan role diatur sebagai 'admin'
         $admin->save();
 
+        // Redirect dengan pesan sukses
         return redirect()->route('admin.management')->with('success', 'Admin berhasil ditambahkan.');
     }
 
@@ -69,18 +72,33 @@ class AdminManagementController extends Controller
             'password' => 'nullable|string|min:6|confirmed',
         ]);
 
+        // Mencari admin berdasarkan ID
         $admin = User::findOrFail($id);
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->role = $request->role;
 
+        // Jika password diisi, maka diupdate
         if ($request->password) {
             $admin->password = bcrypt($request->password);
         }
 
+        // Mengatur status verifikasi jika diperlukan
         $admin->is_verified = $request->has('is_verified') ? 1 : 0;
         $admin->save();
 
+        // Redirect dengan pesan sukses
         return redirect()->route('admin.management')->with('success', 'Admin berhasil diperbarui.');
+    }
+
+    // Menghapus admin
+    public function destroy($id)
+    {
+        // Mencari admin berdasarkan ID dan menghapusnya
+        $admin = User::findOrFail($id);
+        $admin->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('admin.management')->with('success', 'Admin berhasil dihapus.');
     }
 }
