@@ -1,7 +1,6 @@
 @extends('layouts.superadmin.app')
 
 @section('content')
-
 <main class="flex-1 p-6">
     <div class="bg-white p-6 rounded-lg shadow">
         <h3 class="text-xl font-semibold">Form Edit Admin</h3>
@@ -25,7 +24,7 @@
         @endif
 
         <!-- Form Edit Admin -->
-        <form action="{{ route('admin.update', $admin->id) }}" method="POST">
+        <form action="{{ route('admin.edit', $admin->id) }}" method="POST">
             @csrf
             @method('PUT')  
             
@@ -70,7 +69,7 @@
             </div>
 
             <div class="mt-6 flex justify-end space-x-4">
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/management-admin" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Edit Admin
                 </button>
                 <a href="/management-admin" 
@@ -81,5 +80,4 @@
         </form>
     </div>
 </main>
-
 @endsection

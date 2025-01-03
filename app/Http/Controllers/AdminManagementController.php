@@ -10,19 +10,17 @@ class AdminManagementController extends Controller
     // Menampilkan daftar admin
     public function index()
     {
-        $users = User::where('role', 'admin')->orderBy('created_at', 'desc')->get(); // Mengambil data admin
+        // Mengambil data admin
+        $users = User::where('role', 'admin')->orderBy('created_at', 'desc')->get();
         $userCount = $users->count(); // Menghitung jumlah admin
-
-        $admins = User::where('role', 'admin')->get();
-        $adminCount = $admins->count();
 
         return view('dashboard.superadmin.adminManagement.index')->with([
             'users' => $users, // Data admin
             'userCount' => $userCount, // Jumlah admin
-            'admins' => $admins,
-            'adminCount' => $adminCount,
         ]);
     }
+
+    
 
     // Menampilkan halaman untuk menambahkan admin baru
     public function create()
@@ -40,13 +38,48 @@ class AdminManagementController extends Controller
         ]);
     }
 
+    // Menampilkan halaman untuk mengedit admin
+    public function edit(Request $request, $id)
+    {
+
+        
+        // Validasi input yang diterima
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id, // Ignore unique check for current user
+            'role' => 'required|string',
+            'phone' => 'required|string|max:15', // Validasi phone
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        // Mencari admin berdasarkan ID
+        $admin = User::findOrFail($id);
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone; // Update phone
+        $admin->role = $request->role;
+
+        // Jika password diisi, maka diupdate
+        if ($request->password) {
+            $admin->password = bcrypt($request->password);
+        }
+
+        // Mengatur status verifikasi jika diperlukan
+        $admin->is_verified = $request->has('is_verified') ? 1 : 0;
+        $admin->save();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('resources/views/dashboard/superadmin/adminManagement/edit.blade.php')->with('success', 'Admin berhasil diperbarui.');
+    }
+
     // Menyimpan admin baru ke database
     public function store(Request $request)
     {
-        
+        // Validasi input yang diterima
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string|max:15', // Validasi phone
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -54,9 +87,10 @@ class AdminManagementController extends Controller
         $admin = new User();
         $admin->name = $request->name;
         $admin->email = $request->email;
-        $admin->password = bcrypt($request->password);
-        $admin->role = 'admin'; // Pastikan role diatur sebagai 'admin'
-        $admin->save();
+        $admin->phone = $request->phone; // Menambahkan phone
+        $admin->password = bcrypt($request->password); // Password di-hash
+        $admin->role = 'admin'; // Menetapkan role sebagai admin
+        $admin->save(); // Simpan data admin
 
         // Redirect dengan pesan sukses
         return redirect()->route('admin.management')->with('success', 'Admin berhasil ditambahkan.');
@@ -65,10 +99,12 @@ class AdminManagementController extends Controller
     // Memperbarui data admin
     public function update(Request $request, $id)
     {
+        // Validasi input yang diterima
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,' . $id, // Ignore unique check for current user
             'role' => 'required|string',
+            'phone' => 'required|string|max:15', // Validasi phone
             'password' => 'nullable|string|min:6|confirmed',
         ]);
 
@@ -76,6 +112,7 @@ class AdminManagementController extends Controller
         $admin = User::findOrFail($id);
         $admin->name = $request->name;
         $admin->email = $request->email;
+        $admin->phone = $request->phone; // Update phone
         $admin->role = $request->role;
 
         // Jika password diisi, maka diupdate
@@ -90,6 +127,8 @@ class AdminManagementController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->route('admin.management')->with('success', 'Admin berhasil diperbarui.');
     }
+
+    
 
     // Menghapus admin
     public function destroy($id)
