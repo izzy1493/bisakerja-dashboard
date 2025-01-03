@@ -24,7 +24,7 @@
             <div class="p-4 bg-green-100 rounded-full text-green-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4a1 1 0 001 1h3m10-6h2a1 1 0 011 1v6a1 1 0 01-1 1h-2m-4 0h4v4a1 1 0 01-1 1H9a1 1 0 01-1-1v-4h4m0 0V9a1 1 0 01-1-1H7a1 1 0 01-1-1V5m0 0V3m0 0h4a1 1 0 011 1v6a1 1 0 01-1 1H9" />
-                </svg>
+                </svg>  
             </div>
             <div class="ml-4">
                 <h3 class="text-lg font-semibold text-gray-700">Active Sessions</h3>
