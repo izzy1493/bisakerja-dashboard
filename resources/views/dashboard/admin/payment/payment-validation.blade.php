@@ -13,52 +13,28 @@
                 <thead class="bg-gray-200">
                     <tr>
                         <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID Pekerjaan</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Nama Penyedia Kerja</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Nominal Transfer</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Bukti Transfer</th>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID Pencari Kerja</th>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Nominal Pembayaran</th>
                         <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Status Pembayaran</th>
-                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Contoh data pembayaran -->
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm">1001</td>
-                        <td class="px-4 py-2 text-sm">John Doe</td>
-                        <td class="px-4 py-2 text-sm">Rp 1.000.000</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Lihat Bukti</a>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-yellow-500">Pending</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-green-600 hover:text-green-800">Setujui</a> | 
-                            <a href="#" class="text-red-600 hover:text-red-800">Tolak</a>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm">1002</td>
-                        <td class="px-4 py-2 text-sm">Jane Smith</td>
-                        <td class="px-4 py-2 text-sm">Rp 500.000</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Lihat Bukti</a>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-green-500">Validated</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-gray-600">Sudah Divalidasi</a>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-4 py-2 text-sm">1003</td>
-                        <td class="px-4 py-2 text-sm">Mark Taylor</td>
-                        <td class="px-4 py-2 text-sm">Rp 750.000</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Lihat Bukti</a>
-                        </td>
-                        <td class="px-4 py-2 text-sm text-red-500">Rejected</td>
-                        <td class="px-4 py-2 text-sm">
-                            <a href="#" class="text-gray-600">Pembayaran Ditolak</a>
-                        </td>
-                    </tr>
+                    @foreach($escrows as $escrow)
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="px-4 py-2 text-sm">{{ $escrow->job_id }}</td>
+                            <td class="px-4 py-2 text-sm">{{ $escrow->seeker_id }}</td>
+                            <td class="px-4 py-2 text-sm">Rp {{ number_format($escrow->amount, 0, ',', '.') }}</td>
+                            <td class="px-4 py-2 text-sm">
+                                @if($escrow->status == 'Pending')
+                                    <span class="text-yellow-500">Pending</span>
+                                @elseif($escrow->status == 'Validated')
+                                    <span class="text-green-500">Validated</span>
+                                @elseif($escrow->status == 'Rejected')
+                                    <span class="text-red-500">Rejected</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
