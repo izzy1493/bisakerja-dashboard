@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                @if($role === 'penyedia')
+                @if(isset($role) && $role === 'penyedia')
                     <a href="#" class="text-gray-900 hover:text-indigo-600">Dashboard</a>
                     <a href="#" class="text-gray-900 hover:text-indigo-600">My Jobs</a>
                     <a href="#" class="text-gray-900 hover:text-indigo-600">Settings</a>

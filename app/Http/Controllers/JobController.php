@@ -19,7 +19,8 @@ class JobController extends Controller
     }
 
     // Method untuk menampilkan detail pekerjaan
- 
+
+    
 
     // Method untuk menampilkan semua lamaran pekerjaan
     public function showlamaran()

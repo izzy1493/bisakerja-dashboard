@@ -124,3 +124,11 @@ Route::get('/dashboard-penyedia', [LandingController::class, 'penyedia'])->name(
 Route::group(['middleware' => 'web'], function () {
     // Rute yang memerlukan session
 });
+
+
+
+Route::middleware(['auth', 'role:pencari'])->group(function () {
+    Route::get('/dashboard/pencari', [PencariController::class, 'index'])->name('pencari.index'); // Daftar pekerjaan
+    Route::get('/dashboard/pencari/{id}', [PencariController::class, 'show'])->name('pencari.show'); // Detail pekerjaan
+    Route::post('/dashboard/pencari/{id}/apply', [PencariController::class, 'apply'])->name('jobs.apply'); // Melamar pekerjaan
+});
