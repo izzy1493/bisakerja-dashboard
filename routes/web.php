@@ -52,8 +52,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/management-admin', [AdminManagementController::class, 'index'])->name('admin.management');
     Route::get('/management-admin/create', [AdminManagementController::class, 'create'])->name('admin.create');
     Route::post('/management-admin/store', [AdminManagementController::class, 'store'])->name('admin.store');
-    Route::get('/edit/{id}', [AdminManagementController::class, 'detail'])->name('admin.detail');
-    Route::put('/admin/{id}/update', [AdminManagementController::class, 'update'])->name('admin.update');
+    Route::get('/management-admin/{id}', [AdminManagementController::class, 'detail'])->name('admin.detail');
+    Route::put('/admin/{id}/edit', [AdminManagementController::class, 'edit'])->name('admin.edit');
     Route::delete('/admin/{id}', [AdminManagementController::class, 'destroy'])->name('admin.delete');
 
     Route::get('/monitoring-aktivitas', [ActivityMonitoringController::class, 'index'])->name('activity.monitoring');

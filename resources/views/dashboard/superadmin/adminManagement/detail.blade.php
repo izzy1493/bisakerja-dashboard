@@ -27,6 +27,7 @@
         <form action="{{ route('admin.edit', $admin->id) }}" method="POST">
             @csrf
             @method('PUT')  
+            <input type="hidden" name="id" value="{{$admin->id}}">
             
             <div class="mt-4">
                 <label for="name" class="block text-gray-700">Nama</label>
@@ -41,6 +42,14 @@
                 <input type="email" id="email" name="email" 
                     class="w-full border px-4 py-2 rounded mt-2 @error('email') border-red-500 @enderror" 
                     value="{{ $admin->email }}" 
+                    required>
+            </div>
+
+            <div class="mt-4">
+                <label for="phone" class="block text-gray-700">Phone Number</label>
+                <input type="text" id="phone" name="phone" 
+                    class="w-full border px-4 py-2 rounded mt-2 @error('phone') border-red-500 @enderror" 
+                    value="{{ $admin->phone }}" 
                     required>
             </div>
 
@@ -69,7 +78,7 @@
             </div>
 
             <div class="mt-6 flex justify-end space-x-4">
-                <a href="/management-admin" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Edit Admin
                 </button>
                 <a href="/management-admin" 

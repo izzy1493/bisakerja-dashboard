@@ -37,41 +37,7 @@ class AdminManagementController extends Controller
             'admin' => $admin,
         ]);
     }
-
-    // Menampilkan halaman untuk mengedit admin
-    public function edit(Request $request, $id)
-    {
-
-        
-        // Validasi input yang diterima
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id, // Ignore unique check for current user
-            'role' => 'required|string',
-            'phone' => 'required|string|max:15', // Validasi phone
-            'password' => 'nullable|string|min:6|confirmed',
-        ]);
-
-        // Mencari admin berdasarkan ID
-        $admin = User::findOrFail($id);
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->phone = $request->phone; // Update phone
-        $admin->role = $request->role;
-
-        // Jika password diisi, maka diupdate
-        if ($request->password) {
-            $admin->password = bcrypt($request->password);
-        }
-
-        // Mengatur status verifikasi jika diperlukan
-        $admin->is_verified = $request->has('is_verified') ? 1 : 0;
-        $admin->save();
-
-        // Redirect dengan pesan sukses
-        return redirect()->route('resources/views/dashboard/superadmin/adminManagement/edit.blade.php')->with('success', 'Admin berhasil diperbarui.');
-    }
-
+    
     // Menyimpan admin baru ke database
     public function store(Request $request)
     {
@@ -97,7 +63,7 @@ class AdminManagementController extends Controller
     }
 
     // Memperbarui data admin
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         // Validasi input yang diterima
         $request->validate([

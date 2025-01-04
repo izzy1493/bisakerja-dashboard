@@ -69,7 +69,7 @@
                             <td class="py-4 px-6">{{ $admin->email }}</td>
                             <td class="py-4 px-6">{{ $admin->role }}</td>
                             <td class="py-4 px-6 flex space-x-3">
-                                <a href="{{ route('admin.edit', $admin->id) }}" class="bg-yellow-500 text-white px-3 py-2 rounded-md hover:bg-yellow-600">
+                                <a href="{{ route('admin.detail', $admin->id) }}" class="bg-yellow-500 text-white px-3 py-2 rounded-md hover:bg-yellow-600">
                                     Edit
                                 </a>
                                 <form action="{{ route('admin.destroy', $admin->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
