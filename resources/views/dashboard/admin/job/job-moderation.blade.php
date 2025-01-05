@@ -20,7 +20,7 @@
                 <tbody>
                     @forelse ($jobs as $job)
                         <tr class="border-b">
-                            <td class="px-6 py-4 text-sm text-gray-800">#{{ $job->id }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-800">{{ $job->job_id }}</td>
                             <td class="px-6 py-4 text-sm text-gray-800">{{ $job->title }}</td>
                             <td class="px-6 py-4 text-sm">
                                 @if ($job->status === 'Pending')

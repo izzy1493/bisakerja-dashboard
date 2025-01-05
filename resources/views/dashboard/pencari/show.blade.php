@@ -32,7 +32,7 @@
 
             <!-- Form untuk melamar pekerjaan -->
             <div class="mt-6">
-                <form action="{{ route('jobs.apply', $job->id) }}" method="POST">
+                <form action="{{ route('jobs.apply', $job->job_id) }}" method="POST">
                     @csrf
                     <button type="submit">Lamar Sekarang</button>
                 </form>

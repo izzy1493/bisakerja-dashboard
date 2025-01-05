@@ -25,16 +25,23 @@ class PencariController extends Controller
     // Melamar pekerjaan
     public function apply(Request $request, $id)
     {
+        dd($id);
+        
         $job = Job::findOrFail($id);
 
+        dd($job);
+        
+
+        // Cek apakah user sudah pernah melamar pekerjaan ini
         if (JobApplication::where('job_id', $id)->where('seeker_id', auth()->id())->exists()) {
             return redirect()->back()->with('error', 'Anda sudah melamar pekerjaan ini.');
         }
 
+        // Buat lamaran pekerjaan baru
         JobApplication::create([
             'job_id' => $job->id,
-            'seeker_id' => auth()->id(),
-            'status' => 'pending',
+            'seeker_id' => auth()->id(), // Gunakan ID user yang sedang login
+            'status' => 'Applied', // Gunakan nilai ENUM yang valid
             'applied_at' => now(),
         ]);
 
