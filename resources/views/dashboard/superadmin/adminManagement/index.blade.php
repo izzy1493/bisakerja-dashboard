@@ -28,7 +28,7 @@
             </div>
             <div class="ml-4">
                 <h3 class="text-lg font-semibold text-gray-700">Active Sessions</h3>
-                <p class="text-3xl font-bold text-green-600 mt-2">456</p>
+                <p class="text-3xl font-bold text-green-600 mt-2">50</p>
             </div>
         </div>
         <div class="flex items-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
