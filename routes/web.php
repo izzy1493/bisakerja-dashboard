@@ -131,4 +131,10 @@ Route::middleware(['auth', 'role:pencari'])->group(function () {
     Route::get('/dashboard/pencari', [PencariController::class, 'index'])->name('pencari.index'); // Daftar pekerjaan
     Route::get('/dashboard/pencari/{id}', [PencariController::class, 'show'])->name('pencari.show'); // Detail pekerjaan
     Route::post('/dashboard/pencari/{id}/apply', [PencariController::class, 'apply'])->name('jobs.apply'); // Melamar pekerjaan
+    Route::get('/profile', [PencariController::class, 'profile'])->name('pencari.profile');
+});
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
 });

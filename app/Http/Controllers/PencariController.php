@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class PencariController extends Controller
 {
-    // Menambahkan middleware autentikasi
+    // Middleware autentikasi
     public function __construct()
     {
-        $this->middleware('auth'); // Memastikan hanya pengguna yang sudah login yang bisa melamar
+        $this->middleware('auth'); // Memastikan hanya pengguna yang sudah login yang bisa mengakses
     }
 
     // Menampilkan daftar pekerjaan
@@ -25,43 +25,49 @@ class PencariController extends Controller
     public function show($id)
     {
         $job = Job::findOrFail($id);
-        return view('dashboard.pencari.show', compact('job'));
+
+        // Ubah kolom requirements (text) menjadi array berdasarkan pemisah
+        // Sesuaikan pemisah: "\n" untuk garis baru atau "," untuk koma
+        $job->requirements = $job->requirements ? explode("\n", $job->requirements) : [];
+
+        // Cek apakah user sudah melamar pekerjaan ini
+        $hasApplied = JobApplication::where('job_id', $job->job_id)
+            ->where('seeker_id', auth()->id())
+            ->exists();
+
+        return view('dashboard.pencari.show', compact('job', 'hasApplied'));
     }
 
     // Melamar pekerjaan
     public function apply(Request $request, $id)
-{
-    // Cari pekerjaan berdasarkan ID
-    $job = Job::findOrFail($id);
+    {
+        // Cari pekerjaan berdasarkan ID
+        $job = Job::findOrFail($id);
 
-    // Gunakan data dummy, abaikan request untuk validasi
-    $dataLamaran = [
-        'job_id' => $job->job_id, // Ambil job_id dari $job
-        'seeker_id' => auth()->id(), // ID pengguna yang sedang login
-        'status' => 'Applied', // Status lamaran
-        'applied_at' => now(),
-    ];
+        $dataLamaran = [
+            'job_id' => $job->job_id,
+            'seeker_id' => auth()->id(),
+            'status' => 'Applied',
+            'applied_at' => now(),
+        ];
 
-    // Debug: Periksa data dummy sebelum digunakan
-    // dd($dataLamaran);
+        // Cek apakah user sudah melamar pekerjaan ini
+        if (JobApplication::where('job_id', $dataLamaran['job_id'])
+            ->where('seeker_id', $dataLamaran['seeker_id'])
+            ->exists()) {
+            return redirect()->back()->with('error', 'Anda sudah melamar pekerjaan ini.');
+        }
 
-    // Cek apakah user sudah melamar pekerjaan ini
-    if (JobApplication::where('job_id', $dataLamaran['job_id'])
-        ->where('seeker_id', $dataLamaran['seeker_id'])
-        ->exists()) {
-        return redirect()->back()->with('error', 'Anda sudah melamar pekerjaan ini.');
+        // Buat lamaran pekerjaan baru
+        JobApplication::create($dataLamaran);
+
+        return redirect()->route('pencari.show', $id)->with('success', 'Lamaran Anda berhasil dikirim.');
     }
 
-    // Buat lamaran pekerjaan baru menggunakan data dummy
-    $application = JobApplication::create($dataLamaran);
-
-    // Debug: Periksa hasil dari pembuatan data dummy
-    if (!$application) {
-        return redirect()->back()->with('error', 'Gagal membuat lamaran pekerjaan.');
+    // Menampilkan profil pengguna
+    public function profile()
+    {
+        $user = auth()->user(); // Mendapatkan data pengguna yang sedang login
+        return view('dashboard.pencari.profile', compact('user'));
     }
-
-    // Kembali ke halaman detail pekerjaan dengan pesan sukses
-    return redirect()->route('pencari.show', $id)->with('success', 'Lamaran Anda berhasil dikirim.');
-}
-
 }
