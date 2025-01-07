@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PencariController extends Controller
 {
+    // Menambahkan middleware autentikasi
+    public function __construct()
+    {
+        $this->middleware('auth'); // Memastikan hanya pengguna yang sudah login yang bisa melamar
+    }
+
     // Menampilkan daftar pekerjaan
     public function index()
     {
@@ -25,26 +31,38 @@ class PencariController extends Controller
     // Melamar pekerjaan
     public function apply(Request $request, $id)
     {
-        dd($id);
-        
+        // Pastikan pengguna sudah login
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.');
+        }
+
+        // Cek apakah pengguna memiliki role 'pencari'
+        if (auth()->user()->role !== 'pencari') {
+            return redirect()->route('home')->with('error', 'Hanya pengguna dengan role "pencari" yang bisa melamar.');
+        }
+
+        // Cari pekerjaan berdasarkan ID
         $job = Job::findOrFail($id);
 
-        dd($job);
-        
+        // Validasi job_id
+        $request->validate([
+            'job_id' => 'required|exists:jobs,id',
+        ]);
 
-        // Cek apakah user sudah pernah melamar pekerjaan ini
+        // Cek apakah user sudah melamar pekerjaan ini
         if (JobApplication::where('job_id', $id)->where('seeker_id', auth()->id())->exists()) {
             return redirect()->back()->with('error', 'Anda sudah melamar pekerjaan ini.');
         }
 
         // Buat lamaran pekerjaan baru
         JobApplication::create([
-            'job_id' => $job->id,
-            'seeker_id' => auth()->id(), // Gunakan ID user yang sedang login
-            'status' => 'Applied', // Gunakan nilai ENUM yang valid
+            'job_id' => $job->job_id,
+            'seeker_id' => auth()->id(), // ID pengguna yang sedang login
+            'status' => 'Applied', // Status lamaran
             'applied_at' => now(),
         ]);
 
+        // Kembali ke halaman detail pekerjaan dengan pesan sukses
         return redirect()->route('pencari.show', $id)->with('success', 'Lamaran Anda berhasil dikirim.');
     }
 }

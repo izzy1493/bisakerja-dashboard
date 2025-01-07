@@ -18,6 +18,7 @@
                 <p class="text-gray-500">Tidak ada persyaratan yang ditentukan.</p>
             @endif
 
+            <!-- Pesan Sukses/Error -->
             @if(session('success'))
                 <div class="bg-green-500 text-white p-4 rounded mb-4">
                     {{ session('success') }}
@@ -36,6 +37,7 @@
                     @csrf
                     <button type="submit">Lamar Sekarang</button>
                 </form>
+                
             </div>
         </div>
     </div>
