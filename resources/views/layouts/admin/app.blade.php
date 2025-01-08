@@ -16,7 +16,7 @@
     <nav class="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 p-4 shadow-lg">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Logo atau Link Dashboard -->
-            <a href="{{ route('dashboard') }}" class="text-white text-2xl font-bold hover:text-gray-100 transition duration-300 transform hover:scale-105">
+            <a href="{{ route('dashboard-page') }}" class="text-white text-2xl font-bold hover:text-gray-100 transition duration-300 transform hover:scale-105">
                 Dashboard
             </a>
             
@@ -58,6 +58,7 @@
     <div class="container mx-auto p-6">
         @yield('content')
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.6/dist/flowbite.min.js"></script>
 
 </body>
 </html>

@@ -10,6 +10,11 @@ class Job extends Model
     use HasFactory;
 
     protected $table = 'jobs';
+    protected $primaryKey = 'job_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
+
 
     protected $fillable = [
         'provider_id',
@@ -35,7 +40,7 @@ class Job extends Model
 
     public function applications()
     {
-        return $this->hasMany(JobApplication::class, 'job_id');
+        return $this->hasMany(JobApplication::class, 'job_id', 'job_id');
     }
     
 
@@ -47,5 +52,10 @@ class Job extends Model
     public function escrows()
     {
         return $this->hasMany(Escrow::class, 'job_id');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'job_id');
     }
 }

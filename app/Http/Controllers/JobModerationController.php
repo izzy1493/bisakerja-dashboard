@@ -3,26 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Job; // Pastikan model Job di-import
 
 class JobModerationController extends Controller
 {
-    // Memastikan middleware 'auth' sudah diaktifkan
     public function __construct()
     {
-        $this->middleware('auth');  // Pastikan pengguna login sebelum mengakses
+        $this->middleware('auth'); // Pastikan pengguna login sebelum mengakses
     }
 
+    // Halaman moderasi pekerjaan (daftar pekerjaan)
     public function index()
     {
-        // Memeriksa apakah pengguna memiliki role 'admin'
-        $user = auth()->user();
+        // Ambil semua data pekerjaan
+        $jobs = Job::all();
 
-        // Jika pengguna bukan admin, kirimkan response 403
-        if ($user && $user->role !== 'admin') {
-            return abort(403, 'Unauthorized action.');
-        }
+        // Kirim data ke view
+        return view('dashboard.admin.job.job-moderation', compact('jobs'));
+    }
 
-        // Jika role admin, tampilkan halaman moderasi pekerjaan
-        return view('dashboard.admin.job-moderation');
+    // Halaman detail pekerjaan
+    public function show($id)
+    {
+        // Ambil pekerjaan berdasarkan ID
+        $job = Job::findOrFail($id);
+
+        // Kirim data ke view
+        return view('dashboard.admin.job.detail', compact('job'));
     }
 }

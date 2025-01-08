@@ -8,7 +8,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Jika tidak ada role khusus, default saja
-        return view('dashboard.index');
+        return view('dashboard');
     }
 
     public function superadmin()
@@ -28,6 +28,7 @@ class DashboardController extends Controller
 
     public function pencari()
     {
+        
         return view('dashboard.pencari.dashboard');
     }
 }

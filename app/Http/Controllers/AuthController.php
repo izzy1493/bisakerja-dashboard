@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class AuthController extends Controller
             // // Ambil data pengguna yang sedang login
             Auth::loginUsingId(User::where('email', $request->email)->first()->id);
             $user = Auth::user();
-            
+
             switch ($user->role) {
                 case 'superadmin':
                     return view('dashboard.superadmin.dashboard');
@@ -35,7 +36,11 @@ class AuthController extends Controller
                 case 'penyedia':
                     return view('dashboard.penyedia.index ');
                 case 'pencari':
-                    return view('dashboard.pencari.dashboard');
+                    // Mengambil data pekerjaan dengan pagination (10 per halaman)
+                    $jobs = Job::paginate(10);
+
+                    // Mengirim data pekerjaan ke view
+                    return view('dashboard.pencari.index', compact('jobs'));
                 default:
                     return redirect()->route('login')->with('error', 'Role tidak dikenal.');
             }

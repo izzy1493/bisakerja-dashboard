@@ -8,25 +8,21 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    // Method untuk menampilkan daftar pekerjaan
+    // Method untuk menampilkan daftar pekerjaan dengan pagination
     public function index()
     {
-        // Mengambil semua data pekerjaan dari database
-        $jobs = Job::all();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
+        // Mengambil data pekerjaan dengan pagination (10 per halaman)
+        $jobs = Job::paginate(10);
 
         // Mengirim data pekerjaan ke view
         return view('dashboard.penyedia.index', compact('jobs'));
     }
 
-    public function showPekerjaan()
-    {
-        // Mengambil semua data pekerjaan dari database
-        $jobs = Job::all();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
+    // Method untuk menampilkan detail pekerjaan
 
-        // Mengirim data pekerjaan ke view
-        return view('dashboard.penyedia.listPekerjaan.index', compact('jobs'));
-    }
+    
 
+    // Method untuk menampilkan semua lamaran pekerjaan
     public function showlamaran()
     {
         // Mengambil semua data pekerjaan dari database

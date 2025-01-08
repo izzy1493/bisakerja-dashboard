@@ -14,6 +14,7 @@ use App\Http\Controllers\ReportHandlingController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PencariController;
 use Illuminate\Support\Facades\Auth;
 
 // ========================================
