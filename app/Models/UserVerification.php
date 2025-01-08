@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserVerification extends Model
 {
@@ -23,8 +25,25 @@ class UserVerification extends Model
     ];
 
     // Relasi ke model User (user yang terverifikasi)
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function up()
+    {
+        Schema::create('user_verifications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('is_verified')->default(false);
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 }

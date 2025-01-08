@@ -85,6 +85,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/operations', [OperationsController::class, 'index'])->name('admin.operations');
 });
 
+
+Route::get('verifications/{id}', [UserVerificationController::class, 'show'])->name('verification.show');
+Route::post('verifications/{id}/approve', [UserVerificationController::class, 'approve'])->name('verification.approve');
+Route::post('verifications/{id}/reject', [UserVerificationController::class, 'reject'])->name('verification.reject');
+
+
 // -------------------------------------------
 // Penyedia Routes
 // -------------------------------------------
@@ -95,6 +101,12 @@ Route::get('/list-lamaran', [JobController::class, 'showlamaran'])->name('list-l
 
 Route::get('/dashboard/penyedia', [JobController::class, 'create'])->name('penyedia.create'); // Halaman form
 Route::post('/dashboard/penyedia', [JobController::class, 'store'])->name('penyedia.store'); // Proses form
+
+Route::get('list-lowongan', [UserVerificationController::class, 'index'])->name('list-lowongan.index');
+Route::put('list-lowongan/{id}', [UserVerificationController::class, 'update'])->name('list-lowongan.update');
+Route::get('list-lowongan', [UserVerificationController::class, 'index'])
+    ->name('list-lowongan.index')
+    ->middleware(['auth']);
 
 
 // ========================================

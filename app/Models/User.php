@@ -39,10 +39,10 @@ class User extends Authenticatable
     ];
 
     // Relasi dengan tabel `user_verifications`
-    public function verification()
-    {
-        return $this->hasOne(UserVerification::class, 'user_id');
-    }
+    // public function verification()
+    // {
+    //     return $this->hasOne(UserVerification::class, 'user_id');
+    // }
 
     // Relasi dengan tabel `jobs`
     public function jobs()
@@ -78,5 +78,10 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->name;
+    }
+
+    public function verification()
+    {
+        return $this->hasOne(UserVerification::class);
     }
 }
