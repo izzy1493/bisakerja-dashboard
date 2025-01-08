@@ -11,21 +11,11 @@ class UserVerification extends Model
 {
     use HasFactory;
 
-    // Menentukan nama tabel
+    // Menentukan nama tabel jika tidak mengikuti konvensi Laravel
     protected $table = 'user_verifications';
-
-    // Menentukan kolom primary key
-    protected $primaryKey = 'verification_id';
-
-    // Menonaktifkan auto-increment karena verification_id bukan auto-increment
-    public $incrementing = false;
-
-    // Menentukan tipe data primary key
-    protected $keyType = 'string'; // Sesuaikan dengan tipe data primary key (string, integer, dll)
 
     // Menentukan kolom-kolom yang dapat diisi (mass assignable)
     protected $fillable = [
-        'verification_id',
         'user_id',
         'id_card_number',
         'id_card_photo',
