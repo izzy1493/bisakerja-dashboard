@@ -15,11 +15,23 @@ class PencariController extends Controller
     }
 
     // Menampilkan daftar pekerjaan
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::paginate(10); // Pagination 10 item per halaman
+        // Query awal untuk daftar pekerjaan
+        $query = Job::query();
+    
+        // Filter pencarian berdasarkan input
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+    
+        // Ambil data pekerjaan dengan pagination
+        $jobs = $query->latest()->paginate(10);
+    
         return view('dashboard.pencari.index', compact('jobs'));
     }
+    
+    
 
     // Menampilkan detail pekerjaan
     public function show($id)

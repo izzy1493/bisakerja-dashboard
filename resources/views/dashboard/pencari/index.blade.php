@@ -13,25 +13,39 @@
         <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-700 leading-relaxed">
             Jelajahi peluang karier terbaik yang dirancang khusus untuk keahlian Anda. Wujudkan impian Anda hari ini.
         </p>
-        <div class="mt-6 flex justify-center space-x-4">
-            <a href="#jobs" class="bg-black text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-800 transition transform hover:scale-105">
-                Lihat Pekerjaan
-            </a>
-            <a href="#search" class="bg-gray-100 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200 transition transform hover:scale-105">
-                Cari Pekerjaan
-            </a>
-        </div>
+        <form action="{{ route('pencari.index') }}" method="GET" class="mt-6">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <input 
+                    type="text" 
+                    name="q" 
+                    value="{{ request('q') }}" 
+                    placeholder="Cari pekerjaan..." 
+                    class="flex-1 max-w-md p-3 border rounded-lg shadow-sm focus:ring focus:ring-purple-200">
+                <button 
+                    type="submit" 
+                    class="bg-black text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-800 transition">
+                    Cari
+                </button>
+            </div>
+        </form>
     </div>
 </section>
 
 <!-- Daftar Pekerjaan -->
 <section id="jobs" class="container mx-auto py-16 px-4">
-    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center" data-aos="zoom-in" data-aos-duration="1000">Pekerjaan untuk Anda</h2>
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center" data-aos="zoom-in" data-aos-duration="1000">
+        Pekerjaan untuk Anda
+    </h2>
 
     <!-- Grid Card -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach ($jobs as $job)
-        <div class="bg-white rounded-xl shadow-md p-6 relative hover:shadow-lg transition transform hover:scale-105" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" data-aos-duration="800">
+        <div 
+            class="bg-white rounded-xl shadow-md p-6 relative hover:shadow-lg transition transform hover:scale-105" 
+            data-aos="fade-up" 
+            data-aos-delay="{{ $loop->index * 100 }}" 
+            data-aos-duration="800">
+            
             <!-- Tanggal -->
             <div class="absolute top-4 right-4 bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">
                 {{ \Carbon\Carbon::parse($job->created_at)->format('d M, Y') }}
@@ -65,7 +79,9 @@
 
             <!-- Tombol -->
             <div class="flex justify-between items-center">
-                <a href="{{ route('pencari.show', $job->job_id) }}" class="bg-black text-white text-sm font-medium px-4 py-2 rounded-lg shadow-md hover:bg-gray-800 transition transform hover:scale-105">
+                <a 
+                    href="{{ route('pencari.show', $job->job_id) }}" 
+                    class="bg-black text-white text-sm font-medium px-4 py-2 rounded-lg shadow-md hover:bg-gray-800 transition transform hover:scale-105">
                     Details
                 </a>
             </div>
