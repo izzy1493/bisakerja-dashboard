@@ -19,7 +19,14 @@ class JobController extends Controller
     }
 
     // Method untuk menampilkan detail pekerjaan
+    public function showpekerjaan()
+    {
+        // Mengambil semua data pekerjaan dari database
+        $jobs = Job::all();  // Anda bisa menambahkan pagination jika daftar pekerjaan sangat banyak, misalnya: Job::paginate(10);
 
+        // Mengirim data pekerjaan ke view
+        return view('dashboard.penyedia.listPekerjaan.index', compact('jobs'));
+    }
     
 
     // Method untuk menampilkan semua lamaran pekerjaan

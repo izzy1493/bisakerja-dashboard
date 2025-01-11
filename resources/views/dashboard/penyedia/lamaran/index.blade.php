@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <body class="bg-black font-sans antialiased h-screen flex flex-col">
+    <body class="bg-gray-900 font-sans antialiased h-screen flex flex-col">
 
         <!-- Hero Section -->
-        <section class="relative bg-gradient-to-r from-black to-gray-800 text-white flex-grow">
+        <section class="relative bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white flex-grow">
             <img alt="Background image of a professional office environment"
                 class="absolute inset-0 w-full h-full object-cover opacity-20" height="1080"
                 src="https://images.unsplash.com/photo-1514894780887-121968d00567?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -18,28 +18,29 @@
         </section>
 
         <!-- Daftar Lamaran Pekerjaan Section -->
-        <section class="py-24 px-6 bg-gray-900 flex-grow">
-            <div class="bg-gray-800 bg-opacity-90 rounded-lg p-6 shadow-lg">
+        <section class="py-24 px-6 bg-gray-100 flex-grow">
+            <div class="bg-gray-100 bg-opacity-90 rounded-lg p-6 shadow-lg">
                 @if ($jobApplications->isNotEmpty())
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($jobApplications as $jobApplication)
                             <div
-                                class="p-6 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                                class="p-6 bg-gradient-to-r bg-white rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
                                 <div class="flex items-center mb-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                        viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.75"
                                         stroke-linecap="round" stroke-linejoin="round"
                                         class="lucide lucide-circle-user-round">
                                         <path d="M18 20a6 6 0 0 0-12 0" />
                                         <circle cx="12" cy="10" r="4" />
                                         <circle cx="12" cy="12" r="10" />
                                     </svg>
-                                    <span class="font-medium">ID User:</span>
-                                    <h2 class="text-xl font-semibold text-green-400">{{ $jobApplication->seeker_id }}</h2>
+                                    
+                                    <span class="text-black ml-2 font-medium">ID User:</span>
+                                    <h2 class="text-xl font-semibold text-blue-600">{{ $jobApplication->seeker_id }}</h2>
                                 </div>
-                                <p class="text-gray-300 mb-4">{{ $jobApplication->applied_at }}</p>
+                                <p class="text-black mb-4">{{ $jobApplication->applied_at }}</p>
 
-                                <div class="text-sm text-gray-300">
+                                <div class="text-sm text-gray-800 mb-2">
                                     <span class="font-medium">ID Job:
                                         <span
                                             class="text-{{ $jobApplication->status == 'Accepted' ? 'green-400' : ($jobApplication->status == 'Rejected' ? 'red-400' : 'yellow-400') }}">
@@ -48,10 +49,10 @@
                                     </span>
                                 </div>
 
-                                <div class="text-sm text-gray-300">
+                                <div class="text-sm text-blue-600 mb-4">
                                     <span class="font-medium">Status:
                                         <span
-                                            class="text-{{ $jobApplication->status == 'Accepted' ? 'green-400' : ($jobApplication->status == 'Rejected' ? 'red-400' : 'yellow-400') }}">
+                                            class="text-"{{ $jobApplication->status == 'Accepted' ? 'green-400' : ($jobApplication->status == 'Rejected' ? 'red-400' : 'yellow-400') }}">
                                             {{ $jobApplication->status }}
                                         </span>
                                     </span>
@@ -60,7 +61,7 @@
                                 <!-- Tombol untuk menampilkan informasi tambahan -->
                                 <div class="mt-4">
                                     <button onclick="toggleDetails(this)"
-                                        class="inline-block bg-gradient-to-r from-green-500 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 transition transform hover:scale-105">
+                                        class="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition transform hover:scale-105">
                                         <i class="fas fa-eye mr-2"></i> Lihat Detail
                                     </button>
                                 </div>
