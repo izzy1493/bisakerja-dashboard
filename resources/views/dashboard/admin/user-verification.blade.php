@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+{{-- @extends('layouts.admin.app')
 
 @section('title', 'Verifikasi Pengguna')
 
@@ -44,4 +44,4 @@
             </table>
         </div>
     </div>
-@endsection
+@endsection --}}
