@@ -89,6 +89,27 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('verifications/{id}', [UserVerificationController::class, 'show'])->name('verification.show');
 Route::post('verifications/{id}/approve', [UserVerificationController::class, 'approve'])->name('verification.approve');
 Route::post('verifications/{id}/reject', [UserVerificationController::class, 'reject'])->name('verification.reject');
+// Route untuk Verifikasi Pengguna
+Route::get('/users', [UserVerificationController::class, 'index'])->name('admin.users');
+Route::get('/users/{id}', [UserVerificationController::class, 'show'])->name('admin.users.detail');
+
+// Route untuk aksi menyelesaikan laporan
+Route::post('/admin/reports/{id}/resolve', [ReportHandlingController::class, 'resolve'])->name('admin.reports.resolve');
+
+// Route untuk aksi menaikkan status laporan menjadi eskalasi
+Route::post('/admin/reports/{id}/escalate', [ReportHandlingController::class, 'escalate'])->name('admin.reports.escalate');
+
+// Route untuk Operasional Data
+Route::get('/operations', [OperationsController::class, 'index'])->name('admin.operations');
+Route::get('/operations/{id}/edit', [OperationsController::class, 'edit'])->name('admin.operations.edit');
+Route::put('/operations/{id}', [OperationsController::class, 'update'])->name('admin.operations.update');
+Route::put('/admin/operations/{job}/update-status', [OperationsController::class, 'updateStatus'])->name('admin.operations.updateStatus');
+Route::delete('/operations/{id}', [OperationsController::class, 'destroy'])->name('admin.operations.destroy');
+Route::post('/operations/users/{id}/activate', [OperationsController::class, 'activateUser'])->name('admin.operations.users.activate');
+Route::post('/operations/users/{id}/deactivate', [OperationsController::class, 'deactivateUser'])->name('admin.operations.users.deactivate');
+
+Route::post('/verify/approve/{id}', [UserVerificationController::class, 'approve'])->name('admin.verify.approve');
+Route::post('/verify/reject/{id}', [UserVerificationController::class, 'reject'])->name('admin.verify.reject');
 
 // -------------------------------------------
 // Penyedia Routes
